@@ -75,10 +75,10 @@ $p-size:            $base-font-size !default;
 $primaryFont: "Trebuchet MS", Helvetica, Arial, sans-serif;
 $secondaryFont: Georgia, 'Times New Roman', serif;
 
-$fonticon: 'bkicon';
+$fonticon: 'customicon';
 
 
-$baseFont: normal #{$base-font-size}px / #($base-line-height)px $primaryFont;
+$baseFont: normal #{$base-font-size}px / #{$base-line-height}px $primaryFont;
 
 
 $base-spacing-unit: $base-line-height!default;
@@ -101,7 +101,7 @@ $tertiaryColor: 		#ccc; // grey
 
 $black:		$primaryColor;
 $white:		$secondaryColor;
-$grey:		$quarternaryColor;
+$grey:		$tertiaryColor;
 
 
 $error: 	#B42C2C; // error red colour

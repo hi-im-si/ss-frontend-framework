@@ -1,0 +1,114 @@
+/*========================================================================================
+============================ Generic Lists ===============================================
+==========================================================================================*/
+
+	ul, ol { margin-bottom: 20px; }
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
+	li { line-height: 18px; margin-bottom: 12px; }
+	ul.large li { line-height: 21px; }
+	li p { line-height: 21px; }
+
+
+	dl {margin-bottom: 10px; line-height: 1;}
+	dt,dd { @include inline-block(top); width:49%; }
+	dt {font-weight: $reg;}
+	dd { padding: 0 0 0 40px; margin: 0; }
+
+/*========================================================================================
+============================ Tables ======================================================
+==========================================================================================*/
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		tr:nth-child(even) td,
+		tr:nth-child(odd) th {
+			background: $tertiaryColor none repeat 0 0;
+
+			* { color:$secondaryColor; }
+
+			&.actions {
+				.sep--right {
+					&:after {
+						border-color:$secondaryColor;
+					}
+				}
+			}
+		}
+
+		th,
+		td {
+			padding: 10px 5px;
+			text-align: left;
+		}
+			th {
+				@include font-size($delta-size);
+				color:$secondaryColor;
+				vertical-align: middle;
+			}
+			td {
+				@include font-size($p-size);
+				vertical-align: top;
+				border-top: solid 1px $tertiaryColor;
+			}
+
+
+
+		&.table--bordered {
+			border-collapse: separate;
+			border: solid 1px $tertiaryColor;
+		}
+
+		&.table--bordered th + th,
+		&.table--bordered th + td,
+		&.table--bordered td + td {
+			border-left: solid 1px $tertiaryColor;
+		}
+	}
+
+
+
+/*========================================================================================
+============================ Background Sections =========================================
+==========================================================================================*/
+
+
+.bg-primary {
+	background: $primaryColor none repeat 0 0;
+}
+.bg-secondary {
+	background: $secondaryColor none repeat 0 0;
+}
+.bg-tertiary {
+	background: $tertiaryColor none repeat 0 0;
+}
+
+
+
+/*========================================================================================
+============================ Imager Dummy Image =========================================
+==========================================================================================*/
+
+.js .js-load-img {
+
+	height: 100%;
+	width: 100%;
+	max-height: 100%;
+	max-width: 100%;
+	padding-bottom: 75%;
+	display: block;
+	background: {
+		color: transparent;
+		image: url('#{$imgsrc}/load.gif');
+		repeat: no-repeat;
+		position: center center;
+	}
+
+}
+

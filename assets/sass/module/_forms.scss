@@ -1,0 +1,392 @@
+
+/*===========================================
+============== Base Form Elements ===========*/
+
+.form {
+
+	&__row {
+		margin-bottom: 10px;
+	}
+
+	&__field {
+		position: relative;
+		width:100%;
+		text-align: left;
+		@include inline-block;
+		margin:0 0 5px 0;
+
+		&__half {
+			@include inline-block;
+			@include auto-col(6);
+		}
+		&--thirds {
+			@include auto-col(4);
+			margin-left: 0.7936507937%;
+			margin-right: 0.7936507937%;
+		}
+		&--quarts {
+			@include auto-col(3);
+			margin-left: 0.7936507937%;
+			margin-right: 0.7936507937%;
+		}
+
+		&--alpha {
+			margin-left: 0;
+		}
+
+		&--omega {
+			margin-right: 0;
+		}
+
+	}
+
+
+}
+
+
+
+
+
+
+/*--- Inputs ---*/
+
+
+// Base Form Elements Styling
+input[type="text"],
+input[type="password"], input.password,
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="type"],
+textarea,
+select {
+	position: relative;
+	padding: 0 5px;
+	display: block;
+	width:100%;
+	border: 1px solid $tertiaryColor;
+	background: $secondaryColor none repeat 0 0;
+	color: $primaryColor;
+	font-family: $secondaryFont;
+	@include font-size($milli-size, $beta-size - 2);
+	outline: none;
+	text-transform: none;
+	@include remove-safari-defaults;
+	z-index: 1;
+	height: 30px;
+}
+
+
+
+
+
+
+// Base Focus States
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+	@include box-shadow(0 0 5px rgba($primaryColor, 0.2));
+}
+
+// Placeholder Text Styling
+input,
+textarea,
+input.placeholder,
+textarea.placeholder {
+	@include placeholder {
+		color:$primaryColor;
+		@include font-size($milli-size, $beta-size);
+	}
+}
+
+// Default Checkbox
+input[type="checkbox"] {
+	float: left;
+	display: inline;
+	width:15px;
+}
+
+// Default styles attached to Radio JS
+.radioWrap {cursor:pointer;}
+.radioWrap input {
+	@include opacity ( 0 );
+	cursor:pointer;
+}
+
+// give height / remove cols and rows from html as they dont validate in HTML5
+textarea {
+ 	min-height: 60px;
+}
+
+
+
+
+
+
+/*--- Labels ---*/
+
+label,
+legend {
+	@include inline-block();
+	@include font-size($zeta-size);
+	text-transform: uppercase;
+}
+
+label span,
+legend span {
+	font-weight: normal;
+	color: #444;
+}
+
+.form__label {
+
+	&--hidden {
+		display: none;
+	}
+
+}
+
+.form__smallcopy {
+	font-family: $secondaryFont;
+	@include font-size($micro-size);
+	@include inline-block(top);
+	margin-right: 20px;
+}
+
+
+
+
+/*--- Horizontal Presentation of Forms ---
+
+	- form-inline will display a form along one line with the labels beside the inputs as well.
+		e.g.
+			Label  |  Input      Label  |  Input      Label  |  Input
+---*/
+
+.form--inline{
+
+  .form__field { margin-bottom: 10px; }
+
+	label,
+	input,
+	button,
+	select{
+		@include inline-block;
+		margin-bottom: 10px;
+	}
+}
+
+
+
+/*-------------------------------------------------------------------------------------------------
+----------------------------- Select Styling ------------------------------------------------------
+---------------------------------------------------------------------------------------------------*/
+
+.select-wrap {
+	position:relative;
+	display: inline-block;
+	clear: none;
+	cursor: pointer;
+	width:100%;
+	height: 30px;
+}
+
+select {
+	background: none repeat scroll 0 0 $white;
+	display:inline-block;
+	width:100%;
+	height:100%;
+	margin: 0;
+	font-family: $primaryFont;
+	@include font-size($milli-size, $beta-size);
+
+	&.select {
+		position:relative;
+		z-index:10;
+		height:100%;
+		width:100%;
+		cursor:pointer;
+	}
+
+}
+
+span.select{
+	@include _position(absolute, 0, 0, 0, 0);
+	z-index:1;
+	width:100%;
+	height:100%;
+	padding:0 30px 0 15px;
+	border: 1px solid $tertiaryColor;
+	background: $secondaryColor none repeat 0 0;
+	color:$primaryColor;
+	font-family: $primaryFont;
+	@include font-size($zeta-size, $beta-size);
+	@include word-break;
+	text-align: left;
+	text-transform: uppercase;
+	cursor:pointer;
+	overflow:hidden;
+
+	&:after {
+		@include fonticon;
+		content:"\e60e"; // .icon-arrow-down2
+		@include _position(absolute, 50%, 5px, auto, auto);
+		margin-top: -10px;
+		color:$tertiaryColor;
+		@include font-size($delta-size);
+	}
+}
+
+	span.error-select {
+	  background: $primaryColor url('#{$imgsrc}/forms/select-error.png') no-repeat right center;
+	  color:$error;
+	  border:1px solid $error;
+	}
+
+
+
+
+
+// DRY mixin for radio and checkbox styles
+@mixin radio-check-styling {
+	position:relative;
+	@include inline-block(middle);
+	height: 15px;
+	width: 15px;
+	color:$tertiaryColor;
+	overflow:hidden;
+	margin-right: 5px;
+	cursor:pointer;
+
+	&:before{
+		@include fonticon;
+
+	}
+
+	&:before {
+		position: absolute;
+		top:2px;
+		left: 0;
+
+		@include font-size($milli-size,$epsilon-size - 2);
+	}
+
+	input {
+		@include opacity ( 0 );
+		cursor:pointer;
+		vertical-align: top;
+	}
+
+}
+/*-------------------------------------------------------------------------------------------------
+-----------------------Radio Input Styling ------------------------------------------------------
+---------------------------------------------------------------------------------------------------*/
+
+
+.radio {
+	@include radio-check-styling;
+
+  &:before {
+	content: "\e618";
+  }
+
+  + label {
+	line-height: 1;
+	@include inline-block(middle);
+  }
+}
+
+.radio--selected {
+	&:before {
+		content: "\e619";
+	}
+}
+
+
+/*-------------------------------------------------------------------------------------------------
+-----------------------Checkbox Input Styling ------------------------------------------------------
+---------------------------------------------------------------------------------------------------*/
+
+.checkbox {
+	@include radio-check-styling;
+
+	&:before {
+		content: "";
+	}
+
+
+	input {
+		width:15px; height:15px;
+		margin:0; padding:0;
+	}
+
+}
+
+	.checkbox--selected {
+		&:before {
+			content: "\e617";
+		}
+	}
+
+
+
+
+/*-------------------------------------------------------------------------------------------------
+-----------------------Error/Success Styling ------------------------------------------------------
+---------------------------------------------------------------------------------------------------*/
+
+.page {
+
+	.form {
+
+		input.error,
+		.error input,
+		.error textarea {
+			background: #fff url('#{$imgsrc}/forms/error.png') no-repeat right center;
+			color:$error;
+			border-color:$error;
+		}
+
+		input:valid:not(.submit),
+		textarea:valid {
+
+		}
+
+		.required {color:$error;}
+
+
+		.error {
+			@include placeholder {
+				color:$error;
+				font-weight:bold;
+				text-transform: uppercase;
+			}
+		}
+
+
+		.form__error {
+		 	* {
+				color:$error;
+		 	}
+		}
+
+		.form__success {
+		 	* {
+				color:$success;
+		 	}
+		}
+
+		.successText {
+			font-size: 14px;
+			margin: 0;
+			font-weight: normal;
+			text-transform:uppercase;
+			font-family:$primaryFont;
+			line-height:1;
+			color:$white;
+			font-weight:bold;
+		}
+	}
+}

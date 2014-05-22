@@ -1,0 +1,49 @@
+ul.bullet {
+	margin:10px 0;
+
+	li {
+		position: relative;
+		display: block;
+		margin:3px 0;
+		padding-left: 20px;
+		font-family: $secondaryFont;
+		@include font-size($milli-size);
+
+		&:before {
+			@include fonticon;
+			content: "\e610";
+			position: absolute;
+			left: 0;
+			top: 4px;
+			@include font-size($micro-size,$micro-size);
+			color:$tertiaryColor;
+		}
+	}
+
+}
+
+ol.counter {
+
+	list-style-type: decimal;
+
+	li {
+		position: relative;
+		display: list-item;
+		margin:10px 0;
+	}
+}
+
+
+
+
+.cms-text {
+
+	ol {
+		@extend ol.counter;
+	}
+
+	ul {
+		@extend ul.bullet;
+	}
+
+}

@@ -1,0 +1,130 @@
+/* =============================================================================
+   Primary styles
+   Author:
+   ========================================================================== */
+
+
+/*
+  Contents
+  --------
+  0 Normalisation
+  1 Typography
+  2 Headings
+  3 Layout Base Elements
+  4 Layout
+  5 Navigation
+  6 Page Specific Styles
+  7 Form Styles
+  8 Fancybox
+  9 IE Fixes
+  10 Media Queries
+
+
+*/
+
+
+/*============================
+*	Base
+	all base files to reset and get the site started
+*/
+
+	@import "base/variables";
+	@import "base/mixins";
+	@import "base/base";
+	@import "base/typography";
+	@import "base/fonticon";
+	@import "base/helper-class";
+  	@import "base/list";
+
+
+/*============================
+*	Layout
+	Main layout elements of site - Header, sidebar footer etc but none of the reusable
+	elements that are inside of these including headers, links etc. Make these in a
+	more modular method.
+*/
+
+	@import "layout/layout";
+
+/*============================
+*	Theme
+	this will be some core colour themes to allow for modular theming.
+*/
+
+	// @import "theme/theme";
+
+
+/*============================
+*	Modules
+	this will be the core styles for the site. this should be as modular as possible
+	but no state styles. These are for the next section.
+*/
+
+	  @import "module/grid";
+	  @import "module/nav";
+	  @import "module/main";
+	  @import "module/forms";
+	  @import "module/buttons";
+	  @import "module/tooltip";
+	  @import "module/alerts";
+	  @import "module/accordion";
+	  @import "module/flex-media";
+	  @import "module/vertical-align";
+	  @import "module/modal";
+
+
+/*============================
+*	State
+	the different states of elements that are styled will be kept in here.
+*/
+
+	@import "state/main";
+
+
+/*============================
+*	Page
+	all page files are aimed at general major/minor layout in regards to page specificity.
+*/
+
+	  @import "page/main";
+
+
+/*============================
+*	Print
+	Print Style sheet
+*/
+
+	//@import "module/_print";
+
+
+ /*============================
+*	Libraries
+	CSS files for any external libraries like fancybox etc.
+*/
+
+	@import "lib/magnificpopup";
+
+
+ /*============================
+*	Shame/Browser Specific
+	For all those hacky css fixes you have to make quickly as well as browser specific styles
+*/
+
+	@import "shame/shame";
+	@import "shame/browser";
+
+
+ /*============================
+*	DEBUG
+	highlights general validation issues - improper/invalid markup.
+	This can be enabled/disabled in _variables.scss
+*/
+
+	@import "base/debugmode";
+
+
+ /*============================
+*	STYLEGUIDE
+	Styleguide specific styles --- NO relevance to site styles
+*/
+	//@import "base/styleguide";

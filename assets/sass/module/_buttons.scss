@@ -1,0 +1,366 @@
+// Modular Reuseable Button Styles
+
+
+/*------------------------------------*\
+	$BASE
+\*------------------------------------*/
+/**
+ * Base button styles.
+ *
+ * 1. Allow us to better style box model properties.
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Stop buttons wrapping and looking broken.
+ * 4. Make buttons inherit font styles.
+ * 5. Force all elements using beautons to appear clickable.
+ * 6. Normalise box model styles.
+ * 7. If the buttonâ€™s text is 1em, and the button is (3 * font-size) tall, then
+ *    there is 1em of space above and below that text. We therefore apply 1em
+ *    of space to the left and right, as padding, to keep consistent spacing.
+ * 8. Basic cosmetics for default buttons. Change or override at will.
+ * 9. Dont allow buttons to have underlines; it kinda ruins the illusion.
+ */
+.btn{
+	display:inline-block;       	           /* [1] */
+	vertical-align:middle;      	           /* [2] */
+	white-space:nowrap;         	           /* [3] */
+	font-family:inherit;        	           /* [4] */
+	font-size:100%;             	           /* [4] */
+	cursor:pointer;             	           /* [5] */
+	border:none;                	           /* [6] */
+	margin:0;                   	           /* [6] */
+	padding-top:   0;           	           /* [6] */
+	padding-bottom:0;           	           /* [6] */
+	line-height:1;              	           /* [7] */
+	padding-right:0.5em;          	/* [7] */
+	padding-left: 0.5em;          	/* [7] */
+	@include border-radius(0px);	/* [8] */
+
+	-webkit-font-smoothing: antialiased;
+}
+
+.btn {
+
+	position: relative;
+	text-transform: uppercase;
+
+	&,
+	&:hover{
+		text-decoration:none;   /* [9] */
+		@include transition(all 0.5s $easeInOut);
+	}
+
+	&:active,
+	&:focus{
+		outline:none;
+	}
+
+
+	&:after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		@include transition(0.3s $easeInOut all);
+	}
+
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SIZES
+\*------------------------------------*/
+/**
+ * Button size modifiers.
+ *
+ * These all follow the same sizing rules as above; text is 1em, space around it
+ * remains uniform.
+ */
+.btn--small{
+	padding-right:3.5em;
+	padding-left: 3.5em;
+	@include font-size($milli-size,$beta-size);
+}
+
+.btn--large{
+	padding-right:4.5em;
+	padding-left: 4.5em;
+	@include font-size($nav-size,$beta-size);
+}
+
+.btn--huge{
+	padding-right:5em;
+	padding-left: 5em;
+	@include font-size($delta-size,$hecto-size);
+}
+
+.btn--flush {
+	padding-left: 1em;
+	padding-right:4.5em;
+	@include font-size($nav-size,$beta-size);
+}
+
+/**
+ * These buttons will fill the entirety of their container.
+ *
+ * 1. Remove padding so that widths and paddings dont conflict.
+ */
+.btn--full{
+	width:100%;
+	padding-right:0;            /* [1] */
+	padding-left: 0;             /* [1] */
+	text-align:center;
+}
+
+/**
+ * These buttons will fill half of their container.
+ *
+ * 1. Remove padding so that widths and paddings dont conflict.
+ */
+.btn--half{
+	width:50%;
+	padding-right:0;            /* [1] */
+	padding-left: 0;            /* [1] */
+	text-align:center;
+}
+
+/*------------------------------------*\
+	$FUNCTIONS
+\*------------------------------------*/
+/**
+ * Button function modifiers.
+ */
+
+.btn--primary,
+.btn--secondary,
+.btn--tertiary,
+.btn--quarternary {
+
+}
+
+.btn--primary{
+
+	background:$primaryColor none repeat 0 0;
+	color:$secondaryColor;
+
+
+	&:hover {
+		color:$secondaryColor;
+	}
+
+	&:active {
+
+	}
+
+	&.btn--link {
+		color:$primaryColor;
+	}
+}
+
+
+.btn--secondary{
+
+	background:$secondaryColor none repeat 0 0;
+
+
+	&:hover {
+
+	}
+
+	&:active {
+
+	}
+
+	&.btn--link {
+		color:$secondaryColor;
+	}
+
+}
+
+
+.btn--tertiary{
+	background:$tertiaryColor none repeat 0 0;
+	color:$secondaryColor;
+
+	&:hover {
+
+	}
+
+	&:active {
+
+	}
+
+	&.btn--link {
+		color:$tertiaryColor;
+	}
+}
+
+
+
+.btn--link {
+	padding: 0;
+	background: transparent none repeat 0 0;
+	@include font-size($zeta-size);
+	font-family: $primaryFont;
+}
+
+
+
+
+
+/**
+ * Positive actions; e.g. sign in, purchase, submit, etc.
+ */
+.btn--positive{
+	background-color:$success;
+	color:#fff;
+}
+
+/**
+ * Negative actions; e.g. close account, delete photo, remove friend, etc.
+ */
+.btn--negative{
+	background-color:$error;
+	color:#fff;
+}
+
+/**
+ * Inactive, disabled buttons.
+ *
+ * 1. Make the button look like normal text when hovered.
+ */
+.btn--inactive,
+	.btn--inactive:hover,
+	.btn--inactive:active,
+	.btn--inactive:focus{
+		background-color:#ddd;
+		color:#777;
+		cursor:text;            /* [1] */
+	}
+
+
+
+
+
+/*------------------------------------*\
+	$STYLES
+\*------------------------------------*/
+/**
+ * Button style modifiers.
+ *
+ * 1. Use an overly-large number to ensure completely rounded, pill-like ends.
+ */
+.btn--soft{
+	@include border-radius(200px);        /* [1] */
+}
+
+.btn--hard{
+	@include border-radius(0);
+}
+
+.btn--square {
+	height: 25px;
+	width: 25px;
+	padding: 5px;
+	text-align: center;
+
+	> i { @include font-size($milli-size,$milli-size); }
+}
+
+/* Button with aligned icon */
+
+.btn--icon {
+
+	> i {
+		@include _position(absolute, 0, 0, 0, auto);
+		padding: 0 5px;
+	}
+
+	.icon__nested {
+		@include _position(absolute, 0, 0, 0, auto);
+	}
+
+	.icon__nested--left {
+		@include _position(absolute, 0, auto, 0, 0);
+	}
+
+	&.btn--icon--left {
+
+		> i {
+			right: auto;
+			left: 0;
+		}
+	}
+}
+
+
+
+/* Add to Cart Button -> add is-error and is-success classes for 3d states */
+
+.btn--addcart {
+	width:100%;
+	padding-left: 1em;
+	padding-right: 1em;
+	text-align: right;
+	@include preserve3d;
+	@include transition(0.3s $easeInOut all);
+
+	&:before,
+	&:after {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+
+	&:before {
+		top: 100%;
+		background: $error;
+		content: 'Error!';
+		@include transform-origin(0% 0%);
+		@include transform(rotateX(-90deg));
+	}
+
+	&:after {
+		top: -100%;
+		background: $success;
+		content: "added to cart!";
+		@include transform-origin(0% 100%);
+		@include transform(rotateX(90deg));
+		z-index:1;
+	}
+
+
+
+	&.is-success,
+	&.is-error {
+		background: $grey none repeat 0 0;
+
+		span {
+		  @include fonticon;
+		}
+	}
+
+	&.is-success {
+		@include transform-origin(50% 100%);
+		@include transform(rotateX(-90deg) translateY(100%));
+
+		span {
+		  content: "\e600";
+		}
+	}
+
+	&.is-error {
+		@include transform-origin(50% 0%);
+		@include transform(rotateX(90deg) translateY(-100%));
+	}
+
+}
+
+
+.btn--clear {
+	padding: 5px;
+}

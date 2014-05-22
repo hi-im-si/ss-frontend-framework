@@ -1,0 +1,32 @@
+
+//		<div class="v-center">
+//
+//			<div class="v-center__table">
+//
+//				<div class="v-center__cell">
+//
+//					<h1>stuff you want centered</h1>
+//
+//				</div>
+//
+//			</div>
+//		</div>
+
+/* Center elements via display:table */
+.v-center {
+
+	@include _position(absolute,0,0,0,0);
+	height: 100%; width: 100%;
+	display: block;
+	text-align: center;
+
+	&__table {
+		display: table;
+		height: 100%; width: 100%;
+	}
+
+	&__cell {
+		display: table-cell;
+		vertical-align: middle;
+	}
+}

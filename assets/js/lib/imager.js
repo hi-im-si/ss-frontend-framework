@@ -104,7 +104,7 @@
 
         this.imagesOffScreen  = [];
         this.viewportHeight   = doc.documentElement.clientHeight;
-        this.selector         = opts.selector || '.delayed-image-load';
+        this.selector         = opts.selector || '.js-image-load';
         this.className        = opts.className || 'image-replace';
         this.gif              = doc.createElement('img');
         this.gif.src          = 'data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7';

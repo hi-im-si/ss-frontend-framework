@@ -1,204 +1,156 @@
 /*
+BEM GRID
 
-
-GRID
-
-Grid mixin allowing to pass base grid width, number of columns and gap
-
-
+A Simple Grid mixin that is easily extendable and customisable to your needs
 */
 
 
-
+// BASE VARIABLES //
+// You only need to change these based //
 $grid-base-width: 1260;
-
-$grid-column-nr: 12;
-
-$grid-column-gap: 20;
-
-$grid-margin: percentage(($grid-column-gap/2)/$grid-base-width);
+$grid-column-length: 12;
+$grid-column-gutter: 20;
 
 
-@mixin auto-grid($base-width: 1260, $column-nr: 12, $gap: 20 ){
 
-	$gap-margin: percentage(($gap/2)/$base-width);
 
-	$column-width: ($base-width/$column-nr);
+@mixin bem-grid($grid-base-width: $grid-base-width, $grid-column-length: $grid-column-length, $gutter: $grid-column-gutter ){
 
-	$column-width-percentage: percentage($column-width/$base-width);
+	$gutter-margin: percentage( ($gutter/2)/$grid-base-width );
+
+	$column-width-calc: ($grid-base-width/$grid-column-length);
+
+	$column-width: percentage($column-width-calc/$grid-base-width);
 
 
 	.container{
 		position: relative;
-		max-width: #{$base-width}px;
+		max-width: #{$grid-base-width}px;
 		margin: 0 auto;
-		
 
-		.lt-ie9 &{
-			width: 960px;
-			min-width:1260px;
-		}
 
-		// max-width: 480px;
+		/*---------------------------*/
 		@include mq($max, $mq-mob) {
 		    max-width: $mq-mob;
+
+		    .col {
+		    	width: 95.833333333333333333333333333333%;
+		    	@include align-center;
+		    }
 		}
+		/*---------------------------*/
 
-		.col {
-			@include mq($max, $mq-mob) {
-			    width: 95.833333333333333333333333333333%;
-			    @include div-align-center();
-
-			}
+		.lt-ie9 &{
+			width: $grid-base-width;
+			min-width:$grid-base-width;
 		}
 
 	}
 
+
+
+
+	// You Row Wrapper for columns. This is not essential for your columns
 	.row {
 		position: relative;
 		width:100%;
-		margin : 0 auto 20px;
+		margin: 0 auto 20px;
 		display: block;
 		@include clearfix;
 	}
-		.row--sep {
-			padding-bottom: 20px;
-			border-bottom: 5px solid $primaryColor;
-		}
 
 
 
+
+	// THE CORE COLUMN CLASS W/ MODIFIERS
 	.col{
 		position: relative;
 		float: left;
 		display: inline;
-		margin-left: $gap-margin;
-		margin-right: $gap-margin;
+		margin-left: $gutter-margin;
+		margin-right: $gutter-margin;
 		vertical-align: top;
-		@include transition(0.3s $easeInOut all);
 
-	}
-
-	.col--full {
-		width:100%;
-		margin: 0;
-	}
-
-	@for $i from 1 to $column-nr+1{
-		.col--#{$i}{
-			width: $column-width-percentage * $i - $gap-margin * 2;
+		// STANDARD COLUMNS CLASSES e.g. col--1   col--2   col--3 //
+			// These are the standard classes to be used in construction //
+		@for $i from 1 to $grid-column-length + 1 {
+			&--#{$i}{
+				width: $column-width * $i - $gutter-margin * 2;
+			}
 		}
-	}
 
-	@for $i from 1 to $column-nr+1{
-		.col--#{$i}-reset{
-			width: $column-width-percentage * $i - $gap-margin;
+		// OFFSET MODIFIER CLASSES e.g. col--offset-1   col--offset-2   col--offset-3 //
+			// The OFFSET classes allow you to push content via margin in place of a column //
+		@for $i from 1 to $grid-column-length {
+			&--offset-#{$i}{
+				margin-left: $column-width * $i + $gutter-margin;
+			}
 		}
-	}
 
-
-	@for $i from 1 to $column-nr{
-		.col--offset-#{$i}{
-			margin-left: $column-width-percentage * $i + $gap-margin;
+		// FLUSH MODIFIER CLASSES e.g. col--flush-1   col--flush-2   col--flush-3
+			// The FLUSH classes remove margins from the columns and so will sit side by side flush without gutters
+		@for $i from 1 to $grid-column-length {
+			&--flush-#{$i}{
+				width: $column-width * $i;
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
-	}
 
-	/* Columns that have no margins and are flush against eachother */
-	@for $i from 1 to $column-nr{
-		.col-flush--#{$i}{
-			width: $column-width-percentage * $i;
-			margin-left: 0;
-			margin-right: 0;
+		// FULL WIDTH MODIFIER CLASS
+			// Takes 100% of its container
+		&--full {
+			width:100%;
+			margin: 0;
 		}
-	}
 
-	// Custom Static Modifiers Columns
-	.col--half {
-		width:49%;
-		margin-left: 0.971%;
-		margin-right: 0.971%;
-	}
-	.col--thirds {
-		width:32%;
-		margin-left: 0.971%;
-		margin-right: 0.971%;
-	}
-	.col--fifths {
-		width:20%;
-		margin-left: 0.971%;
-		margin-right: 0.971%;
-	}
-	.col--10--calc {
-		.csscalc & {
-			@include calc(width, '100% - 230px');
-		}
-	}
-	.col--9--calc {
-		.csscalc & {
-			@include calc(width, '100% - 320px');
-		}
-	}
+		//-----------------------------------------------------------//
+		//--------------------- OVERRIDES/RESETS --------------------//
+		//-----------------------------------------------------------//
+
+		// Margin Resets
+		&--alpha { margin-left: 0; }
+		&--omega { margin-right: 0; }
 
 
+		//Column Align
+		&--left {float: left;}
+		&--right {float: right;}
+		&--center { @include align-center; }
+		&--justify {
+			text-align: justify;
 
-	
-
-	// Margin Resets
-	.col--alpha {
-		margin-left: 0;
-	}
-	.col--omega {
-		margin-right: 0;
-	}
-
-
-
-
-	// Column Align
-	.col--left {float: left;}
-	.col--right {float: right;}
-	.col--center { @extend %layout--center !optional; }
-
-	.col--align-top { vertical-align: top; }
-	.col--align-bottom { vertical-align: bottom; }
-
-	.col--justify {
-		text-align: justify;
-
-		&:after {
-			content: '';
-			display: inline-block;
-			width: 100%;
+			&:after {
+				content: '';
+				display: inline-block;
+				width: 100%;
+			}
 		}
 	}
 
 
 }
+// INSTANTIATE THE GRID MIXIN
+@include bem-grid($grid-base-width, $grid-column-length, $grid-column-gutter);
 
-@include auto-grid($grid-base-width, $grid-column-nr, $grid-column-gap);
 
 
-//
 
-@mixin auto-col($cols, $base-width:$grid-base-width, $column-nr:$grid-column-nr, $gap:$grid-column-gap){
-	$gap-margin: percentage(($gap/2)/$base-width);
-	$column-width: ($base-width/$column-nr);
-	$column-width-percentage: percentage($column-width/$base-width);
 
-	width: $column-width-percentage * $cols - $gap-margin * 2;
+
+// RESETTING COLUMN WIDTHS
+	// This is not used inside your HTML - Allows you to reset columns via CSS specifically for smaller viewports
+@mixin reset-cols-to($cols, $grid-base-width:$grid-base-width, $grid-column-length:$grid-column-length, $gutter:$grid-column-gutter){
+	$gutter-margin: percentage(($gutter/2)/$grid-base-width);
+	$column-width-calc: ($grid-base-width/$grid-column-length);
+	$column-width: percentage($column-width-calc/$grid-base-width);
+
+	width: $column-width * $cols - $gutter-margin * 2;
 }
+// Usage: @include reset-cols-to(10);
 
-// Usage: @include auto-col(10);
 
-// handy to override column widths
 
-@mixin auto-offset($cols, $base-width:$grid-base-width, $column-nr:$grid-column-nr, $gap:$grid-column-gap){
-	$gap-margin: percentage(($gap/2)/$base-width);
-	$column-width: ($base-width/$column-nr);
-	$column-width-percentage: percentage($column-width/$base-width);
-
-	margin-left: $column-width-percentage * $cols + $gap-margin;
-}
 
 /*========================================================================================
 ============================ Responsive Silent Classes ===================================
@@ -217,7 +169,7 @@ $grid-margin: percentage(($grid-column-gap/2)/$grid-base-width);
 
 		&.mq-desk-lrg--full {
 			@include mq($max, $mq-desk--lrg) {
-			    @include auto-col(12);
+			    @include reset-cols-to(12);
 
 			    &--reset {
 			    	width:100%;
@@ -229,50 +181,60 @@ $grid-margin: percentage(($grid-column-gap/2)/$grid-base-width);
 
 		/* generic tablet silent classes */
 		&.mq-tab-lrg--half {
+			/*---------------------------*/
 			@include mq($max, $mq-tab--lrg) {
-			    @include auto-col(6);
+			    @include reset-cols-to(6);
 			}
+			/*---------------------------*/
 		}
 		&.mq-tab-lrg--full {
+			/*---------------------------*/
 			@include mq($max, $mq-tab--lrg) {
-			    @include auto-col(12);
+			    @include reset-cols-to(12);
 
 			    &--reset {
 			    	width:100%;
 			    }
 			}
+			/*---------------------------*/
 		}
 
 
 		&.mq-tab--half {
 			@include mq(null, $mq-mob + 1, $mq-tab) {
-			    @include auto-col(6);
+			    @include reset-cols-to(6);
 			}
 		}
 		&.mq-tab--full {
+			/*---------------------------*/
 			@include mq($max, $mq-tab) {
-			    @include auto-col(12);
+			    @include reset-cols-to(12);
 
 			    &--reset {
 			    	width:100%;
 			    }
 			}
+			/*---------------------------*/
 		}
 
 		&.mq-tab-sml--full {
+			/*---------------------------*/
 			@include mq($max, $mq-tab--sml) {
-			    @include auto-col(12);
+			    @include reset-cols-to(12);
 
 			    &--reset {
 			    	width:100%;
 			    }
 			}
+			/*---------------------------*/
 		}
 
 		&.mq-tab-sml--half {
+			/*---------------------------*/
 			@include mq($max, $mq-tab--sml) {
-			    @include auto-col(6);
+			    @include reset-cols-to(6);
 			}
+			/*---------------------------*/
 		}
 
 
@@ -281,37 +243,42 @@ $grid-margin: percentage(($grid-column-gap/2)/$grid-base-width);
 
 		/* generic mobile silent classes */
 		&.mq-mob-lrg--half {
+			/*---------------------------*/
 			@include mq($max, $mq-mob--lrg) {
-			    @include auto-col(6);
+			    @include reset-cols-to(6);
 			}
+			/*---------------------------*/
 		}
 		&.mq-mob-lrg--full {
+			/*---------------------------*/
 			@include mq($max, $mq-mob--lrg) {
-			    @include auto-col(12);
+			    @include reset-cols-to(12);
 
 			    &--reset {
 			    	width:100%;
 			    }
 			}
+			/*---------------------------*/
 		}
 
 		&.mq-mob--half {
+			/*---------------------------*/
 			@include mq($max, $mq-mob) {
-			    @include auto-col(6);
+			    @include reset-cols-to(6);
 			}
+			/*---------------------------*/
 		}
 		&.mq-mob--full {
+			/*---------------------------*/
 			@include mq($max, $mq-mob) {
-			    @include auto-col(12);
+			    @include reset-cols-to(12);
 
 			    &--reset {
 			    	width:100%;
 			    }
 			}
+			/*---------------------------*/
 		}
-
-
-
 
 
 	}

@@ -1,3 +1,8 @@
+/*-----------------------------------------------------------------------------
+--------------------------------0--------VARIABLES-----------------------------
+-------------------------------------------------------------------------------*/
+
+
 
  //* Debug mode will visually highlight any potential markup/accessibility quirks
  //* in the browser. Set to `true` or `false`.
@@ -9,6 +14,12 @@ $debug-mode:        false;
  //* paulirish.com/2012/box-sizing-border-box-ftw ?
 
 $global-border-box: true;
+
+
+
+//* Font rendering and optimisation
+
+$global-font-opt: true;
 
 // =============================================================
 // ====================== Site Source Path =====================

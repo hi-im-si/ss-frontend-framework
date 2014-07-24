@@ -24,10 +24,16 @@
 *	Base
 	all base files to reset and get the site started
 */
+/*-----------------------------------------------------------------------------
+--------------------------------0--------VARIABLES-----------------------------
+-------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------
+--------------------------------1--------MIXINS--------------------------------
+-------------------------------------------------------------------------------*/
 /* Quick DRY mixin for creating coloured overlays */
-/* ============================================================================
-   0 - Normalisation
-   ========================================================================== */
+/*-----------------------------------------------------------------------------
+--------------------2--------NORMALISATION/RESET-------------------------------
+-------------------------------------------------------------------------------*/
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block; }
 
@@ -277,17 +283,13 @@ blockquote cite a, blockquote cite a:visited, blockquote cite a:visited {
 
 /* Use clearfix class on parent to clear nested columns,
 or wrap each row of columns in a <div class="row"> */
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+.clearfix:after {
+  clear: both; }
 .clearfix {
-  zoom: 1; }
-  .clearfix:before, .clearfix:after {
-    content: '\0020';
-    display: block;
-    overflow: hidden;
-    visibility: hidden;
-    width: 0;
-    height: 0; }
-  .clearfix:after {
-    clear: both; }
+  *zoom: 1; }
 
 /* You can also use a <br class="clear" /> to clear columns */
 .clear {
@@ -314,6 +316,17 @@ img.scale-with-grid {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
+
+/* #Global Font Optimisation
+================================================== */
+/**
+* Let’s make those fonts render nicely in good browsers...?
+*/
+*, *:before, *:after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility; }
 
 /*-----------------------------------------------------------------------------
 --------------------------------1--------TYPOGRAPHY----------------------------
@@ -512,13 +525,92 @@ h6,
 .type--lower {
   text-transform: lowercase; }
 
-button {
-  width: auto;
-  overflow: visible; }
+ul.bullet, .cms-text ul {
+  margin: 10px 0; }
+  ul.bullet li, .cms-text ul li {
+    position: relative;
+    display: block;
+    margin: 3px 0;
+    padding-left: 20px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    line-height: 15px;
+    font-size: 1.2rem;
+    line-height: 1.5rem; }
+    ul.bullet li:before, .cms-text ul li:before {
+      font-family: "customicon";
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1 !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\e610";
+      position: absolute;
+      left: 0;
+      top: 4px;
+      font-size: 10px;
+      line-height: 10px;
+      font-size: 1rem;
+      line-height: 1rem;
+      color: #cccccc; }
 
-.ie7 img {
-  -ms-interpolation-mode: bicubic; }
+ol.counter, .cms-text ol {
+  list-style-type: decimal; }
+  ol.counter li, .cms-text ol li {
+    position: relative;
+    display: list-item;
+    margin: 10px 0; }
 
+/*============================
+*	Layout
+	Main layout elements of site - Header, sidebar footer etc but none of the reusable
+	elements that are inside of these including headers, links etc. Make these in a
+	more modular method.
+*/
+/*-----------------------------------------------------------------------------
+---------------------------3----LAYOUT BASE ELEMENTS----------------------------
+-------------------------------------------------------------------------------*/
+html {
+  overflow-x: hidden;
+  min-height: 100%;
+  height: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: 100%; }
+
+/*-----------------------------------------------------------------------------
+------------------------------4----------LAYOUT--------------------------------
+-------------------------------------------------------------------------------*/
+.page {
+  position: relative;
+  overflow: hidden;
+  width: 100%; }
+
+/* Core Layout Wrapper */
+.l-wrap {
+  position: relative;
+  width: 100%;
+  display: block;
+  overflow: hidden; }
+
+/* Primary Header */
+/* Main -> Core Content Container */
+/* Footer -> Site Primary */
+/*============================
+*	Theme
+	this will be some core colour themes to allow for modular theming.
+*/
+/*============================
+*	Modules
+	this will be the core styles for the site. this should be as modular as possible
+	but no state styles. These are for the next section.
+*/
 .clear:after {
   visibility: hidden;
   display: block;
@@ -582,20 +674,13 @@ button {
 .invisible {
   visibility: hidden; }
 
-/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table; }
-
-.clearfix:after {
-  clear: both; }
-
-.clearfix {
-  zoom: 1; }
-
 .js .is-hidden {
   display: none; }
 
+.is-visible {
+  display: block; }
+
+/* Floats/Clears */
 .fl {
   float: left !important;
   display: inline; }
@@ -604,77 +689,116 @@ button {
   float: right !important;
   display: inline; }
 
-.ib {
-  display: inline-block; }
-
 .clear--l {
   clear: left; }
-
 .clear--r {
   clear: right; }
-
 .clear--b {
   clear: both; }
-
-.noClear {
+.clear--none {
   clear: none; }
 
-.p-relative {
+.nav--primary {
+  font-size: 0; }
+
+.ib {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: bottom;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto; }
+
+.relative {
   position: relative; }
 
-.l-align--center, .col--center {
+/* Alignments */
+.l-align--center {
   margin-left: auto !important;
   margin-right: auto !important;
   display: block !important;
   float: none !important; }
 
-.t-align--center {
+.l-align--left {
+  float: left; }
+.l-align--right {
+  float: right; }
+.l-align--bottom {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: bottom;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  float: none !important; }
+.l-align--vertical--top {
+  vertical-align: top; }
+.l-align--vertical--mid {
+  vertical-align: middle; }
+.l-align--vertical--bottom {
+  vertical-align: bottom; }
+
+.reset--margin {
+  margin: 0 !important; }
+.reset--padding {
+  padding: 0 !important; }
+.reset--height {
+  height: auto; }
+.reset--all {
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  font-size: 0; }
+
+.text--strong {
+  font-weight: bold; }
+.text--normal {
+  font-weight: normal; }
+.text--italic {
+  font-style: italic; }
+.text--underline {
+  text-decoration: underline; }
+.text--upper {
+  text-transform: uppercase; }
+.text--lower {
+  text-transform: lowercase; }
+.text--reset {
+  text-transform: none;
+  text-decoration: none; }
+.text--left {
+  text-align: left; }
+.text--right {
+  text-align: right; }
+.text--center {
   text-align: center; }
 
-.l-align--bottom {
-  display: inline-block !important;
-  vertical-align: bottom;
-  float: none !important; }
-
-.align--left {
-  text-align: left; }
-
-.align--right {
-  text-align: right; }
-
-.align--space * {
-  margin: 0 5px; }
-
-.valign--top {
-  vertical-align: top; }
-
-.valign--mid {
-  vertical-align: middle; }
-
-.valign--bot {
-  vertical-align: bottom; }
+.overflow--hid {
+  overflow: hidden; }
+.overflow--vis {
+  overflow: visible; }
+.overflow--auto {
+  overflow: auto; }
+.overflow--scroll {
+  overflow: scroll; }
 
 .border {
   border: 1px solid black; }
-
-.border--t {
-  border-top: 1px solid #cccccc; }
-
-.border--r {
-  border-right: 1px solid #cccccc; }
-
-.border--b {
-  border-bottom: 1px solid #cccccc; }
-
-.border--l {
-  border-left: 1px solid #cccccc; }
+  .border--top {
+    border-top: 1px solid black; }
+  .border--right {
+    border-right: 1px solid black; }
+  .border--bottom {
+    border-bottom: 1px solid black; }
+  .border--left {
+    border-left: 1px solid black; }
+  .border--none {
+    border: 0px solid transparent; }
 
 html .alpha {
   margin-left: 0; }
 html .omega {
   margin-right: 0; }
-html .omega--important {
-  margin-right: 0 !important; }
 html .width5 {
   width: 5%; }
 html .width10 {
@@ -1387,168 +1511,24 @@ html .p95 {
   padding: 95px; }
 html .p100 {
   padding: 100px; }
-html .auto-height {
-  height: auto;
-  min-height: 0; }
 
-.resetAll {
-  line-height: 0px;
-  margin: 0;
-  padding: 0;
-  height: 0;
-  font-size: 0; }
-
-.noborder {
-  border: none; }
-
-.nopadding {
-  padding: 0 !important; }
-
-.nomargin {
-  margin: 0 !important; }
-
-.strong {
-  font-weight: 400; }
-
-.fontNormal {
-  font-weight: normal; }
-
-.underline {
-  text-decoration: underline; }
-
-.textUpper {
-  text-transform: uppercase; }
-
-.textNorm {
-  text-transform: none; }
-
-.is-hidden {
-  display: none; }
-
-.is-visible {
-  display: block; }
-
-.overVis {
-  overflow: visible !important; }
-
-.overHidden {
-  overflow: hidden; }
-
-.nav--primary {
-  font-size: 0; }
-
-ul.bullet, .cms-text ul {
-  margin: 10px 0; }
-  ul.bullet li, .cms-text ul li {
-    position: relative;
-    display: block;
-    margin: 3px 0;
-    padding-left: 20px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 12px;
-    line-height: 15px;
-    font-size: 1.2rem;
-    line-height: 1.5rem; }
-    ul.bullet li:before, .cms-text ul li:before {
-      font-family: "customicon";
-      speak: none;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1 !important;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      content: "\e610";
-      position: absolute;
-      left: 0;
-      top: 4px;
-      font-size: 10px;
-      line-height: 10px;
-      font-size: 1rem;
-      line-height: 1rem;
-      color: #cccccc; }
-
-ol.counter, .cms-text ol {
-  list-style-type: decimal; }
-  ol.counter li, .cms-text ol li {
-    position: relative;
-    display: list-item;
-    margin: 10px 0; }
-
-/*============================
-*	Layout
-	Main layout elements of site - Header, sidebar footer etc but none of the reusable
-	elements that are inside of these including headers, links etc. Make these in a
-	more modular method.
-*/
-/*-----------------------------------------------------------------------------
----------------------------3----LAYOUT BASE ELEMENTS----------------------------
--------------------------------------------------------------------------------*/
-html {
-  overflow-x: hidden;
-  min-height: 100%;
-  height: 100%; }
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  height: 100%; }
-
-/*-----------------------------------------------------------------------------
-------------------------------4----------LAYOUT--------------------------------
--------------------------------------------------------------------------------*/
-.page {
-  position: relative;
-  overflow: hidden;
-  width: 100%; }
-
-/* Core Layout Wrapper */
-.l-wrap {
-  position: relative;
-  width: 100%;
-  display: block;
-  overflow: hidden; }
-
-/* Primary Header */
-/* Main -> Core Content Container */
-/* Footer -> Site Primary */
-/*============================
-*	Theme
-	this will be some core colour themes to allow for modular theming.
-*/
-/*============================
-*	Modules
-	this will be the core styles for the site. this should be as modular as possible
-	but no state styles. These are for the next section.
-*/
 /*
+BEM GRID
 
-
-GRID
-
-Grid mixin allowing to pass base grid width, number of columns and gap
-
-
+A Simple Grid mixin that is easily extendable and customisable to your needs
 */
 .container {
   position: relative;
   max-width: 1260px;
-  margin: 0 auto; }
-  .lt-ie9 .container {
-    width: 960px;
-    min-width: 1260px; }
+  margin: 0 auto;
+  /*---------------------------*/
+  /*---------------------------*/ }
   @media screen and (max-width: 480px) {
     .container {
       max-width: 480px; } }
-  @media screen and (max-width: 480px) {
-    .container .col {
-      width: 95.833333333333333333333333333333%;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      float: none; } }
+  .lt-ie9 .container {
+    width: 1260;
+    min-width: 1260; }
 
 .row {
   position: relative;
@@ -1563,240 +1543,130 @@ Grid mixin allowing to pass base grid width, number of columns and gap
   .row {
     *zoom: 1; }
 
-.row--sep {
-  padding-bottom: 20px;
-  border-bottom: 5px solid black; }
-
 .col {
   position: relative;
   float: left;
   display: inline;
   margin-left: 0.79365%;
   margin-right: 0.79365%;
-  vertical-align: top; }
-  .col else {
-    -webkit-transition: 0.3s cubic-bezier(0.665, 0, 0.43, 1) all;
-    -moz-transition: 0.3s cubic-bezier(0.665, 0, 0.43, 1) all;
-    -ms-transition: 0.3s cubic-bezier(0.665, 0, 0.43, 1) all;
-    -o-transition: 0.3s cubic-bezier(0.665, 0, 0.43, 1) all;
-    transition: 0.3s cubic-bezier(0.665, 0, 0.43, 1) all; }
-
-.col--full {
-  width: 100%;
-  margin: 0; }
-
-.col--1 {
-  width: 6.74603%; }
-
-.col--2 {
-  width: 15.07937%; }
-
-.col--3 {
-  width: 23.4127%; }
-
-.col--4 {
-  width: 31.74603%; }
-
-.col--5 {
-  width: 40.07937%; }
-
-.col--6 {
-  width: 48.4127%; }
-
-.col--7 {
-  width: 56.74603%; }
-
-.col--8 {
-  width: 65.07937%; }
-
-.col--9 {
-  width: 73.4127%; }
-
-.col--10 {
-  width: 81.74603%; }
-
-.col--11 {
-  width: 90.07937%; }
-
-.col--12 {
-  width: 98.4127%; }
-
-.col--1-reset {
-  width: 7.53968%; }
-
-.col--2-reset {
-  width: 15.87302%; }
-
-.col--3-reset {
-  width: 24.20635%; }
-
-.col--4-reset {
-  width: 32.53968%; }
-
-.col--5-reset {
-  width: 40.87302%; }
-
-.col--6-reset {
-  width: 49.20635%; }
-
-.col--7-reset {
-  width: 57.53968%; }
-
-.col--8-reset {
-  width: 65.87302%; }
-
-.col--9-reset {
-  width: 74.20635%; }
-
-.col--10-reset {
-  width: 82.53968%; }
-
-.col--11-reset {
-  width: 90.87302%; }
-
-.col--12-reset {
-  width: 99.20635%; }
-
-.col--offset-1 {
-  margin-left: 9.12698%; }
-
-.col--offset-2 {
-  margin-left: 17.46032%; }
-
-.col--offset-3 {
-  margin-left: 25.79365%; }
-
-.col--offset-4 {
-  margin-left: 34.12698%; }
-
-.col--offset-5 {
-  margin-left: 42.46032%; }
-
-.col--offset-6 {
-  margin-left: 50.79365%; }
-
-.col--offset-7 {
-  margin-left: 59.12698%; }
-
-.col--offset-8 {
-  margin-left: 67.46032%; }
-
-.col--offset-9 {
-  margin-left: 75.79365%; }
-
-.col--offset-10 {
-  margin-left: 84.12698%; }
-
-.col--offset-11 {
-  margin-left: 92.46032%; }
-
-/* Columns that have no margins and are flush against eachother */
-.col-flush--1 {
-  width: 8.33333%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--2 {
-  width: 16.66667%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--3 {
-  width: 25.0%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--4 {
-  width: 33.33333%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--5 {
-  width: 41.66667%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--6 {
-  width: 50.0%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--7 {
-  width: 58.33333%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--8 {
-  width: 66.66667%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--9 {
-  width: 75.0%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--10 {
-  width: 83.33333%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col-flush--11 {
-  width: 91.66667%;
-  margin-left: 0;
-  margin-right: 0; }
-
-.col--half {
-  width: 49%;
-  margin-left: 0.971%;
-  margin-right: 0.971%; }
-
-.col--thirds {
-  width: 32%;
-  margin-left: 0.971%;
-  margin-right: 0.971%; }
-
-.col--fifths {
-  width: 20%;
-  margin-left: 0.971%;
-  margin-right: 0.971%; }
-
-.csscalc .col--10--calc {
-  /* width: $default; */
-  width: -webkit-calc(100% - 230px);
-  width: -moz-calc(100% - 230px);
-  width: calc(100% - 230px); }
-
-.csscalc .col--9--calc {
-  /* width: $default; */
-  width: -webkit-calc(100% - 320px);
-  width: -moz-calc(100% - 320px);
-  width: calc(100% - 320px); }
-
-.col--alpha {
-  margin-left: 0; }
-
-.col--omega {
-  margin-right: 0; }
-
-.col--left {
-  float: left; }
-
-.col--right {
-  float: right; }
-
-.col--align-top {
-  vertical-align: top; }
-
-.col--align-bottom {
-  vertical-align: bottom; }
-
-.col--justify {
-  text-align: justify; }
-  .col--justify:after {
-    content: '';
-    display: inline-block;
-    width: 100%; }
+  vertical-align: top;
+  /*---------------------------*/
+  /*---------------------------*/ }
+  .col--1 {
+    width: 6.74603%; }
+  .col--2 {
+    width: 15.07937%; }
+  .col--3 {
+    width: 23.4127%; }
+  .col--4 {
+    width: 31.74603%; }
+  .col--5 {
+    width: 40.07937%; }
+  .col--6 {
+    width: 48.4127%; }
+  .col--7 {
+    width: 56.74603%; }
+  .col--8 {
+    width: 65.07937%; }
+  .col--9 {
+    width: 73.4127%; }
+  .col--10 {
+    width: 81.74603%; }
+  .col--11 {
+    width: 90.07937%; }
+  .col--12 {
+    width: 98.4127%; }
+  .col--offset-1 {
+    margin-left: 9.12698%; }
+  .col--offset-2 {
+    margin-left: 17.46032%; }
+  .col--offset-3 {
+    margin-left: 25.79365%; }
+  .col--offset-4 {
+    margin-left: 34.12698%; }
+  .col--offset-5 {
+    margin-left: 42.46032%; }
+  .col--offset-6 {
+    margin-left: 50.79365%; }
+  .col--offset-7 {
+    margin-left: 59.12698%; }
+  .col--offset-8 {
+    margin-left: 67.46032%; }
+  .col--offset-9 {
+    margin-left: 75.79365%; }
+  .col--offset-10 {
+    margin-left: 84.12698%; }
+  .col--offset-11 {
+    margin-left: 92.46032%; }
+  .col--flush-1 {
+    width: 8.33333%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-2 {
+    width: 16.66667%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-3 {
+    width: 25.0%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-4 {
+    width: 33.33333%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-5 {
+    width: 41.66667%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-6 {
+    width: 50.0%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-7 {
+    width: 58.33333%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-8 {
+    width: 66.66667%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-9 {
+    width: 75.0%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-10 {
+    width: 83.33333%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--flush-11 {
+    width: 91.66667%;
+    margin-left: 0;
+    margin-right: 0; }
+  .col--full {
+    width: 100%;
+    margin: 0; }
+  .col--alpha {
+    margin-left: 0; }
+  .col--omega {
+    margin-right: 0; }
+  .col--left {
+    float: left; }
+  .col--right {
+    float: right; }
+  .col--center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none; }
+  @media screen and (max-width: 480px) {
+    .container .col.col.col {
+      width: 93.25397%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      float: none; }
+      .container .col.col.col[class*="flush"] {
+        width: 100.0%; } }
 
 /*========================================================================================
 ============================ Responsive Silent Classes ===================================
@@ -1805,58 +1675,117 @@ Grid mixin allowing to pass base grid width, number of columns and gap
   /* generic desktop overrides */
   /* generic tablet silent classes */
   /* generic mobile silent classes */ }
-  .container .col[class*="mq-"] {
-    display: -moz-inline-stack;
-    display: inline-block;
-    vertical-align: top;
-    zoom: 1;
-    *display: inline;
-    *vertical-align: auto; }
   @media screen and (max-width: 1140px) {
     .container .col.mq-desk-lrg--full {
       width: 98.4127%; }
-      .container .col.mq-desk-lrg--full--reset {
-        width: 100%; } }
-  @media screen and (max-width: 820px) {
-    .container .col.mq-tab-lrg--half {
-      width: 48.4127%; } }
-  @media screen and (max-width: 820px) {
-    .container .col.mq-tab-lrg--full {
-      width: 98.4127%; }
-      .container .col.mq-tab-lrg--full--reset {
-        width: 100%; } }
+      .container .col.mq-desk-lrg--full--flush {
+        width: 100.0%; } }
+  .container .col.mq-tab-lrg--quart {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 820px) {
+      .container .col.mq-tab-lrg--quart {
+        width: 23.4127%; }
+        .container .col.mq-tab-lrg--quart--flush {
+          width: 25.0%; } }
+  .container .col.mq-tab-lrg--half {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 820px) {
+      .container .col.mq-tab-lrg--half {
+        width: 48.4127%; }
+        .container .col.mq-tab-lrg--half--flush {
+          width: 50.0%; } }
+  .container .col.mq-tab-lrg--full {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 820px) {
+      .container .col.mq-tab-lrg--full {
+        width: 98.4127%; }
+        .container .col.mq-tab-lrg--full--flush {
+          width: 100.0%; } }
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    .container .col.mq-tab--quart {
+      width: 23.4127%; }
+      .container .col.mq-tab--quart--flush {
+        width: 25.0%; } }
   @media screen and (min-width: 481px) and (max-width: 768px) {
     .container .col.mq-tab--half {
-      width: 48.4127%; } }
-  @media screen and (max-width: 768px) {
-    .container .col.mq-tab--full {
-      width: 98.4127%; }
-      .container .col.mq-tab--full--reset {
-        width: 100%; } }
-  @media screen and (max-width: 765px) {
-    .container .col.mq-tab-sml--full {
-      width: 98.4127%; }
-      .container .col.mq-tab-sml--full--reset {
-        width: 100%; } }
-  @media screen and (max-width: 765px) {
-    .container .col.mq-tab-sml--half {
-      width: 48.4127%; } }
-  @media screen and (max-width: 640px) {
-    .container .col.mq-mob-lrg--half {
-      width: 48.4127%; } }
-  @media screen and (max-width: 640px) {
-    .container .col.mq-mob-lrg--full {
-      width: 98.4127%; }
-      .container .col.mq-mob-lrg--full--reset {
-        width: 100%; } }
-  @media screen and (max-width: 480px) {
-    .container .col.mq-mob--half {
-      width: 48.4127%; } }
-  @media screen and (max-width: 480px) {
-    .container .col.mq-mob--full {
-      width: 98.4127%; }
-      .container .col.mq-mob--full--reset {
-        width: 100%; } }
+      width: 48.4127%; }
+      .container .col.mq-tab--half--flush {
+        width: 50.0%; } }
+  .container .col.mq-tab--full {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 768px) {
+      .container .col.mq-tab--full {
+        width: 98.4127%; }
+        .container .col.mq-tab--full--flush {
+          width: 100.0%; } }
+  .container .col.mq-tab-sml--quart {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 765px) {
+      .container .col.mq-tab-sml--quart {
+        width: 23.4127%; }
+        .container .col.mq-tab-sml--quart--flush {
+          width: 25.0%; } }
+  .container .col.mq-tab-sml--half {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 765px) {
+      .container .col.mq-tab-sml--half {
+        width: 48.4127%; }
+        .container .col.mq-tab-sml--half--flush {
+          width: 50.0%; } }
+  .container .col.mq-tab-sml--full {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 765px) {
+      .container .col.mq-tab-sml--full {
+        width: 98.4127%; }
+        .container .col.mq-tab-sml--full--flush {
+          width: 100.0%; } }
+  .container .col.mq-mob-lrg--quart {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 640px) {
+      .container .col.mq-mob-lrg--quart {
+        width: 23.4127%; }
+        .container .col.mq-mob-lrg--quart--flush {
+          width: 50.0%; } }
+  .container .col.mq-mob-lrg--half {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 640px) {
+      .container .col.mq-mob-lrg--half {
+        width: 48.4127%; }
+        .container .col.mq-mob-lrg--half--flush {
+          width: 50.0%; } }
+  .container .col.mq-mob-lrg--full {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 640px) {
+      .container .col.mq-mob-lrg--full {
+        width: 98.4127%; }
+        .container .col.mq-mob-lrg--full--flush {
+          width: 100.0%; } }
+  .container .col.mq-mob--half {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 480px) {
+      .container .col.mq-mob--half {
+        width: 48.4127%; }
+        .container .col.mq-mob--half--flush {
+          width: 50.0%; } }
+  .container .col.mq-mob--full {
+    /*---------------------------*/
+    /*---------------------------*/ }
+    @media screen and (max-width: 480px) {
+      .container .col.mq-mob--full {
+        width: 98.4127%; }
+        .container .col.mq-mob--full--flush {
+          width: 100.0%; } }
 
 /*-----------------------------------------------------------------------------
 --------------------------------5--------NAVIGATION----------------------------
@@ -1884,7 +1813,7 @@ nav .nav__link {
 
 .nav--primary {
   position: relative;
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
   padding: 0;
   width: 100%;
   text-align: center; }
@@ -4216,3 +4145,5 @@ Your modernizr classes e.g.
 *	STYLEGUIDE
 	Styleguide specific styles --- NO relevance to site styles
 */
+
+/*# sourceMappingURL=main.css.map */

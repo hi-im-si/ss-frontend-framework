@@ -17,15 +17,15 @@
 
 		&__half {
 			@include inline-block;
-			@include auto-col(6);
+			@include reset-cols-to(6);
 		}
 		&--thirds {
-			@include auto-col(4);
+			@include reset-cols-to(4);
 			margin-left: 0.7936507937%;
 			margin-right: 0.7936507937%;
 		}
 		&--quarts {
-			@include auto-col(3);
+			@include reset-cols-to(3);
 			margin-left: 0.7936507937%;
 			margin-right: 0.7936507937%;
 		}

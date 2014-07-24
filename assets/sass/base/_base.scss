@@ -1,6 +1,6 @@
-/* ============================================================================
-   0 - Normalisation
-   ========================================================================== */
+/*-----------------------------------------------------------------------------
+--------------------2--------NORMALISATION/RESET-------------------------------
+-------------------------------------------------------------------------------*/
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
 audio, canvas, video, progress { display: inline-block; vertical-align: baseline; }
@@ -100,22 +100,7 @@ blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color:
 or wrap each row of columns in a <div class="row"> */
 
 .clearfix {
-
-  zoom: 1;
-
-  &:before,
-  &:after {
-    content: '\0020';
-    display: block;
-    overflow: hidden;
-    visibility: hidden;
-    width: 0;
-    height: 0;
-  }
-
-  &:after {
-    clear:both;
-  }
+  @include clearfix;
 }
 /* You can also use a <br class="clear" /> to clear columns */
 .clear {
@@ -152,6 +137,27 @@ img.scale-with-grid {
         &:before,
         &:after{
             @include box-sizing(border-box);
+        }
+    }
+}
+
+
+/* #Global Font Optimisation
+================================================== */
+
+
+@if $global-font-opt == true{
+    /**
+    * Let’s make those fonts render nicely in good browsers...?
+    */
+    *{
+        &,
+        &:before,
+        &:after{
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
         }
     }
 }

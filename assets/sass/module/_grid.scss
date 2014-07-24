@@ -22,21 +22,17 @@ $grid-column-gutter: 20;
 
 	$column-width: percentage($column-width-calc/$grid-base-width);
 
+	$mobile-width: $column-width * ($grid-column-length - 1) + $gutter-margin * 2;
+
 
 	.container{
 		position: relative;
 		max-width: #{$grid-base-width}px;
 		margin: 0 auto;
 
-
 		/*---------------------------*/
 		@include mq($max, $mq-mob) {
 		    max-width: $mq-mob;
-
-		    .col {
-		    	width: 95.833333333333333333333333333333%;
-		    	@include align-center;
-		    }
 		}
 		/*---------------------------*/
 
@@ -50,7 +46,7 @@ $grid-column-gutter: 20;
 
 
 
-	// You Row Wrapper for columns. This is not essential for your columns
+	// Your Row Wrapper for columns. This is not essential for your columns
 	.row {
 		position: relative;
 		width:100%;
@@ -117,22 +113,30 @@ $grid-column-gutter: 20;
 		&--left {float: left;}
 		&--right {float: right;}
 		&--center { @include align-center; }
-		&--justify {
-			text-align: justify;
 
-			&:after {
-				content: '';
-				display: inline-block;
-				width: 100%;
+
+		// Ensure columns span full at mobile res (chained selectors - specificity hack)
+		/*---------------------------*/
+		@include mq($max, $mq-mob) {
+
+			.container & {
+				&.col.col {
+		    		width: $mobile-width;
+		    		@include align-center;
+
+		    		&[class*="flush"] {
+		    			width: $column-width * $grid-column-length;
+		    		}
+				}
 			}
 		}
+		/*---------------------------*/
 	}
 
 
 }
 // INSTANTIATE THE GRID MIXIN
 @include bem-grid($grid-base-width, $grid-column-length, $grid-column-gutter);
-
 
 
 
@@ -149,6 +153,16 @@ $grid-column-gutter: 20;
 }
 // Usage: @include reset-cols-to(10);
 
+	// Resetting flush columns
+@mixin reset-flush-cols-to($cols, $grid-base-width:$grid-base-width, $grid-column-length:$grid-column-length){
+	$column-width-calc: ($grid-base-width/$grid-column-length);
+	$column-width: percentage($column-width-calc/$grid-base-width);
+
+	width: $column-width * $cols;
+
+}
+// Usage: @include reset-flush-cols-to(10);
+
 
 
 
@@ -161,7 +175,7 @@ $grid-column-gutter: 20;
 	.col {
 
 		&[class*="mq-"] {
-			@include inline-block(top);
+
 		}
 
 
@@ -169,10 +183,10 @@ $grid-column-gutter: 20;
 
 		&.mq-desk-lrg--full {
 			@include mq($max, $mq-desk--lrg) {
-			    @include reset-cols-to(12);
+			    @include reset-cols-to($grid-column-length);
 
-			    &--reset {
-			    	width:100%;
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length);
 			    }
 			}
 		}
@@ -180,59 +194,102 @@ $grid-column-gutter: 20;
 
 
 		/* generic tablet silent classes */
+		&.mq-tab-lrg--quart {
+			/*---------------------------*/
+			@include mq($max, $mq-tab--lrg) {
+			    @include reset-cols-to($grid-column-length / 4);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 4);
+			    }
+			}
+			/*---------------------------*/
+		}
 		&.mq-tab-lrg--half {
 			/*---------------------------*/
 			@include mq($max, $mq-tab--lrg) {
-			    @include reset-cols-to(6);
+			    @include reset-cols-to($grid-column-length / 2);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 2);
+			    }
 			}
 			/*---------------------------*/
 		}
 		&.mq-tab-lrg--full {
 			/*---------------------------*/
 			@include mq($max, $mq-tab--lrg) {
-			    @include reset-cols-to(12);
+			    @include reset-cols-to($grid-column-length);
 
-			    &--reset {
-			    	width:100%;
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length);
 			    }
 			}
 			/*---------------------------*/
 		}
 
 
+		&.mq-tab--quart {
+			@include mq(null, $mq-mob + 1, $mq-tab) {
+			    @include reset-cols-to($grid-column-length / 4);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 4);
+			    }
+			}
+		}
 		&.mq-tab--half {
 			@include mq(null, $mq-mob + 1, $mq-tab) {
-			    @include reset-cols-to(6);
+			    @include reset-cols-to($grid-column-length / 2);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 2);
+			    }
 			}
 		}
 		&.mq-tab--full {
 			/*---------------------------*/
 			@include mq($max, $mq-tab) {
-			    @include reset-cols-to(12);
+			    @include reset-cols-to($grid-column-length);
 
-			    &--reset {
-			    	width:100%;
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length);
 			    }
 			}
 			/*---------------------------*/
 		}
 
-		&.mq-tab-sml--full {
+
+		&.mq-tab-sml--quart {
 			/*---------------------------*/
 			@include mq($max, $mq-tab--sml) {
-			    @include reset-cols-to(12);
+			    @include reset-cols-to($grid-column-length / 4);
 
-			    &--reset {
-			    	width:100%;
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 4);
 			    }
 			}
 			/*---------------------------*/
 		}
-
 		&.mq-tab-sml--half {
 			/*---------------------------*/
 			@include mq($max, $mq-tab--sml) {
-			    @include reset-cols-to(6);
+			    @include reset-cols-to($grid-column-length / 2);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 2);
+			    }
+			}
+			/*---------------------------*/
+		}
+		&.mq-tab-sml--full {
+			/*---------------------------*/
+			@include mq($max, $mq-tab--sml) {
+			    @include reset-cols-to($grid-column-length);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length);
+			    }
 			}
 			/*---------------------------*/
 		}
@@ -242,20 +299,35 @@ $grid-column-gutter: 20;
 
 
 		/* generic mobile silent classes */
+		&.mq-mob-lrg--quart {
+			/*---------------------------*/
+			@include mq($max, $mq-mob--lrg) {
+			    @include reset-cols-to($grid-column-length / 4);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 2);
+			    }
+			}
+			/*---------------------------*/
+		}
 		&.mq-mob-lrg--half {
 			/*---------------------------*/
 			@include mq($max, $mq-mob--lrg) {
-			    @include reset-cols-to(6);
+			    @include reset-cols-to($grid-column-length / 2);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 2);
+			    }
 			}
 			/*---------------------------*/
 		}
 		&.mq-mob-lrg--full {
 			/*---------------------------*/
 			@include mq($max, $mq-mob--lrg) {
-			    @include reset-cols-to(12);
+			    @include reset-cols-to($grid-column-length);
 
-			    &--reset {
-			    	width:100%;
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length);
 			    }
 			}
 			/*---------------------------*/
@@ -264,17 +336,21 @@ $grid-column-gutter: 20;
 		&.mq-mob--half {
 			/*---------------------------*/
 			@include mq($max, $mq-mob) {
-			    @include reset-cols-to(6);
+			    @include reset-cols-to($grid-column-length / 2);
+
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length / 2);
+			    }
 			}
 			/*---------------------------*/
 		}
 		&.mq-mob--full {
 			/*---------------------------*/
 			@include mq($max, $mq-mob) {
-			    @include reset-cols-to(12);
+			    @include reset-cols-to($grid-column-length);
 
-			    &--reset {
-			    	width:100%;
+			    &--flush {
+			    	@include reset-flush-cols-to($grid-column-length);
 			    }
 			}
 			/*---------------------------*/

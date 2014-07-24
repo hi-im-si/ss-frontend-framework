@@ -33,7 +33,6 @@
 	@import "base/base";
 	@import "base/typography";
 	@import "base/fonticon";
-	@import "base/helper-class";
   	@import "base/list";
 
 
@@ -59,18 +58,18 @@
 	this will be the core styles for the site. this should be as modular as possible
 	but no state styles. These are for the next section.
 */
-
-	  @import "module/grid";
-	  @import "module/nav";
-	  @import "module/main";
-	  @import "module/forms";
-	  @import "module/buttons";
-	  @import "module/tooltip";
-	  @import "module/alerts";
-	  @import "module/accordion";
-	  @import "module/flex-media";
-	  @import "module/vertical-align";
-	  @import "module/modal";
+	@import "module/helper/helpers";
+	@import "module/grid";
+	@import "module/nav";
+	@import "module/main";
+	@import "module/forms";
+	@import "module/buttons";
+	@import "module/tooltip";
+	@import "module/alerts";
+	@import "module/accordion";
+	@import "module/flex-media";
+	@import "module/vertical-align";
+	@import "module/modal";
 
 
 /*============================

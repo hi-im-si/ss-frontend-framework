@@ -13,7 +13,6 @@ body{
   @include font-size($base-font-size);
   color:$primaryColor;
   font-weight:normal;
-  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -27,20 +26,24 @@ p {
 	text-align:left;
 }
 
-a, a:active {color:$primaryColor; text-decoration:none;}
-a:hover {color:$primaryColor; text-decoration:underline;}
+a {
+	color:$primaryColor;
+	text-decoration: none
 
-strong,b {font-weight: bold;}
+	&:active,
+	&:hover {
+		color:$primaryColor;
+		text-decoration:underline;
+	}
+}
+
+
 
 small,
 .small {
 	@include font-size($micro-size);
 	display: inline-block;
 }
-
-dt,dd { @include font-size($p-size,$p-size); }
-
-.highlight {color:$tertiaryColor;}
 
 /*-----------------------------------------------------------------------------
 --------------------------------2--------HEADINGS------------------------------
@@ -125,7 +128,4 @@ h6,
 .font--l   { @include font-size($base-font-size + 5); }
 .font--xl  { @include font-size($base-font-size + 10); }
 .font--xxl { @include font-size($base-font-size + 15); }
-
-.type--upper {text-transform: uppercase;}
-.type--lower {text-transform: lowercase;}
 

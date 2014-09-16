@@ -1,714 +1,706 @@
 /*-----------------------------------------------------------------------------
---------------------------------1--------MIXINS--------------------------------
+--------------------------------1--------$MIXINS--------------------------------
 -------------------------------------------------------------------------------*/
 
 
-// --------------------------------------------------------------------------- //
-// ----------------------- MEDIA QUERIES ------------------------------------- //
-// --------------------------------------------------------------------------- //
+	// --------------------------------------------------------------------------- //
+	// ----------------------- MEDIA QUERIES ------------------------------------- //
+	// --------------------------------------------------------------------------- //
 
-// Constraints
-$min: min-width;
-$max: max-width;
+	// Constraints
+	$min: min-width;
+	$max: max-width;
 
-@mixin mq($constraint, $viewport1, $viewport2: null) {
+	@mixin mq($constraint, $viewport1, $viewport2: null) {
 
-  @if $constraint == $min {
+	  @if $constraint == $min {
 
-	@media screen and ($min: $viewport1) {
-	  @content;
+		@media screen and ($min: $viewport1) {
+		  @content;
+		}
+
+	  } @else if $constraint == $max {
+
+		@media screen and ($max: $viewport1) {
+		  @content;
+		}
+
+	  } @else {
+
+		@media screen and ($min: $viewport1) and ($max: $viewport2) {
+		  @content;
+		}
+
+	  }
+
 	}
 
-  } @else if $constraint == $max {
+	// USAGE:
+	//
+	// ---- for max-width media query ----
+	//
+	//  @include mq($max, 1080px) {
+	//      display:none;
+	//  }
+	//
+	// ---- for min-width media query ----
+	//
+	//  @include mq($min, 1080px) {
+	//      display:none;
+	//  }
+	//
+	// ---- OR for min-max ----
+	//
+	// @include mq(null, 700px, 780px) {
+	//     display:block;
+	// }
 
-	@media screen and ($max: $viewport1) {
-	  @content;
+
+	// --------------------------------------------------------------------------- //
+	// ------------------------- LONG SHADOWS ------------------------------------ //
+	// --------------------------------------------------------------------------- //
+
+
+
+	@function makelongshadow($primaryColor) {
+		$val: 0px 0px $primaryColor;
+		@for $i from 1 through 200 {
+			$val: #{$val}, #{$i}px #{$i}px #{$primaryColor};
+		}
+		@return $val;
 	}
 
-  } @else {
-
-	@media screen and ($min: $viewport1) and ($max: $viewport2) {
-	  @content;
+	@mixin longshadow($primaryColor) {
+	 	text-shadow: makelongshadow($primaryColor);
 	}
 
-  }
 
-}
-
-// USAGE:
-//
-// ---- for max-width media query ----
-//
-//  @include mq($max, 1080px) {
-//      display:none;
-//  }
-//
-// ---- for min-width media query ----
-//
-//  @include mq($min, 1080px) {
-//      display:none;
-//  }
-//
-// ---- OR for min-max ----
-//
-// @include mq(null, 700px, 780px) {
-//     display:block;
-// }
+	// --------------------------------------------------------------------------- //
+	// ------------------------------- FONTS ------------------------------------- //
+	// --------------------------------------------------------------------------- //
 
 
-// --------------------------------------------------------------------------- //
-// ------------------------- LONG SHADOWS ------------------------------------ //
-// --------------------------------------------------------------------------- //
-
-
-
-@function makelongshadow($primaryColor) {
-	$val: 0px 0px $primaryColor;
-	@for $i from 1 through 200 {
-		$val: #{$val}, #{$i}px #{$i}px #{$primaryColor};
-	}
-	@return $val;
-}
-
-@mixin longshadow($primaryColor) {
- 	text-shadow: makelongshadow($primaryColor);
-}
-
-
-// --------------------------------------------------------------------------- //
-// ------------------------------- FONTS ------------------------------------- //
-// --------------------------------------------------------------------------- //
-
-
-@mixin fonticon {
-	font-family: $fonticon;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1 !important;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-
-// px to rem for font-sizes and line-height
-@mixin font-size($sizeValue: 1.6, $line: $sizeValue * 1.25){
-	font-size: ($sizeValue * 1) + px;
-	line-height: ($line * 1) + px;
-	font-size: ($sizeValue / 10) + rem;
-	line-height: ($line / 10) + rem;
-}
-// usage: @include font-size(13);
-
-
-
-
-// word break
-@mixin word-break {
-	-ms-word-break: break-all;
-	word-break: break-all;
-
-	// Non standard for webkit
-	word-break: break-word;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-// @include word-break;
-
-
-@mixin ligature {
-	-moz-font-feature-settings: "liga=1, dlig=1";
-	-ms-font-feature-settings: "liga", "dlig";
-	-webkit-font-feature-settings: "liga", "dlig";
-	-o-font-feature-settings: "liga", "dlig";
-	font-feature-settings: "liga", "dlig";
-}
-
-
-@mixin hide-text {
-	text-indent: 100%;
-	white-space: nowrap;
-	overflow: hidden;
-	display: block;
-}
-
-@mixin remove-focus {
-	&:focus {
-		@include box-shadow(none);
-		outline:none;
-	}
-}
-
-
-// --------------------------------------------------------------------------- //
-// ------------------------------- SHAPES ------------------------------------ //
-// --------------------------------------------------------------------------- //
-
-
-// CSS Arrows
-@mixin arrow($width: 20px, $height: 20px, $direction: up, $color: red, $pseudo: false) {
-
-	@if $pseudo == true{
-	 	content:"";
+	@mixin fonticon {
+		font-family: $fonticon;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1 !important;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
-	width: 0;
-	height: 0;
 
-	// Right
-	@if $direction == right {
-		border-top: $height/2 solid transparent;
-		border-bottom: $height/2 solid transparent;
-		border-left: $width solid $color;
+	// px to rem for font-sizes and line-height
+	@mixin font-size($sizeValue: 1.6, $line: $sizeValue * 1.25){
+		font-size: ($sizeValue * 1) + px;
+		line-height: ($line * 1) + px;
+		font-size: ($sizeValue / 10) + rem;
+		line-height: ($line / 10) + rem;
 	}
-	// Left
-	@if $direction == left {
-		border-top: $height/2 solid transparent;
-		border-bottom: $height/2 solid transparent;
-		border-right: $width solid $color;
+	// usage: @include font-size(13);
+
+
+
+
+	// word break
+	@mixin word-break {
+		-ms-word-break: break-all;
+		word-break: break-all;
+
+		// Non standard for webkit
+		word-break: break-word;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
-	// Up
-	@if $direction == up {
-		border-left: $width/2 solid transparent;
-		border-right: $width/2 solid transparent;
-		border-bottom: $height solid $color;
-	}
-	// Down
-	@if $direction == down {
-		border-left: $width/2 solid transparent;
-		border-right: $width/2 solid transparent;
-		border-top: $height solid $color;
+	// @include word-break;
+
+
+	@mixin ligature {
+		-moz-font-feature-settings: "liga=1, dlig=1";
+		-ms-font-feature-settings: "liga", "dlig";
+		-webkit-font-feature-settings: "liga", "dlig";
+		-o-font-feature-settings: "liga", "dlig";
+		font-feature-settings: "liga", "dlig";
 	}
 
-}
-// USAGE:
-//============================================================
-//
-// arrow
-//
-// @param width           :  px, em
-// @param height          :  px, em
-// @param direction       :  up, down, left, right
-// @param color           :  hex, rgb
-//
-//============================================================
-//
-// @include arrow(80px, 80px, up, #BADA55);
 
-
-
-// --------------------------------------------------------------------------- //
-// ------------------------------- BOX MODEL RELATED ------------------------- //
-// --------------------------------------------------------------------------- //
-
-// Positioning offsets
-@mixin _position ($property: absolute, $top: auto, $right: auto, $bottom: auto, $left: auto, $zindex: 2) {
-	position: $property;
-	top: $top;
-	right: $right;
-	bottom: $bottom;
-	left: $left;
-	z-index: $zindex;
-}
-
-// usage:  @include _position(absolute,10px,0px,auto,auto,2);
-//	returns    	position:absolute; top:10px; right:0px; bottom:auto; left:auto; z-index:5
-
-
-// Vertical Aligning
-@mixin vertical-align($position: relative, $width: auto) {
-	position: $position;
-	top: 50%;
-	left: 0;
-	right: 0;
-	display: block;
-	margin: auto;
-	width:$width;
-	@include transform( translateY(-50%) );
-}
-
-// usage: @include vertical-align(absolute);
-
-
-// Center elements by overriding margins and removing float
-// ---- you may need to force the elements to center through the horrors of specificity
-@mixin align-center($force: false) {
-
-	@if $force == true {
-
-		margin-left: auto!important;
-		margin-right: auto!important;
-		display: block!important;
-		float: none!important;
-
-	} @else {
-
-		margin-left: auto;
-		margin-right: auto;
+	@mixin hide-text {
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
 		display: block;
-		float: none;
+	}
+
+	@mixin remove-focus {
+		&:focus {
+			@include box-shadow(none);
+			outline:none;
+		}
+	}
+
+
+	// --------------------------------------------------------------------------- //
+	// ------------------------------- SHAPES ------------------------------------ //
+	// --------------------------------------------------------------------------- //
+
+
+	// CSS Arrows
+	@mixin arrow($width: 20px, $height: 20px, $direction: up, $color: red, $pseudo: false) {
+
+		@if $pseudo == true{
+		 	content:"";
+		}
+
+		width: 0;
+		height: 0;
+
+		// Right
+		@if $direction == right {
+			border-top: $height/2 solid transparent;
+			border-bottom: $height/2 solid transparent;
+			border-left: $width solid $color;
+		}
+		// Left
+		@if $direction == left {
+			border-top: $height/2 solid transparent;
+			border-bottom: $height/2 solid transparent;
+			border-right: $width solid $color;
+		}
+		// Up
+		@if $direction == up {
+			border-left: $width/2 solid transparent;
+			border-right: $width/2 solid transparent;
+			border-bottom: $height solid $color;
+		}
+		// Down
+		@if $direction == down {
+			border-left: $width/2 solid transparent;
+			border-right: $width/2 solid transparent;
+			border-top: $height solid $color;
+		}
+
+	}
+	// USAGE:
+	//============================================================
+	//
+	// arrow
+	//
+	// @param width           :  px, em
+	// @param height          :  px, em
+	// @param direction       :  up, down, left, right
+	// @param color           :  hex, rgb
+	//
+	//============================================================
+	//
+	// @include arrow(80px, 80px, up, #BADA55);
+
+
+
+	// --------------------------------------------------------------------------- //
+	// ------------------------------- BOX MODEL RELATED ------------------------- //
+	// --------------------------------------------------------------------------- //
+
+	// Positioning offsets
+	@mixin _position ($property: absolute, $top: auto, $right: auto, $bottom: auto, $left: auto, $zindex: 2) {
+		position: $property;
+		top: $top;
+		right: $right;
+		bottom: $bottom;
+		left: $left;
+		z-index: $zindex;
+	}
+
+	// usage:  @include _position(absolute,10px,0px,auto,auto,2);
+	//	returns    	position:absolute; top:10px; right:0px; bottom:auto; left:auto; z-index:5
+
+
+	// Vertical Aligning
+	@mixin vertical-align($position: relative, $width: auto) {
+		position: $position;
+		top: 50%;
+		left: 0;
+		right: 0;
+		display: block;
+		margin: auto;
+		width:$width;
+		@include transform( translateY(-50%) );
+	}
+
+	// usage: @include vertical-align(absolute);
+
+
+	// Center elements by overriding margins and removing float
+	// ---- you may need to force the elements to center through the horrors of specificity
+	@mixin align-center($force: false) {
+
+		@if $force == true {
+
+			margin-left: auto!important;
+			margin-right: auto!important;
+			display: block!important;
+			float: none!important;
+
+		} @else {
+
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			float: none;
+
+		}
 
 	}
 
-}
-
-// usage: @include div-align-center(true/false);
+	// usage: @include div-align-center(true/false);
 
 
-// Box Shadow
-@mixin box-shadow($shadow1, $shadow2:false, $shadow3:false, $shadow4:false, $shadow5:false) {
- $params: $shadow1;
-  @if $shadow2
-	{ $params: $shadow1, $shadow2; }
-	@if $shadow3 != false
-	  { $params: $shadow1, $shadow2, $shadow3; }
-	  @if $shadow4 != false
-		{ $params: $shadow1, $shadow2, $shadow3, $shadow4; }
-		@if $shadow5 != false
-		  { $params: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5; }
+	// Box Shadow
+	@mixin box-shadow($shadow1, $shadow2:false, $shadow3:false, $shadow4:false, $shadow5:false) {
+		$params: $shadow1;
 
--webkit-box-shadow: $params;
-   -moz-box-shadow: $params;
-	  box-shadow: $params;
-}
+		@if $shadow2 {
+			$params: $shadow1, $shadow2;
+		}
+		@if $shadow3 != false {
+			$params: $shadow1, $shadow2, $shadow3;
+		}
+		@if $shadow4 != false {
+			$params: $shadow1, $shadow2, $shadow3, $shadow4;
+		}
+		@if $shadow5 != false {
+			$params: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5;
+		}
 
-
-// Border Radius
-@mixin border-radius($radius) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	-ms-border-radius: $radius;
-	border-radius: $radius;
-}
-
-
-// Box Sizing
-@mixin box-sizing ($value) {
-	-webkit-box-sizing: $value;
-	-moz-box-sizing: $value;
-	box-sizing: $value;
-}
-
-// Inline-Block
-@mixin inline-block($align: bottom) {
-	display:-moz-inline-stack;
-	display: inline-block;
-	vertical-align: $align;
-	zoom: 1;
-	*display: inline;
-	*vertical-align: auto;
-}
-
-@mixin clearfix {
-
-	&:before,
-	&:after {
-		content: " ";
-		display: table;
+	-webkit-box-shadow: $params;
+	   -moz-box-shadow: $params;
+		  box-shadow: $params;
 	}
 
-	&:after {
-		clear:both;
+
+	// Box Sizing
+	@mixin box-sizing ($value) {
+		-webkit-box-sizing: $value;
+		-moz-box-sizing: $value;
+		box-sizing: $value;
 	}
 
-	& {
-		*zoom:1;
+	// Inline-Block
+	@mixin inline-block($align: bottom) {
+		display: inline-block;
+		vertical-align: $align;
 	}
-}
 
+	@mixin clearfix {
 
-@mixin calc($property, /* $default,  */$expression) {
-	/* #{$property}: $default; */
-	#{$property}: -webkit-calc(#{$expression});
-	#{$property}: -moz-calc(#{$expression});
-	#{$property}: calc(#{$expression});
-}
+		&:before,
+		&:after {
+			content: " ";
+			display: table;
+		}
 
-// Usage:
-// @include calc(width, 90% ,'100% - 190px');
+		&:after {
+			clear:both;
+		}
 
-
-
-// ------------------------------------------------------------------------------------ //
-// ------------------------------- COLOUR RELATED MIXINS ------------------------------ //
-// ------------------------------------------------------------------------------------ //
-
-/* Quick DRY mixin for creating coloured overlays */
-@mixin overlay($pseudo: false, $position: fixed, $color: #fff, $alpha: 0.5, $index:2) {
-	@if $pseudo == true{
-	   	content:"";
+		& {
+			*zoom:1;
+		}
 	}
-	display: block;
-	@include _position($position,0,0,0,0,$index);
-	width: 100%;
-	height: 100%;
 
-	@if $pseudo == true{
 
-	 	background: $color none repeat 0 0;
-	 	@include opacity($alpha);
-
-	} @else {
-
-	 	background: rgba($color, $alpha);
+	@mixin calc($property, /* $default,  */$expression) {
+		/* #{$property}: $default; */
+		#{$property}: -webkit-calc(#{$expression});
+		#{$property}: -moz-calc(#{$expression});
+		#{$property}: calc(#{$expression});
 	}
-}
-// USAGE: @include overlay(false, fixed, #fff, 0.5);
+
+	// Usage:
+	// @include calc(width, 90% ,'100% - 190px');
+
+
+
+	// ------------------------------------------------------------------------------------ //
+	// ------------------------------- COLOUR RELATED MIXINS ------------------------------ //
+	// ------------------------------------------------------------------------------------ //
+
+	/* Quick DRY mixin for creating coloured overlays */
+	@mixin overlay($pseudo: false, $position: fixed, $color: #fff, $alpha: 0.5, $index:2) {
+		@if $pseudo == true{
+		   	content:"";
+		}
+		display: block;
+		@include _position($position,0,0,0,0,$index);
+		width: 100%;
+		height: 100%;
+
+		@if $pseudo == true{
+
+		 	background: $color none repeat 0 0;
+		 	@include opacity($alpha);
+
+		} @else {
+
+		 	background: rgba($color, $alpha);
+		}
+	}
+	// USAGE: @include overlay(false, fixed, #fff, 0.5);
 
 
 
 
-// Grayscaling
-@mixin grayscaleActive {
-	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-	filter: gray; /* IE6-9 */
-	-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-}
+	// Grayscaling
+	@mixin grayscaleActive {
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+		filter: gray; /* IE6-9 */
+		-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	}
 
-@mixin grayscaleDisabled {
-	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-	-webkit-filter: grayscale(0%);
-}
-
-
-// Background Linear Gradient
-@mixin linear-gradient ($place, $bcolor1, $bcolor2){
-	background-image: -moz-linear-gradient($place, $bcolor1, $bcolor2);
-	background-image: -webkit-linear-gradient($place, $bcolor1, $bcolor2);
-	background-image: -o-linear-gradient($place, $bcolor1, $bcolor2);
-	background-image: -ms-linear-gradient($place, $bcolor1, $bcolor2);
-
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}'); /* IE6,IE7 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}')"; /* IE8+ */
-
-	background-image: linear-gradient($place, $bcolor1, $bcolor2);
-}
-// usage:
-// @include linear-gradient(top, #ffffff, #333333);
+	@mixin grayscaleDisabled {
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+		-webkit-filter: grayscale(0%);
+	}
 
 
+	// Background Linear Gradient
+	@mixin linear-gradient ($place, $bcolor1, $bcolor2){
+		background-image: -moz-linear-gradient($place, $bcolor1, $bcolor2);
+		background-image: -webkit-linear-gradient($place, $bcolor1, $bcolor2);
+		background-image: -o-linear-gradient($place, $bcolor1, $bcolor2);
+		background-image: -ms-linear-gradient($place, $bcolor1, $bcolor2);
 
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}'); /* IE6,IE7 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}')"; /* IE8+ */
 
-// Background Diagonal Linear Gradient
-@mixin diagonal-linear-gradient ($deg, $bcolor1, $bcolor2, $place, $bcolor3, $place2, $bgcolor4, $place3){
-	background-image: -webkit-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
-	background-image: -moz-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
-	background-image: -o-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
-	background-image: -ms-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
-	background-image: repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
-}
-// usage:
-// @include diagonal-linear-gradient(45deg, #ea4824, #ea4824, 5px, #e36042, 4px, #e36042, 14px);
-
-
-
-// RGBA Mixin with fallback
-@mixin rgba($attribute, $color, $background) {
-	$percent: alpha($color) * 100%;
-	$opaque: opacify($color, 1);
-	$solid-color: mix($opaque, $background, $percent);
-	#{$attribute}: $solid-color;
-	#{$attribute}: $color;
-}
-// usage:
-// @include rgba('background-color', rgba(black, 0.5), white);
-
-// --------------------------------------------------------------------------------------- //
-// ------------------------------------ TRANSFORM MIXINS --------------------------------- //
-// --------------------------------------------------------------------------------------- //
-
-
-
-// Transform
-@mixin transform($transform) {
-	-webkit-transform: $transform;
-	-moz-transform: $transform;
-	-ms-transform: $transform;
-	-o-transform: $transform;
-	transform: $transform;
-}
-// usage:
-// @include transform( scale(1,1) );
+		background-image: linear-gradient($place, $bcolor1, $bcolor2);
+	}
+	// usage:
+	// @include linear-gradient(top, #ffffff, #333333);
 
 
 
 
-// Transform Style
-@mixin transform-style($transformStyle) {
-	-webkit-transform-style: $transformStyle;
-	-moz-transform-style: $transformStyle;
-	-ms-transform-style: $transformStyle;
-	-o-transform-style: $transformStyle;
-	transform-style: $transformStyle;
-}
-// usage:
-// @include transform-style( preserve-3d );
+	// Background Diagonal Linear Gradient
+	@mixin diagonal-linear-gradient ($deg, $bcolor1, $bcolor2, $place, $bcolor3, $place2, $bgcolor4, $place3){
+		background-image: -webkit-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+		background-image: -moz-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+		background-image: -o-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+		background-image: -ms-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+		background-image: repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+	}
+	// usage:
+	// @include diagonal-linear-gradient(45deg, #ea4824, #ea4824, 5px, #e36042, 4px, #e36042, 14px);
 
 
 
-// Transform Origin
-@mixin transform-origin($transformOrigin) {
-	-webkit-transform-origin: $transformOrigin;
-	-moz-transform-origin: $transformOrigin;
-	-ms-transform-origin: $transformOrigin;
-	-o-transform-origin: $transformOrigin;
-	transform-origin: $transformOrigin;
-}
-// usage:
-// @include transform-origin( 100% 100% );
+	// RGBA Mixin with fallback
+	@mixin rgba($attribute, $color, $background) {
+		$percent: alpha($color) * 100%;
+		$opaque: opacify($color, 1);
+		$solid-color: mix($opaque, $background, $percent);
+		#{$attribute}: $solid-color;
+		#{$attribute}: $color;
+	}
+	// usage:
+	// @include rgba('background-color', rgba(black, 0.5), white);
+
+	// --------------------------------------------------------------------------------------- //
+	// ------------------------------------ TRANSFORM MIXINS --------------------------------- //
+	// --------------------------------------------------------------------------------------- //
 
 
 
-// Rotate
-@mixin rotate( $degrees ) {
-	-webkit-transform: rotate(#{$degrees}deg);
-	-moz-transform: rotate(#{$degrees}deg);
-	-ms-transform: rotate(#{$degrees}deg);
-	-o-transform: rotate(#{$degrees}deg);
-	transform: rotate(#{$degrees}deg);
-}
-// usage:
-// @include rotate( 24 );
+	// Transform
+	@mixin transform($transform) {
+		-webkit-transform: $transform;
+		-moz-transform: $transform;
+		-ms-transform: $transform;
+		-o-transform: $transform;
+		transform: $transform;
+	}
+	// usage:
+	// @include transform( scale(1,1) );
 
 
 
-// Transition
-@mixin transition ($transition, $prefix:false) {
 
-	@if $prefix == true{
-
-		-webkit-transition: -webkit-#{$transition};
-		-moz-transition:    -moz-#{$transition};
-		-ms-transition:     -ms-#{$transition};
-		-o-transition:      -o-#{$transition};
-		transition:         #{$transition};
-
-	} @else {
-
-		-webkit-transition: $transition;
-		-moz-transition: $transition;
-		-ms-transition: $transition;
-		-o-transition: $transition;
-		transition: $transition;
-
-  	}
-
-}
-// usage:
-// e.g. @include transition(.6s $easeInOut all, false);
-
-
-// Transition
-@mixin transition-delay ($transitionEasing: ease, $transitionDelay: 0s) {
-	-webkit-transition-delay: $transitionEasing, $transitionDelay;
-	-moz-transition-delay: $transitionEasing, $transitionDelay;
-	-ms-transition-delay: $transitionEasing, $transitionDelay;
-	-o-transition-delay: $transitionEasing, $transitionDelay;
-	transition-delay: $transitionEasing, $transitionDelay;
-}
+	// Transform Style
+	@mixin transform-style($transformStyle) {
+		-webkit-transform-style: $transformStyle;
+		-moz-transform-style: $transformStyle;
+		-ms-transform-style: $transformStyle;
+		-o-transform-style: $transformStyle;
+		transform-style: $transformStyle;
+	}
+	// usage:
+	// @include transform-style( preserve-3d );
 
 
 
-// Perspective
-@mixin perspective ($perspective) {
-	-webkit-perspective: $perspective;
-	-moz-perspective: $perspective;
-	-ms-perspective: $perspective;
-	perspective: $perspective;
-}
-// usage:
-// e.g. @include perspective( 1000 );
-
-// Perspective
-@mixin perspective-origin ($perspective-origin) {
-	-webkit-perspective-origin: $perspective-origin;
-	-moz-perspective-origin: $perspective-origin;
-	-ms-perspective-origin: $perspective-origin;
-	perspective-origin: $perspective-origin;
-}
-// usage:
-// e.g. @include perspective( 1000 );
-
-
-// Backface Visibility
-@mixin backface-visibility($visibility:hidden) {
-	-webkit-backface-visibility:  $visibility;
-	-moz-backface-visibility:  $visibility;
-	-ms-backface-visibility:  $visibility;
-	backface-visibility:  $visibility;
-}
-// usage:
-// e.g. @include backface-visibility( hidden );
+	// Transform Origin
+	@mixin transform-origin($transformOrigin) {
+		-webkit-transform-origin: $transformOrigin;
+		-moz-transform-origin: $transformOrigin;
+		-ms-transform-origin: $transformOrigin;
+		-o-transform-origin: $transformOrigin;
+		transform-origin: $transformOrigin;
+	}
+	// usage:
+	// @include transform-origin( 100% 100% );
 
 
 
-// ------------------------------------------------------------------------------------- //
-// ------------------------------- CROSS BROWSER OPACITY ------------------------------- //
-// ------------------------------------------------------------------------------------- //
+	// Rotate
+	@mixin rotate( $degrees ) {
+		-webkit-transform: rotate(#{$degrees}deg);
+		-moz-transform: rotate(#{$degrees}deg);
+		-ms-transform: rotate(#{$degrees}deg);
+		-o-transform: rotate(#{$degrees}deg);
+		transform: rotate(#{$degrees}deg);
+	}
+	// usage:
+	// @include rotate( 24 );
 
-@mixin opacity($opacity, $ie-support:true) {
 
-	@if $ie-support == true {
 
-		filter: alpha(opacity=($opacity * 100));
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + ($opacity * 100) + ")";
-		opacity: $opacity;
+	// Transition
+	@mixin transition ($transition, $prefix:false) {
 
-	} @else {
+		@if $prefix == true{
 
-		opacity: $opacity;
+			-webkit-transition: -webkit-#{$transition};
+			-moz-transition:    -moz-#{$transition};
+			-ms-transition:     -ms-#{$transition};
+			-o-transition:      -o-#{$transition};
+			transition:         #{$transition};
+
+		} @else {
+
+			-webkit-transition: $transition;
+			-moz-transition: $transition;
+			-ms-transition: $transition;
+			-o-transition: $transition;
+			transition: $transition;
+
+	  	}
 
 	}
-}
-
-// usage:
-// @include opacity( 1 );
+	// usage:
+	// e.g. @include transition(.6s $easeInOut all, false);
 
 
-// -------------------------------------------------------------------------------------- //
-// ------------------------------- FORM RELATED MIXINS ---------------------------------- //
-// -------------------------------------------------------------------------------------- //
-
-// Placeholder Input Styles
-@mixin placeholder {
-	&.placeholder { @content };
-	&::-webkit-input-placeholder { @content };
-	&::-moz-placeholder { @content };
-	&:-ms-input-placeholder { @content };
-}
-
-// usage:
-// input {
-//    @include placeholder {
-//      /some placeholder styles here/
-//    }
-// }
-
-
-
-// remove pesky default styles in iOS.
-@mixin remove-safari-defaults {
-	-webkit-appearance: none;
-	@include border-radius(0px);
-}
-
-// usage: @include remove-safari-defaults;
-
-
-// -------------------------------------------------------------------------------------- //
-// ------------------------------ IMAGES ------------------------------------------------ //
-// -------------------------------------------------------------------------------------- //
-
-@mixin image-2x($image, $width, $height) {
-	@media (min--moz-device-pixel-ratio: 1.3),
-		  (-o-min-device-pixel-ratio: 2.6/2),
-		  (-webkit-min-device-pixel-ratio: 1.3),
-		  (min-device-pixel-ratio: 1.3),
-		  (min-resolution: 1.3dppx)
-	{
-		/* on retina, use image that's scaled by 2 */
-		background-image: url($image);
-		background-size: $width $height;
+	// Transition
+	@mixin transition-delay ($transitionEasing: ease, $transitionDelay: 0s) {
+		-webkit-transition-delay: $transitionEasing, $transitionDelay;
+		-moz-transition-delay: $transitionEasing, $transitionDelay;
+		-ms-transition-delay: $transitionEasing, $transitionDelay;
+		-o-transition-delay: $transitionEasing, $transitionDelay;
+		transition-delay: $transitionEasing, $transitionDelay;
 	}
-}
-// USAGE: @include image-2x("logo@2x.png", 110px, 110px);
-
-@mixin vector-bg-with-fallback($name) {
-	background-image: url('#{$imgsrc}/img/#{$name}.png');
-	background-image: none, url('#{$imgsrc}/img/#{$name}.svg');
-}
-
-@mixin background-size ($value) {
-	-webkit-background-size: $value;
-	-moz-background-size: $value;
-	background-size: $value;
-}
 
 
-// -------------------------------------------------------------------------------------- //
-// ------------------------------- ANIMATION RELATED MIXINS ----------------------------- //
-// -------------------------------------------------------------------------------------- //
 
-@mixin animation ($name, $origin, $duration, $easing, $delay, $iteration, $direction) {
+	// Perspective
+	@mixin perspective ($perspective) {
+		-webkit-perspective: $perspective;
+		-moz-perspective: $perspective;
+		-ms-perspective: $perspective;
+		perspective: $perspective;
+	}
+	// usage:
+	// e.g. @include perspective( 1000 );
 
-	-webkit-animation-name: $name;
-	-webkit-transform-origin: $origin;
-	-webkit-animation-duration: $duration;
-	-webkit-animation-timing-function: $easing;
-	-webkit-animation-delay: $delay;
-	-webkit-animation-iteration-count: $iteration;
-	-webkit-animation-direction: $direction;
-
-	-moz-animation-name: $name;
-	-moz-transform-origin: $origin;
-	-moz-animation-duration: $duration;
-	-moz-animation-timing-function: $easing;
-	-moz-animation-delay: $delay;
-	-moz-animation-iteration-count: $iteration;
-	-moz-animation-direction: $direction;
-
-	-ms-animation-name: $name;
-	-ms-transform-origin: $origin;
-	-ms-animation-duration: $duration;
-	-ms-animation-timing-function: $easing;
-	-ms-animation-delay: $delay;
-	-ms-animation-iteration-count: $iteration;
-	-ms-animation-direction: $direction;
-
-	animation-name: $name;
-	transform-origin: $origin;
-	animation-duration: $duration;
-	animation-timing-function: $easing;
-	animation-delay: $delay;
-	animation-iteration-count: $iteration;
-	animation-direction: $direction;
-
-}
-// usage:
-// @include animation(flash, center center, 2s, $easeInOut, 0.4, 2, normal);
+	// Perspective
+	@mixin perspective-origin ($perspective-origin) {
+		-webkit-perspective-origin: $perspective-origin;
+		-moz-perspective-origin: $perspective-origin;
+		-ms-perspective-origin: $perspective-origin;
+		perspective-origin: $perspective-origin;
+	}
+	// usage:
+	// e.g. @include perspective( 1000 );
 
 
-@mixin hardwareAccelerate {
-
-	-webkit-transform: translate3d(0,0,0);
-	-webkit-perspective: 1000;
-	-webkit-backface-visibility: hidden;
-
-	-moz-transform: translate3d(0,0,0);
-	-moz-perspective: 1000;
-	-moz-backface-visibility: hidden;
-
-	-ms-transform: translate3d(0,0,0);
-	-ms-perspective: 1000;
-	-ms-backface-visibility: hidden;
-
-	transform: translate3d(0,0,0);
-	perspective: 1000;
-	backface-visibility: hidden;
-}
-// usage:
-// @include hardwareAccelerate;
+	// Backface Visibility
+	@mixin backface-visibility($visibility:hidden) {
+		-webkit-backface-visibility:  $visibility;
+		-moz-backface-visibility:  $visibility;
+		-ms-backface-visibility:  $visibility;
+		backface-visibility:  $visibility;
+	}
+	// usage:
+	// e.g. @include backface-visibility( hidden );
 
 
-@mixin preserve3d {
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	-ms-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-}
+
+	// ------------------------------------------------------------------------------------- //
+	// ------------------------------- CROSS BROWSER OPACITY ------------------------------- //
+	// ------------------------------------------------------------------------------------- //
+
+	@mixin opacity($opacity, $ie-support:true) {
+
+		@if $ie-support == true {
+
+			filter: alpha(opacity=($opacity * 100));
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + ($opacity * 100) + ")";
+			opacity: $opacity;
+
+		} @else {
+
+			opacity: $opacity;
+
+		}
+	}
+
+	// usage:
+	// @include opacity( 1 );
 
 
-// ------------------------------------------------------------------------------ //
-// --------------------------- Animation Easing Types --------------------------- //
-// ------------------------------------------------------------------------------ //
+	// -------------------------------------------------------------------------------------- //
+	// ------------------------------- FORM RELATED MIXINS ---------------------------------- //
+	// -------------------------------------------------------------------------------------- //
 
-$easeIn: cubic-bezier(0.825, 0.000, 1.000, 0.640);
-$easeInOut: cubic-bezier(0.665, 0.000, 0.430, 1);
-$easeOut: cubic-bezier(0.200, 0.470, 0.435, 0.970);
-$linear: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	// Placeholder Input Styles
+	@mixin placeholder {
+		&.placeholder { @content };
+		&::-webkit-input-placeholder { @content };
+		&::-moz-placeholder { @content };
+		&:-ms-input-placeholder { @content };
+	}
 
-// usage:
-// e.g. @include transition(.6s $easeInOut all);
+	// usage:
+	// input {
+	//    @include placeholder {
+	//      /some placeholder styles here/
+	//    }
+	// }
+
+
+
+	// remove pesky default styles in iOS.
+	@mixin remove-safari-defaults {
+		-webkit-appearance: none;
+		@include border-radius(0px);
+	}
+
+	// usage: @include remove-safari-defaults;
+
+
+	// -------------------------------------------------------------------------------------- //
+	// ------------------------------ IMAGES ------------------------------------------------ //
+	// -------------------------------------------------------------------------------------- //
+
+	@mixin image-2x($image, $width, $height) {
+		@media (min--moz-device-pixel-ratio: 1.3),
+			  (-o-min-device-pixel-ratio: 2.6/2),
+			  (-webkit-min-device-pixel-ratio: 1.3),
+			  (min-device-pixel-ratio: 1.3),
+			  (min-resolution: 1.3dppx)
+		{
+			/* on retina, use image that's scaled by 2 */
+			background-image: url($image);
+			background-size: $width $height;
+		}
+	}
+	// USAGE: @include image-2x("logo@2x.png", 110px, 110px);
+
+	@mixin vector-bg-with-fallback($name) {
+		background-image: url('#{$imgsrc}/img/#{$name}.png');
+		background-image: none, url('#{$imgsrc}/img/#{$name}.svg');
+	}
+
+	@mixin background-size ($value) {
+		-webkit-background-size: $value;
+		-moz-background-size: $value;
+		background-size: $value;
+	}
+
+
+	// -------------------------------------------------------------------------------------- //
+	// ------------------------------- ANIMATION RELATED MIXINS ----------------------------- //
+	// -------------------------------------------------------------------------------------- //
+
+	@mixin animation ($name, $origin, $duration, $easing, $delay, $iteration, $direction) {
+
+		-webkit-animation-name: $name;
+		-webkit-transform-origin: $origin;
+		-webkit-animation-duration: $duration;
+		-webkit-animation-timing-function: $easing;
+		-webkit-animation-delay: $delay;
+		-webkit-animation-iteration-count: $iteration;
+		-webkit-animation-direction: $direction;
+
+		-moz-animation-name: $name;
+		-moz-transform-origin: $origin;
+		-moz-animation-duration: $duration;
+		-moz-animation-timing-function: $easing;
+		-moz-animation-delay: $delay;
+		-moz-animation-iteration-count: $iteration;
+		-moz-animation-direction: $direction;
+
+		-ms-animation-name: $name;
+		-ms-transform-origin: $origin;
+		-ms-animation-duration: $duration;
+		-ms-animation-timing-function: $easing;
+		-ms-animation-delay: $delay;
+		-ms-animation-iteration-count: $iteration;
+		-ms-animation-direction: $direction;
+
+		animation-name: $name;
+		transform-origin: $origin;
+		animation-duration: $duration;
+		animation-timing-function: $easing;
+		animation-delay: $delay;
+		animation-iteration-count: $iteration;
+		animation-direction: $direction;
+
+	}
+	// usage:
+	// @include animation(flash, center center, 2s, $easeInOut, 0.4, 2, normal);
+
+
+	@mixin hardwareAccelerate {
+
+		-webkit-transform: translate3d(0,0,0);
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+
+		-moz-transform: translate3d(0,0,0);
+		-moz-perspective: 1000;
+		-moz-backface-visibility: hidden;
+
+		-ms-transform: translate3d(0,0,0);
+		-ms-perspective: 1000;
+		-ms-backface-visibility: hidden;
+
+		transform: translate3d(0,0,0);
+		perspective: 1000;
+		backface-visibility: hidden;
+	}
+	// usage:
+	// @include hardwareAccelerate;
+
+
+	@mixin preserve3d {
+		-webkit-transform-style: preserve-3d;
+		-moz-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+
+	// ------------------------------------------------------------------------------ //
+	// --------------------------- Animation Easing Types --------------------------- //
+	// ------------------------------------------------------------------------------ //
+
+	$easeIn: cubic-bezier(0.825, 0.000, 1.000, 0.640);
+	$easeInOut: cubic-bezier(0.665, 0.000, 0.430, 1);
+	$easeOut: cubic-bezier(0.200, 0.470, 0.435, 0.970);
+	$linear: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+
+	// usage:
+	// e.g. @include transition(.6s $easeInOut all);

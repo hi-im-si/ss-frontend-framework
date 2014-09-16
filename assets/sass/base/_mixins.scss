@@ -115,14 +115,6 @@ $max: max-width;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-
-	// -webkit-hyphens: auto;
-	// -moz-hyphens: auto;
-	// hyphens: auto;
-
-	// -webkit-hyphenate-before: 2;
-	// -webkit-hyphenate-after: 3;
-	// hyphenate-lines: 3;
 }
 // @include word-break;
 
@@ -494,7 +486,7 @@ $max: max-width;
 		-o-transition:      -o-#{$transition};
 		transition:         #{$transition};
 
-	} else {
+	} @else {
 
 		-webkit-transition: $transition;
 		-moz-transition: $transition;

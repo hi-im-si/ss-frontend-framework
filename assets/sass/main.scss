@@ -7,18 +7,16 @@
 /*
   Contents
   --------
-  0 Normalisation
-  1 Typography
-  2 Headings
-  3 Layout Base Elements
-  4 Layout
-  5 Navigation
-  6 Page Specific Styles
-  7 Form Styles
-  8 Fancybox
-  9 IE Fixes
-  10 Media Queries
-
+  0 $VARIABLES
+  1 $MIXINS
+  2 $NORMALISATION/RESET
+  3 $TYPOGRAPHY
+  4 $FONTICON
+  5 $HELPERS
+  6 $LAYOUT
+  7 $GRID
+  8 $COMPONENTS
+  9 $FORMS
 
 */
 
@@ -33,7 +31,16 @@
 	@import "base/base";
 	@import "base/typography";
 	@import "base/fonticon";
-  	@import "base/list";
+
+
+/*============================
+* Helpers
+  Helper classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform
+  simple tasks
+*/
+
+	@import "modules/helper/helpers";
+
 
 
 /*============================
@@ -45,24 +52,17 @@
 
 	@import "layout/layout";
 
-/*============================
-*	Theme
-	this will be some core colour themes to allow for modular theming.
-*/
-
-	// @import "theme/theme";
-
 
 /*============================
 *	Modules
 	this will be the core styles for the site. this should be as modular as possible
 	but no state styles. These are for the next section.
 */
-	@import "module/helper/helpers";
+	@import "module/main";
 	@import "module/grid";
 	@import "module/nav";
-	@import "module/main";
 	@import "module/forms";
+  	@import "module/list";
 	@import "module/buttons";
 	@import "module/tooltip";
 	@import "module/alerts";
@@ -81,11 +81,12 @@
 
 
 /*============================
-*	Page
-	all page files are aimed at general major/minor layout in regards to page specificity.
+*	Theme
+	this will be some core colour themes to allow for modular theming.
 */
 
-	  //@import "page/main";
+	// @import "theme/theme";
+
 
 
 /*============================

@@ -312,8 +312,8 @@
 	}
 
 
-	@mixin calc($property, /* $default,  */$expression) {
-		/* #{$property}: $default; */
+	@mixin calc($property, $default, $expression) {
+		#{$property}: $default;
 		#{$property}: -webkit-calc(#{$expression});
 		#{$property}: -moz-calc(#{$expression});
 		#{$property}: calc(#{$expression});
@@ -328,7 +328,7 @@
 	// ------------------------------- COLOUR RELATED MIXINS ------------------------------ //
 	// ------------------------------------------------------------------------------------ //
 
-	/* Quick DRY mixin for creating coloured overlays */
+	/// Quick DRY mixin for creating coloured overlays
 	@mixin overlay($pseudo: false, $position: fixed, $color: #fff, $alpha: 0.5, $index:2) {
 		@if $pseudo == true{
 		   	content:"";
@@ -355,9 +355,9 @@
 
 	// Grayscaling
 	@mixin grayscaleActive {
-		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-		filter: gray; /* IE6-9 */
-		-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); // Firefox 10+, Firefox on Android
+		filter: gray; // IE6-9
+		-webkit-filter: grayscale(100%); // Chrome 19+, Safari 6+, Safari 6+ iOS
 	}
 
 	@mixin grayscaleDisabled {
@@ -373,8 +373,8 @@
 		background-image: -o-linear-gradient($place, $bcolor1, $bcolor2);
 		background-image: -ms-linear-gradient($place, $bcolor1, $bcolor2);
 
-		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}'); /* IE6,IE7 */
-		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}')"; /* IE8+ */
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}'); // IE6,IE7
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}')"; // IE8+
 
 		background-image: linear-gradient($place, $bcolor1, $bcolor2);
 	}
@@ -601,7 +601,7 @@
 			  (min-device-pixel-ratio: 1.3),
 			  (min-resolution: 1.3dppx)
 		{
-			/* on retina, use image that's scaled by 2 */
+			// on retina, use image that's scaled by 2
 			background-image: url($image);
 			background-size: $width $height;
 		}
@@ -664,22 +664,9 @@
 
 
 	@mixin hardwareAccelerate {
-
-		-webkit-transform: translate3d(0,0,0);
-		-webkit-perspective: 1000;
-		-webkit-backface-visibility: hidden;
-
-		-moz-transform: translate3d(0,0,0);
-		-moz-perspective: 1000;
-		-moz-backface-visibility: hidden;
-
-		-ms-transform: translate3d(0,0,0);
-		-ms-perspective: 1000;
-		-ms-backface-visibility: hidden;
-
-		transform: translate3d(0,0,0);
-		perspective: 1000;
-		backface-visibility: hidden;
+		@include transform(translate3d(0,0,0));
+		@include perspective(1000);
+		@include backface-visibility(hidden);
 	}
 	// usage:
 	// @include hardwareAccelerate;

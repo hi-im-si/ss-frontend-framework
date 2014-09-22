@@ -38,7 +38,7 @@ $fontsrc: "../fonts";
 
 
 //------------------------------------//
-//    $BASE
+//    $BASE DEFAULTS
 //------------------------------------//
 
 
@@ -50,10 +50,13 @@ $base-line-height:	$base-font-size * 1.25 !default;
 // Base font-family.
 $base-font-family:  	sans-serif!default;
 
-
 // Default colour for objects’ borders etc.
 $base-ui-color:     	#333 !default;
 
+
+//------------------------------------//
+//    $FONT SIZES
+//------------------------------------//
 
 // Headings
 $alpha-size:		50	!default; // .h_alpha
@@ -80,7 +83,7 @@ $p-size:            $base-font-size !default;
 
 
 //------------------------------------//
-//    $Fonts
+//    $FONT DECLARATIONS
 //------------------------------------//
 
 $primaryFont: "Trebuchet MS", Helvetica, Arial, sans-serif;
@@ -92,13 +95,11 @@ $fonticon: 'customicon';
 $baseFont: normal #{$base-font-size}px / #{$base-line-height}px $primaryFont;
 
 
-$base-spacing-unit: $base-line-height!default;
-$half-spacing-unit: $base-spacing-unit / 2!default;
-$line-height-ratio: $base-line-height / $base-font-size;
-
-
 // Weights
+$light: 200;
 $reg: 400;
+$bold: 600;
+$bolder: 700;
 
 
 

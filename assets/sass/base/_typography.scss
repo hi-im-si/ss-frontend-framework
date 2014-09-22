@@ -1,18 +1,18 @@
 /*-----------------------------------------------------------------------------
---------------------------------1--------TYPOGRAPHY----------------------------
+--------------------------------3--------$TYPOGRAPHY----------------------------
 -------------------------------------------------------------------------------*/
 
 html {
-  font-size:62.5%;
-  line-height: 62.5%;
+	font-size:62.5%;
+	line-height: 62.5%;
 }
 
 
 body{
-  font-family:$primaryFont;
-  @include font-size($base-font-size);
-  color:$primaryColor;
-  font-weight:normal;
+	font-family:$primaryFont;
+	@include font-size($base-font-size);
+	color:$primaryColor;
+	font-weight:normal;
 }
 
 
@@ -23,7 +23,6 @@ p {
 	color: $primaryColor;
 	font-family:$secondaryFont;
 	@include font-size($p-size);
-	text-align:left;
 }
 
 a {
@@ -50,10 +49,10 @@ small,
 -------------------------------------------------------------------------------*/
 
 %headings {
- 	margin:0 0 10px 0;
- 	color:$primaryColor;
- 	font-family:$primaryFont;
- 	font-weight:normal;
+	margin:0 0 10px 0;
+	color:$primaryColor;
+	font-family:$primaryFont;
+	font-weight:normal;
 }
 
 // Standard Headings

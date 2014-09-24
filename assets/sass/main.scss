@@ -34,12 +34,12 @@
 
 
 /*============================
-* Helpers
-  Helper classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform
+* Utility Helpers
+  Utilities classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform
   simple tasks
 */
 
-	@import "modules/helper/helpers";
+	@import "utility/utilities";
 
 
 
@@ -47,7 +47,7 @@
 *	Layout
 	Main layout elements of site - Header, sidebar footer etc but none of the reusable
 	elements that are inside of these including headers, links etc. Make these in a
-	more modular method.
+	more modular way.
 */
 
 	@import "layout/layout";

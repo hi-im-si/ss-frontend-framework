@@ -15,31 +15,29 @@
 		@include inline-block;
 		margin:0 0 5px 0;
 
-		&__half {
-			@include inline-block;
+		// field width modifiers
+		&--half {
 			@include reset-cols-to(6);
 		}
 		&--thirds {
 			@include reset-cols-to(4);
-			margin-left: 0.7936507937%;
-			margin-right: 0.7936507937%;
 		}
 		&--quarts {
 			@include reset-cols-to(3);
-			margin-left: 0.7936507937%;
-			margin-right: 0.7936507937%;
+		}
+		&--sixths {
+			@include reset-cols-to(2);
 		}
 
+		// field margin modifiers
 		&--alpha {
 			margin-left: 0;
 		}
-
 		&--omega {
 			margin-right: 0;
 		}
 
 	}
-
 
 }
 
@@ -53,11 +51,13 @@
 
 // Base Form Elements Styling
 input[type="text"],
-input[type="password"], input.password,
+input[type="password"],
 input[type="email"],
+input[type="url"],
 input[type="tel"],
 input[type="date"],
-input[type="type"],
+input[type="datetime"],
+input[type="search"],
 textarea,
 select {
 	position: relative;
@@ -250,26 +250,21 @@ span.select{
 
 
 // DRY mixin for radio and checkbox styles
-@mixin radio-check-styling {
+@mixin radio-check-styling($height: 15px, $width: 15px, $color: $primaryColor) {
 	position:relative;
 	@include inline-block(middle);
-	height: 15px;
-	width: 15px;
-	color:$tertiaryColor;
+	height: $height;
+	width: $width;
+	color:$color;
 	overflow:hidden;
 	margin-right: 5px;
 	cursor:pointer;
 
 	&:before{
-		@include fonticon;
-
-	}
-
-	&:before {
 		position: absolute;
 		top:2px;
 		left: 0;
-
+		@include fonticon;
 		@include font-size($milli-size,$epsilon-size - 2);
 	}
 
@@ -288,14 +283,14 @@ span.select{
 .radio {
 	@include radio-check-styling;
 
-  &:before {
-	content: "\e618";
-  }
+	&:before {
+		content: "\e618";
+	}
 
-  + label {
-	line-height: 1;
-	@include inline-block(middle);
-  }
+	+ label {
+		line-height: 1;
+		@include inline-block(middle);
+	}
 }
 
 .radio--selected {
@@ -316,19 +311,19 @@ span.select{
 		content: "";
 	}
 
-
 	input {
 		width:15px; height:15px;
 		margin:0; padding:0;
 	}
 
-}
-
-	.checkbox--selected {
+	&--selected {
 		&:before {
 			content: "\e617";
 		}
 	}
+
+}
+
 
 
 
@@ -378,15 +373,5 @@ span.select{
 		 	}
 		}
 
-		.successText {
-			font-size: 14px;
-			margin: 0;
-			font-weight: normal;
-			text-transform:uppercase;
-			font-family:$primaryFont;
-			line-height:1;
-			color:$white;
-			font-weight:bold;
-		}
 	}
 }

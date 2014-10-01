@@ -12,19 +12,19 @@
   2 $NORMALISATION/RESET
   3 $TYPOGRAPHY
   4 $FONTICON
-  5 $HELPERS
-  6 $LAYOUT
-  7 $GRID
-  8 $COMPONENTS
-  9 $FORMS
+  5 $LAYOUT
+  6 $GRID
+  7 $MODULES
+  8 $FORMS
+  9 $UTILITIES
 
 */
 
 
-/*============================
-*	Base
-	all base files to reset and get the site started
-*/
+//============================
+//*	Base
+//		all base files to reset and get the site started
+//
 
 	@import "base/variables";
 	@import "base/mixins";
@@ -33,31 +33,22 @@
 	@import "base/fonticon";
 
 
-/*============================
-* Utility Helpers
-  Utilities classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform
-  simple tasks
-*/
 
-	@import "utility/utilities";
-
-
-
-/*============================
-*	Layout
-	Main layout elements of site - Header, sidebar footer etc but none of the reusable
-	elements that are inside of these including headers, links etc. Make these in a
-	more modular way.
-*/
+//============================
+//	Layout
+//	Main layout elements of site - Header, sidebar footer etc but none of the reusable
+//	elements that are inside of these including headers, links etc. Make these in a
+//	more modular way.
+//
 
 	@import "layout/layout";
 
 
-/*============================
-*	Modules
-	this will be the core styles for the site. this should be as modular as possible
-	but no state styles. These are for the next section.
-*/
+//============================
+//	Modules
+//	this will be the core styles for the site. this should be as modular as possible
+//	but no state styles. These are for the next section.
+//
 	@import "module/main";
 	@import "module/grid";
 	@import "module/nav";
@@ -72,59 +63,68 @@
 	@import "module/modal";
 
 
-/*============================
-*	State
-	the different states of elements that are styled will be kept in here.
-*/
+//============================
+//	State
+//	the different states of elements that are styled will be kept in here.
+//
 
 	@import "state/main";
 
 
-/*============================
-*	Theme
-	this will be some core colour themes to allow for modular theming.
-*/
+//============================
+//	Theme
+//	this will be some core colour themes to allow for modular theming.
+//
 
 	// @import "theme/theme";
 
 
 
-/*============================
-*	Print
-	Print Style sheet
-*/
+//============================
+// Utility Helpers
+//		Utilities classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform simple tasks
+//
+
+	@import "utility/utilities";
+
+
+
+//============================
+//	Print
+//	Print Style sheet
+//
 
 	//@import "module/_print";
 
 
- /*============================
-*	Libraries
-	CSS files for any external libraries like fancybox etc.
-*/
+//============================
+//	Libraries
+//	CSS files for any external libraries like fancybox etc.
+//
 
 	@import "lib/magnificpopup";
 
 
- /*============================
-*	Shame/Browser Specific
-	For all those hacky css fixes you have to make quickly as well as browser specific styles
-*/
+//============================
+//	Shame/Browser Specific
+//	For all those hacky css fixes you have to make quickly as well as browser specific styles
+//
 
 	@import "shame/shame";
 	@import "shame/browser";
 
 
- /*============================
-*	DEBUG
-	highlights general validation issues - improper/invalid markup.
-	This can be enabled/disabled in _variables.scss
-*/
+//============================
+//	DEBUG
+//	highlights general validation issues - improper/invalid markup.
+//	This can be enabled/disabled in _variables.scss
+//
 
 	@import "base/debugmode";
 
 
- /*============================
-*	STYLEGUIDE
-	Styleguide specific styles --- NO relevance to site styles
-*/
+//============================
+//	STYLEGUIDE
+//	Styleguide specific styles --- NO relevance to site styles
+//
 	//@import "base/styleguide";

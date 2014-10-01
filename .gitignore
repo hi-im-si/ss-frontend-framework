@@ -6,3 +6,4 @@
 **.sass-cache**
 .sass-cache/*
 assets/css/*.css.map
+assets/css/*.css

@@ -33,7 +33,7 @@
 	line-height:1;              	           /* [7] */
 	padding-right:0.5em;          	/* [7] */
 	padding-left: 0.5em;          	/* [7] */
-	@include border-radius(0px);	/* [8] */
+	border-radius: 0px;				/* [8] */
 
 	-webkit-font-smoothing: antialiased;
 }
@@ -252,11 +252,11 @@
  * 1. Use an overly-large number to ensure completely rounded, pill-like ends.
  */
 .btn--soft{
-	@include border-radius(200px);        /* [1] */
+	border-radius: 200px;        /* [1] */
 }
 
 .btn--hard{
-	@include border-radius(0);
+	border-radius: 0px;
 }
 
 .btn--square {

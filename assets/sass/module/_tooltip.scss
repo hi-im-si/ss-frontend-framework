@@ -450,7 +450,7 @@ $coloring:                true!default;
 @if $rounded == true {
 	.ttip--rounded {
 		&:after{
-			@include border-radius(4px);
+			border-radius: 4px;
 		}
 	}
 }

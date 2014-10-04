@@ -214,7 +214,6 @@ select {
 
 span.select{
 	@include _position(absolute, 0, 0, 0, 0);
-	z-index:1;
 	width:100%;
 	height:100%;
 	padding:0 30px 0 15px;
@@ -332,46 +331,26 @@ span.select{
 -----------------------Error/Success Styling ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-.page {
 
-	.form {
+.form {
 
-		input.error,
-		.error input,
-		.error textarea {
-			background: #fff url('#{$imgsrc}/forms/error.png') no-repeat right center;
-			color:$error;
-			border-color:$error;
-		}
+	&__field {
 
-		input:valid:not(.submit),
-		textarea:valid {
-
-		}
-
-		.required {color:$error;}
-
-
-		.error {
-			@include placeholder {
-				color:$error;
-				font-weight:bold;
-				text-transform: uppercase;
-			}
-		}
-
-
-		.form__error {
+		&--error {
 		 	* {
 				color:$error;
 		 	}
 		}
 
-		.form__success {
+		&--success {
 		 	* {
 				color:$success;
 		 	}
 		}
 
 	}
+
+	.required { color:$error; }
+
 }
+

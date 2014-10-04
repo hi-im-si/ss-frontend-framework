@@ -170,192 +170,69 @@ $grid-column-gutter: 20;
 ============================ Responsive Silent Classes ===================================
 ==========================================================================================*/
 
-.container {
+// Grid Breakpoints
+$maxBreakpoints: (
+	desk-lrg: $mq-desk--lrg,
+	tab-lrg: $mq-tab--lrg,
+	tab: $mq-tab,
+	tab-sml: $mq-tab--sml,
+	mob-lrg: $mq-mob--lrg,
+	mob: $mq-mob
+);
+$minMaxBreakpoints: (
+	tab--quart: (null, $mq-mob + 1),
+	tab--half: (null, $mq-mob + 1)
+);
 
+
+// Grid Breakpoint Sizes
+$breakpointColumns: (
+	quart: 4,
+	half: 2,
+	full: 1
+);
+
+
+// Grid Breakpoint Classes
+.container {
 	.col {
 
-		&[class*="mq-"] {
+		@each $class, $breakpoint in $maxBreakpoints {
+			@each $size, $amount in $breakpointColumns {
 
-		}
+				// Default Variables
+				$breakParam1: $breakpoint;
+				$breakParam2: null;
+				$breakwidth: $max;
 
+				// Set Class Name
+				$element: #{$class}--#{$size};
 
-		/* generic desktop overrides */
+				// Custom Variables
+				@each $customClass, $customBreakpoint in $minMaxBreakpoints {
+					@if($element == $customClass) {
+						// Set Breakpoint
+						$breakParam2: $breakParam1;
+						$breakParam1: nth($customBreakpoint, 2);
 
-		&.mq-desk-lrg--full {
-			@include mq($max, $mq-desk--lrg) {
-			    @include reset-cols-to($grid-column-length);
+						$breakwidth: nth($customBreakpoint, 1);
 
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length);
-			    }
+					}
+				}
+
+				// Create Class
+				&.mq-#{$element} {
+					@include mq($breakwidth, $breakParam1, $breakParam2) {
+						@include reset-cols-to($grid-column-length / $amount);
+
+					    &--flush {
+					    	@include reset-flush-cols-to($grid-column-length / $amount);
+					    }
+					}
+				}
+
 			}
 		}
-
-
-
-		/* generic tablet silent classes */
-		&.mq-tab-lrg--quart {
-			/*---------------------------*/
-			@include mq($max, $mq-tab--lrg) {
-			    @include reset-cols-to($grid-column-length / 4);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 4);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-tab-lrg--half {
-			/*---------------------------*/
-			@include mq($max, $mq-tab--lrg) {
-			    @include reset-cols-to($grid-column-length / 2);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 2);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-tab-lrg--full {
-			/*---------------------------*/
-			@include mq($max, $mq-tab--lrg) {
-			    @include reset-cols-to($grid-column-length);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length);
-			    }
-			}
-			/*---------------------------*/
-		}
-
-
-		&.mq-tab--quart {
-			@include mq(null, $mq-mob + 1, $mq-tab) {
-			    @include reset-cols-to($grid-column-length / 4);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 4);
-			    }
-			}
-		}
-		&.mq-tab--half {
-			@include mq(null, $mq-mob + 1, $mq-tab) {
-			    @include reset-cols-to($grid-column-length / 2);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 2);
-			    }
-			}
-		}
-		&.mq-tab--full {
-			/*---------------------------*/
-			@include mq($max, $mq-tab) {
-			    @include reset-cols-to($grid-column-length);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length);
-			    }
-			}
-			/*---------------------------*/
-		}
-
-
-		&.mq-tab-sml--quart {
-			/*---------------------------*/
-			@include mq($max, $mq-tab--sml) {
-			    @include reset-cols-to($grid-column-length / 4);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 4);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-tab-sml--half {
-			/*---------------------------*/
-			@include mq($max, $mq-tab--sml) {
-			    @include reset-cols-to($grid-column-length / 2);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 2);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-tab-sml--full {
-			/*---------------------------*/
-			@include mq($max, $mq-tab--sml) {
-			    @include reset-cols-to($grid-column-length);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length);
-			    }
-			}
-			/*---------------------------*/
-		}
-
-
-
-
-
-		/* generic mobile silent classes */
-		&.mq-mob-lrg--quart {
-			/*---------------------------*/
-			@include mq($max, $mq-mob--lrg) {
-			    @include reset-cols-to($grid-column-length / 4);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 2);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-mob-lrg--half {
-			/*---------------------------*/
-			@include mq($max, $mq-mob--lrg) {
-			    @include reset-cols-to($grid-column-length / 2);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 2);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-mob-lrg--full {
-			/*---------------------------*/
-			@include mq($max, $mq-mob--lrg) {
-			    @include reset-cols-to($grid-column-length);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length);
-			    }
-			}
-			/*---------------------------*/
-		}
-
-		&.mq-mob--half {
-			/*---------------------------*/
-			@include mq($max, $mq-mob) {
-			    @include reset-cols-to($grid-column-length / 2);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length / 2);
-			    }
-			}
-			/*---------------------------*/
-		}
-		&.mq-mob--full {
-			/*---------------------------*/
-			@include mq($max, $mq-mob) {
-			    @include reset-cols-to($grid-column-length);
-
-			    &--flush {
-			    	@include reset-flush-cols-to($grid-column-length);
-			    }
-			}
-			/*---------------------------*/
-		}
-
 
 	}
 }

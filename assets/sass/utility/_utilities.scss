@@ -122,46 +122,40 @@
 
 
 $box-model-property-map: (
-	m: margin,
-    mt: margin-top,
-    mr: margin-right,
-    mb: margin-bottom,
-    ml: margin-left,
+	m: (margin),
+    mt: (margin-top),
+    mr: (margin-right),
+    mb: (margin-bottom),
+    ml: (margin-left),
     mlr: (margin-left, margin-right),
     mtb: (margin-top, margin-bottom),
-    p: padding,
-    pt: padding-top,
-    pr: padding-right,
-    pb: padding-bottom,
-    pl: padding-left,
+    p: (padding),
+    pt: (padding-top),
+    pr: (padding-right),
+    pb: (padding-bottom),
+    pl: (padding-left),
     plr: (padding-left, padding-right),
     ptb: (padding-top, padding-bottom),
-    width: width
+    width: (width)
 );
 $sizes-list: 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100;
 
 html {
 	@each $size in $sizes-list {
-
-		$val: $size;
-
 		@each $keyword, $property in $box-model-property-map {
 
 			.#{$keyword}#{$size} {
-				@if $keyword == width {
-					#{$property}: percentage($val / 100);
-				} @else if length($property) == 2 {
-					$prop1: nth($property, 1);
-					$prop2: nth($property, 2);
+				@each $style in $property {
 
-					#{$prop1}: $val + px;
-					#{$prop2}: $val + px;
+					@if $keyword == width {
+						#{$style}: percentage($size / 100);
+					} @else {
+						#{$style}: $size + px;
+					}
 
-				} @else {
-					#{$property}: $val + px;
 				}
 			}
+
 		}
 	}
-
 }

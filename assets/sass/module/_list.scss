@@ -1,35 +1,67 @@
-ul.bullet {
+/*========================================================================================
+============================ Generic Lists ===============================================
+==========================================================================================*/
 
-	margin:10px 0;
+	ul, ol { margin-bottom: 20px; }
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+
+	ol,
+	ul.square,
+	ul.circle,
+	ul.disc { margin-left: 30px; }
+
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
 
 	li {
-		position: relative;
-		display: block;
-		margin:3px 0;
-		padding-left: 20px;
-		font-family: $secondaryFont;
-		@include font-size($milli-size);
+		line-height: 18px;
+		margin-bottom: 12px;
+	}
+	ul.large > li { line-height: 21px; }
+	li > p { line-height: 21px; }
 
-		&:before {
-			content: "\2022";
-			position: absolute;
-			left: 0;
-			top: 4px;
-			@include font-size($micro-size,$micro-size);
-			color:$tertiaryColor;
+
+	dl {margin-bottom: 10px; line-height: 1;}
+	dt,dd { @include inline-block(top); }
+	dt {font-weight: $reg;}
+	dd { padding: 0 0 0 40px; margin: 0; }
+
+
+
+	ul.bullet {
+
+		margin:10px 0;
+
+		li {
+			position: relative;
+			display: block;
+			margin:3px 0;
+			padding-left: 20px;
+			font-family: $primaryFont;
+			@include font-size($milli-size);
+
+			&:before {
+				content: "\2022";
+				position: absolute;
+				left: 0;
+				top: 4px;
+				@include font-size($micro-size,$micro-size);
+				color:$primaryColor;
+			}
+		}
+
+	}
+
+
+	ol.counter {
+
+		list-style-type: decimal;
+
+		li {
+			position: relative;
+			display: list-item;
+			margin:10px 0;
 		}
 	}
-
-}
-
-
-ol.counter {
-
-	list-style-type: decimal;
-
-	li {
-		position: relative;
-		display: list-item;
-		margin:10px 0;
-	}
-}

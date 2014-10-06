@@ -558,6 +558,7 @@
 
 	// usage:
 	// @include opacity( 1 );
+	// @include opacity( 1, false );
 
 
 	// -------------------------------------------------------------------------------------- //
@@ -660,7 +661,7 @@
 
 	}
 	// usage:
-	// @include animation(flash, center center, 2s, $easeInOut, 0.4, 2, normal);
+	// @include animation(flash, center center, 2s, $easeInOut, 0, infinite, normal);
 
 
 	@mixin hardwareAccelerate {

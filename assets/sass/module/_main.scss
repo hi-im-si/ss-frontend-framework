@@ -1,25 +1,4 @@
 /*========================================================================================
-============================ Generic Lists ===============================================
-==========================================================================================*/
-
-	ul, ol { margin-bottom: 20px; }
-	ul { list-style: none outside; }
-	ol { list-style: decimal; }
-	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
-	ul.square { list-style: square outside; }
-	ul.circle { list-style: circle outside; }
-	ul.disc { list-style: disc outside; }
-	li { line-height: 18px; margin-bottom: 12px; }
-	ul.large li { line-height: 21px; }
-	li p { line-height: 21px; }
-
-
-	dl {margin-bottom: 10px; line-height: 1;}
-	dt,dd { @include inline-block(top); width:49%; }
-	dt {font-weight: $reg;}
-	dd { padding: 0 0 0 40px; margin: 0; }
-
-/*========================================================================================
 ============================ Tables ======================================================
 ==========================================================================================*/
 
@@ -33,13 +12,6 @@
 
 			* { color:$secondaryColor; }
 
-			&.actions {
-				.sep--right {
-					&:after {
-						border-color:$secondaryColor;
-					}
-				}
-			}
 		}
 
 		th,

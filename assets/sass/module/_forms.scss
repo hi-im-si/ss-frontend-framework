@@ -290,13 +290,16 @@ span.select{
 		line-height: 1;
 		@include inline-block(middle);
 	}
+
+
+	&--selected {
+		&:before {
+			content: "\e619";
+		}
+	}
+
 }
 
-.radio--selected {
-	&:before {
-		content: "\e619";
-	}
-}
 
 
 /*-------------------------------------------------------------------------------------------------

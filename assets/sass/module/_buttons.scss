@@ -34,8 +34,6 @@
 	padding-right:0.5em;          	/* [7] */
 	padding-left: 0.5em;          	/* [7] */
 	border-radius: 0px;				/* [8] */
-
-	-webkit-font-smoothing: antialiased;
 }
 
 .btn {
@@ -77,29 +75,34 @@
  * These all follow the same sizing rules as above; text is 1em, space around it
  * remains uniform.
  */
-.btn--small{
-	padding-right:3.5em;
-	padding-left: 3.5em;
-	@include font-size($milli-size,$beta-size);
-}
 
-.btn--large{
-	padding-right:4.5em;
-	padding-left: 4.5em;
-	@include font-size($nav-size,$beta-size);
-}
+ .btn {
 
-.btn--huge{
-	padding-right:5em;
-	padding-left: 5em;
-	@include font-size($delta-size,$hecto-size);
-}
+	&--small{
+		padding-right:3.5em;
+		padding-left: 3.5em;
+		@include font-size($milli-size,$beta-size);
+	}
 
-.btn--flush {
-	padding-left: 1em;
-	padding-right:4.5em;
-	@include font-size($nav-size,$beta-size);
-}
+	&--large{
+		padding-right:4.5em;
+		padding-left: 4.5em;
+		@include font-size($nav-size,$beta-size);
+	}
+
+	&--huge{
+		padding-right:5em;
+		padding-left: 5em;
+		@include font-size($delta-size,$hecto-size);
+	}
+
+	&--flush {
+		padding-left: 1em;
+		padding-right:4.5em;
+		@include font-size($nav-size,$beta-size);
+	}
+
+ }
 
 /**
  * These buttons will fill the entirety of their container.
@@ -132,78 +135,84 @@
  * Button function modifiers.
  */
 
-.btn--primary,
-.btn--secondary,
-.btn--tertiary,
-.btn--quarternary {
+.btn {
 
-}
+	&--primary,
+	&--secondary,
+	&--tertiary,
+	&--quarternary {
 
-.btn--primary{
+	}
 
-	background:$primaryColor none repeat 0 0;
-	color:$secondaryColor;
+	&--primary{
 
-
-	&:hover {
+		background:$primaryColor none repeat 0 0;
 		color:$secondaryColor;
+
+
+		&:hover {
+			color:$secondaryColor;
+		}
+
+		&:active {
+
+		}
+
+		&.btn--link {
+			color:$primaryColor;
+		}
 	}
 
-	&:active {
+
+	&--secondary{
+
+		background:$secondaryColor none repeat 0 0;
+
+
+		&:hover {
+
+		}
+
+		&:active {
+
+		}
+
+		&.btn--link {
+			color:$secondaryColor;
+		}
 
 	}
 
-	&.btn--link {
-		color:$primaryColor;
-	}
-}
 
-
-.btn--secondary{
-
-	background:$secondaryColor none repeat 0 0;
-
-
-	&:hover {
-
-	}
-
-	&:active {
-
-	}
-
-	&.btn--link {
+	&--tertiary{
+		background:$tertiaryColor none repeat 0 0;
 		color:$secondaryColor;
+
+		&:hover {
+
+		}
+
+		&:active {
+
+		}
+
+		&.btn--link {
+			color:$tertiaryColor;
+		}
+	}
+
+
+
+	&--link {
+		padding: 0;
+		background: transparent none repeat 0 0;
+		@include font-size($zeta-size);
+		font-family: $primaryFont;
 	}
 
 }
 
 
-.btn--tertiary{
-	background:$tertiaryColor none repeat 0 0;
-	color:$secondaryColor;
-
-	&:hover {
-
-	}
-
-	&:active {
-
-	}
-
-	&.btn--link {
-		color:$tertiaryColor;
-	}
-}
-
-
-
-.btn--link {
-	padding: 0;
-	background: transparent none repeat 0 0;
-	@include font-size($zeta-size);
-	font-family: $primaryFont;
-}
 
 
 
@@ -298,7 +307,7 @@
 
 /* Add to Cart Button -> add is-error and is-success classes for 3d states */
 
-.btn--addcart {
+.btn--action {
 	width:100%;
 	padding-left: 1em;
 	padding-right: 1em;
@@ -319,7 +328,7 @@
 	&:before {
 		top: 100%;
 		background: $error;
-		content: 'Error!';
+		content: "Error!";
 		@include transform-origin(0% 0%);
 		@include transform(rotateX(-90deg));
 	}
@@ -327,7 +336,7 @@
 	&:after {
 		top: -100%;
 		background: $success;
-		content: "added to cart!";
+		content: "Succesful!";
 		@include transform-origin(0% 100%);
 		@include transform(rotateX(90deg));
 		z-index:1;

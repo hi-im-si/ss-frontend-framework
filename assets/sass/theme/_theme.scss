@@ -6,39 +6,39 @@ apply the class on the body
 e.g.
 theme-blue
 theme-green
- */
+*/
 $theme-color: '';
 $themes:
 
 blue (
-  primary #1F56CC,
-  secondary #0CC6EC,
-  tertiary #4F66B7
+	primary #1F56CC,
+	secondary #0CC6EC,
+	tertiary #4F66B7
 ),
 
 green (
-  primary #4BCE42,
-  secondary #8DCB92,
-  tertiary #C3D4B2
+	primary #4BCE42,
+	secondary #8DCB92,
+	tertiary #C3D4B2
 );
 
 @mixin set-color($type, $themes: $themes) {
 
-  @each $theme in $themes {
-	  $themeName: nth($theme, 1);
+	@each $theme in $themes {
+		$themeName: nth($theme, 1);
 
-	@each $colorProps in nth($theme, 2) {
+		@each $colorProps in nth($theme, 2) {
 
-		@if nth($colorProps, 1) == $type {
-			.theme-#{$themeName} & {
-				$theme-color: nth($colorProps, 2) !global;
-				@content;
+			@if nth($colorProps, 1) == $type {
+				.theme-#{$themeName} & {
+					$theme-color: nth($colorProps, 2) !global;
+					@content;
+				}
 			}
+
 		}
 
 	}
-
-  }
 
 }
 

@@ -1,24 +1,24 @@
 
-//		<div class="v-center">
+//		<div class="v-align">
 //
-//			<div class="v-center__table">
+//			<div class="v-align__table">
 //
-//				<div class="v-center__cell">
+//				<div class="v-align__cell  v-align__cell--top||middle||bottom">
 //
-//					<h1>stuff you want centered</h1>
+//					<h1>stuff you want aligned</h1>
 //
 //				</div>
 //
 //			</div>
 //		</div>
 
-/* Center elements via display:table */
-.v-center {
+/* align elements via display:table */
+.v-align {
 
 	@include _position(absolute,0,0,0,0);
 	height: 100%; width: 100%;
 	display: block;
-	text-align: center;
+	text-align: align;
 
 	&__table {
 		display: table;
@@ -27,6 +27,16 @@
 
 	&__cell {
 		display: table-cell;
-		vertical-align: middle;
+
+		&--top {
+			vertical-align: top;
+		}
+		&--middle {
+			vertical-align: middle;
+		}
+		&--bottom {
+			vertical-align: bottom;
+		}
 	}
+
 }

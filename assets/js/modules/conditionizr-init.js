@@ -1,95 +1,124 @@
 /*!
- * Conditionizr test: Touch
+ * Localhost
+ * Tests `location.host` for the `127.0.0.1` IPv4 address as well
+ * as the `localhost` address name
  */
-conditionizr.add('touch', [], function () {
-    return !!'ontouchstart' in window || !!navigator.msMaxTouchPoints;
-});
-
-/*!
- * Conditionizr test: Chrome
- */
-conditionizr.add('chrome', [], function () {
-    return !!window.chrome && /google/i.test(navigator.vendor);
-});
-
-/*!
- * Conditionizr test: Firefox
- */
-conditionizr.add('firefox', [], function () {
-    return 'InstallTrigger' in window;
+conditionizr.add('localhost', function () {
+  return /(?:127\.0\.0\.1|localhost)/.test(location.host);
 });
 
 
 /*!
- * Conditionizr test: Opera
+ * Safari
+ * The only browser where the HTMLElement
+ * contains `Constructor`
  */
-conditionizr.add('opera', [], function () {
-    return !!window.opera || /opera|opr/i.test(navigator.userAgent);
+conditionizr.add('safari', function () {
+  return /Constructor/.test(window.HTMLElement);
 });
 
 /*!
- * Conditionizr test: IE8
+ * Chrome
+ * We return `!!window.chrome` to test the truthy value,
+ * but Opera 14+ responds true to this, so we need to test
+ * the `navigator.vendor` to make sure it's from Google
  */
-conditionizr.add('ie8', [], function () {
-    var version = false;
-    /*@cc_on
-        if (@_jscript_version > 5.7 && !/^(9|10)/.test(@_jscript_version))
-        version = true
-    @*/
-    return version;
+conditionizr.add('chrome', function () {
+  return !!window.chrome && /google/i.test(navigator.vendor);
 });
 
 /*!
- * Conditionizr test: IE9
+ * Firefox
+ * Evaluate the presence of `InstallTrigger`
  */
-conditionizr.add('ie9', [], function () {
-    var version = false;
-    /*@cc_on
-        if (/^9/.test(@_jscript_version) && /MSIE 9\.0(?!.*IEMobile)/i.test(navigator.userAgent))
-        version = true
-    @*/
-    return version;
+conditionizr.add('firefox', function () {
+  return 'InstallTrigger' in window;
+});
+
+
+
+/*!
+ * IE8
+ * @cc_on Conditional Compilation to test the
+ * JavaScript versions
+ */
+conditionizr.add('ie8', function () {
+  return (Function('/*@cc_on return (@_jscript_version > 5.7 && !/^(9|10)/.test(@_jscript_version)); @*/')());
 });
 
 /*!
- * Conditionizr test: IE10
+ * IE9
+ * @cc_on Conditional Compilation to test the
+ * JavaScript version and MSIE 9 in the UserAgent
  */
-conditionizr.add('ie10', [], function () {
-    var version = false;
-    /*@cc_on
-        if (/^10/.test(@_jscript_version) && /MSIE 10\.0(?!.*IEMobile)/i.test(navigator.userAgent))
-        version = true
-    @*/
-    return version;
+conditionizr.add('ie9', function () {
+  return (Function('/*@cc_on return (/^9/.test(@_jscript_version) && /MSIE 9\.0(?!.*IEMobile)/i.test(navigator.userAgent)); @*/')());
 });
 
+
 /*!
- * Conditionizr test: IE11
+ * IE10
+ * @cc_on Conditional Compilation to test the
+ * JavaScript version and MSIE 10 in the UserAgent
  */
-conditionizr.add('ie11', [], function () {
+conditionizr.add('ie10', function () {
+  return (Function('/*@cc_on return (/^10/.test(@_jscript_version) && /MSIE 10\.0(?!.*IEMobile)/i.test(navigator.userAgent)); @*/')());
+});
+
+
+/*!
+ * IE11
+ * RegExp to check out the new IE UserAgent:
+ * Trident/7.0; rv:11.0
+ */
+conditionizr.add('ie11', function () {
   return /(?:\sTrident\/7\.0;.*\srv:11\.0)/i.test(navigator.userAgent);
 });
 
 /*!
  * Windows
  */
-conditionizr.add('windows', [], function () {
+conditionizr.add('windows', function () {
     return /win/i.test(navigator.platform);
 });
 
-jQuery(function($) {
 
+/*!
+ * Mac
+ */
+conditionizr.add('mac', function () {
+    return /mac/i.test(navigator.platform);
+});
+
+/*!
+ * iOS [iPad, iPhone, iPod]
+ * Simple minimal UserAgent test
+ */
+conditionizr.add('ios', function () {
+  return /iP(ad|hone|od)/i.test(navigator.userAgent);
+});
+
+
+
+(function ( $ ) {
     conditionizr.config({
-        assets: '/path/to/my/assets/',
+        assets: '/assets/js/',
         tests: {
-            'firefox': ['class'],
+            'localhost': ['class'],
+            'safari': ['class'],
             'chrome': ['class'],
-            'touch': ['class'],
+            'firefox': ['class'],
+            'mac': ['class'],
+            'windows': ['class'],
+            'ios': ['class'],
             'ie11': ['class'],
             'ie10': ['class'],
             'ie9': ['class'],
-            'ie8': ['class'],
+            'ie8': ['class']
         }
     });
+}( jQuery ));
 
-});
+
+
+

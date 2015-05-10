@@ -51,7 +51,9 @@
 		    	or if we explicity tell it to via the override option
 		    */
 
-		    if (!Modernizr.input.placeholder || settings.override) {
+		    var nosupport = document.createElement("input").placeholder == undefined;
+
+		    if (nosupport || settings.override) {
 
 		    	// put all placeholder fields into fields proprty
 				properties.fields = this.find('*[placeholder]');

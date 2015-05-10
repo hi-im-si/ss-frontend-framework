@@ -8,7 +8,7 @@ html {
 }
 
 
-body{
+body {
 	font-family:$primaryFont;
 	@include font-size($base-font-size);
 	color:$primaryColor;
@@ -20,7 +20,6 @@ body{
 
 p {
 	margin: 0 0 10px;
-	color: $primaryColor;
 	font-family:$secondaryFont;
 	@include font-size($p-size);
 }
@@ -68,38 +67,38 @@ h2,
 	@include font-size($beta-size);
 }
 h3,
-.h_gamma{
+.h_gamma {
 	@extend %headings;
 	@include font-size($gamma-size);
 }
 
 h4,
-.h_delta{
+.h_delta {
 	@extend %headings;
 	@include font-size($delta-size);
 }
 
 h5,
-.h_epsilon{
+.h_epsilon {
 	@extend %headings;
 	@include font-size($epsilon-size);
 }
 
 h6,
-.h_zeta{
+.h_zeta {
 	@extend %headings;
 	@include font-size($zeta-size);
 }
 
 
 // Mega Headlines
-.h_giga{
+.h_giga {
 	@include font-size($giga-size);
 }
-.h_mega{
+.h_mega {
 	@include font-size($mega-size);
 }
-.h_kilo{
+.h_kilo {
 	@include font-size($kilo-size);
 }
 .h_hecto {
@@ -109,10 +108,13 @@ h6,
 
 // Micro Headlines
 
-.h_milli{
+.h_centi {
+	@include font-size($centi-size);
+}
+.h_milli {
 	@include font-size($milli-size);
 }
-.h_micro{
+.h_micro {
 	@include font-size($micro-size);
 }
 

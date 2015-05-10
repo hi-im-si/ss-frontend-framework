@@ -16,14 +16,28 @@
 
 /* Hide visually and from screenreaders, but maintain layout */
 .invisible { visibility: hidden; }
-.js .is-hidden {display:none;}
-.is-visible {display:block;}
+.js .is-hidden { display:none; }
+.is-visible { display:block; }
 
+// [doc] Add to anything important that we are hiding with javascript. [/doc]
+.no-js-visible {
+	display: none;
+
+	.no-js & {
+		display: block;
+	}
+
+}
 
 
 /* Floats/Clears */
 .fl {float: left; display:inline; }
 .fr {float: right; display:inline;}
+
+
+// useful for blocking inline elements e.g. <span>
+.weight { display: block; }
+
 
 .clear {
 	&--l { clear: left; }
@@ -31,6 +45,7 @@
 	&--b { clear: both; }
 	&--none { clear: none; }
 }
+
 
 %ib-fix { font-size: 0; }
 .ib { @include inline-block; }

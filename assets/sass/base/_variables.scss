@@ -157,3 +157,15 @@ $mq-tab--lrg: 820px!default;
 $mq-desk: 960px!default;
 $mq-desk--lrg: 1140px!default;
 
+
+// =============================================================
+// ================== Animation Easing Types ===================
+// =============================================================
+
+$easeIn: cubic-bezier(0.825, 0.000, 1.000, 0.640);
+$easeInOut: cubic-bezier(0.665, 0.000, 0.430, 1);
+$easeOut: cubic-bezier(0.200, 0.470, 0.435, 0.970);
+$linear: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+
+// usage:
+// e.g. @include transition(.6s $easeInOut all);

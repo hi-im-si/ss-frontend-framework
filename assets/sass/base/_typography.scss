@@ -3,16 +3,16 @@
 -------------------------------------------------------------------------------*/
 
 html {
-	font-size:$base-val;
+	font-size: $base-val;
 	line-height: $base-val;
 }
 
 
 body {
-	font-family:$primaryFont;
+	font-family: $primaryFont;
 	@include font-size($base-font-size);
-	color:$primaryColor;
-	font-weight:normal;
+	color: $primaryColor;
+	font-weight: normal;
 }
 
 
@@ -20,25 +20,23 @@ body {
 
 p {
 	margin: 0 0 10px;
-	font-family:$secondaryFont;
+	font-family: $secondaryFont;
 	@include font-size($p-size);
 }
 
 a {
-	color:$primaryColor;
-	text-decoration: none;
+	color: inherit;
+	text-decoration: underline;
 
 	&:active,
 	&:hover {
-		color:$primaryColor;
-		text-decoration:underline;
+
 	}
 }
 
 
 
-small,
-.small {
+small {
 	@include font-size($micro-size);
 	display: inline-block;
 }
@@ -48,10 +46,10 @@ small,
 -------------------------------------------------------------------------------*/
 
 %headings {
-	margin:0 0 10px 0;
-	color:$primaryColor;
-	font-family:$primaryFont;
-	font-weight:normal;
+	margin: 0 0 10px 0;
+	color: $primaryColor;
+	font-family: $primaryFont;
+	font-weight: normal;
 }
 
 // Standard Headings

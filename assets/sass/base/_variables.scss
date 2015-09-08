@@ -47,6 +47,7 @@ $base-val: 62.5%;
 // Base stuff - in px --> to be converted to rems
 $base-font-size:	16 	!default;
 
+// Base line-height -- based on major third of modular scale
 $base-line-height:	$base-font-size * 1.25 !default;
 
 // Base font-family.

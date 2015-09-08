@@ -33,6 +33,18 @@ MAIN = (function ($) {
 			//availableWidths: [360, 480, 600, 800, 1024],
 			lazyload: true
 		});
+	},
+
+	Accordion = function() {
+
+		new Accordion({
+	        'wrapper' : $('#js-accordion'),
+	        'trigger' : '.js-accordion-trigger',
+	        'target'  : '.js-accordion',
+	        'open_first': true/*,
+	        'open_which' : 'selected'*/
+	    });
+
 	};
 
 	return {

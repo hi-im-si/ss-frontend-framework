@@ -11,9 +11,9 @@
 	margin-bottom: 20px;
 	clear: both;
 
-	.accordion__inner {
+	&__inner {
 		position: relative;
-		padding:10px 0;
+		padding: 10px 0;
 
 		> ul {
 
@@ -32,10 +32,12 @@
 		}
 
 	}
-	.accordion__title {
+
+
+	&__title {
 		@include font-size($zeta-size);
 		display: block;
-		padding:5px 0;
+		padding: 5px 0;
 		@include transition(0.3s $easeInOut all);
 		text-transform: uppercase;
 		text-decoration: none;
@@ -43,9 +45,9 @@
 		&:before {
 			position: relative;
 			top: 3px;
-			color:$tertiaryColor;
+			color: $tertiaryColor;
 			@include fonticon;
-			content:"\e610";
+			content: "\e610";
 			@include font-size($epsilon-size);
 		}
 
@@ -56,71 +58,12 @@
 		}
 	}
 
-	.accordion__body {
+
+	&__body {
 
 		padding: 7px 20px 5px;
 		position: relative;
 		margin-bottom: 10px;
-
-		> ul {
-			margin: 0;
-		}
-
-		p {
-			@include font-size($milli-size);
-		}
-
-	}
-
-
-
-	// Boxed Modifier -> Category page
-
-	&--boxed {
-
-		border:1px solid $tertiaryColor;
-
-		.accordion__title {
-			color:$tertiaryColor;
-			padding: 0;
-
-			&:before {
-				display: none;
-				visibility: hidden;
-			}
-
-			&:after {
-				position: relative;
-				top: 0;
-				float: right;
-				color:$tertiaryColor;
-				@include fonticon;
-				content:"\e610";
-				@include font-size($epsilon-size);
-			}
-
-			&.is-open {
-				&:after {
-					content:"\e60e";
-				}
-			}
-		}
-
-		.accordion__inner {
-			padding: 20px 0;
-			ul li { border-bottom: 0px solid transparent; }
-			p { color:$tertiaryColor; }
-		}
-			.accordion__body {
-				margin-bottom: 5px;
-				padding: 7px 10px 5px;
-
-				li,a {
-					color:$tertiaryColor;
-					font-family:$secondaryFont;
-					margin: 5px 0;
-				}
-			}
 
 	}
 

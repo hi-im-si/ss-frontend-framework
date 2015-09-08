@@ -75,6 +75,8 @@
 
 				<h1>Kickstart this Mo'Fo</h1>
 
+				<?= include 'styleguide.php'; ?>
+
 	        </main>
 
 		</div> <!-- /page -->

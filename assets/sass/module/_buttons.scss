@@ -19,27 +19,31 @@
  * 8. Basic cosmetics for default buttons. Change or override at will.
  * 9. Dont allow buttons to have underlines; it kinda ruins the illusion.
  */
-.btn{
-	display:inline-block;       	           /* [1] */
-	vertical-align:middle;      	           /* [2] */
-	white-space:nowrap;         	           /* [3] */
-	font-family:inherit;        	           /* [4] */
-	font-size:100%;             	           /* [4] */
-	cursor:pointer;             	           /* [5] */
-	border:none;                	           /* [6] */
-	margin:0;                   	           /* [6] */
-	padding-top:   0;           	           /* [6] */
-	padding-bottom:0;           	           /* [6] */
-	line-height:1;              	           /* [7] */
-	padding-right:0.5em;          	/* [7] */
-	padding-left: 0.5em;          	/* [7] */
-	border-radius: 0px;				/* [8] */
+.btn {
+	display: inline-block;		/* [1] */
+	vertical-align: middle;		/* [2] */
+	white-space: nowrap;		/* [3] */
+	font-family: inherit;		/* [4] */
+	font-size: 100%;			/* [4] */
+	cursor: pointer;			/* [5] */
+	border: none;				/* [6] */
+	margin: 0;					/* [6] */
+	padding-top: 0;				/* [6] */
+	padding-bottom: 0;			/* [6] */
+	line-height: 1;				/* [7] */
+	padding-right: 0.5em;		/* [7] */
+	padding-left: 0.5em;		/* [7] */
+	border-radius: 0px;			/* [8] */
 }
 
 .btn {
 
 	position: relative;
 	text-transform: uppercase;
+
+	& + & {
+		margin-top: 5px;
+	}
 
 	&,
 	&:hover{
@@ -128,94 +132,95 @@
 	text-align:center;
 }
 
-/*------------------------------------*\
+
+ /*------------------------------------*\
 	$FUNCTIONS
 \*------------------------------------*/
 /**
- * Button function modifiers.
+ * Button function modifiers for Colour Skinning.
  */
+
+// background-color
+// color
+// background-color [active]
+// color [active]
+// font-family
+// border
+
+ $types: (
+
+ 	primary: (
+ 		$primaryColor,
+ 		$white,
+ 		lighten(rgba($primaryColor, 0.8), 25%),
+ 		$white,
+ 		$primaryFont,
+ 		$primaryColor
+ 	),
+
+ 	secondary: (
+ 		$secondaryColor,
+ 		$primaryColor,
+ 		darken(rgba($secondaryColor, 0.8), 5%),
+ 		$primaryColor,
+ 		$secondaryFont,
+ 		$primaryColor
+ 	),
+
+ 	tertiary: (
+ 		$tertiaryColor,
+ 		$primaryColor,
+ 		$primaryColor,
+ 		$tertiaryColor,
+ 		$primaryFont,
+ 		$tertiaryColor
+ 	)
+
+ );
+
 
 .btn {
 
-	&--primary,
-	&--secondary,
-	&--tertiary,
-	&--quarternary {
+	@each $type, $property, $fonts, $border in $types {
 
-	}
-
-	&--primary{
-
-		background:$primaryColor none repeat 0 0;
-		color:$secondaryColor;
+		$bgColor: nth($property, 1);				// background-color
+		$textColor: nth($property, 2);				// color
+		$bgColor--active: nth($property, 3);		// background-color [active]
+		$textColor--active: nth($property, 4);		// color [active]
+		$font: nth($property, 5);					// font-family
+		$border: nth($property, 6);					// border
 
 
-		&:hover {
-			color:$secondaryColor;
+		&--#{$type} {
+			background: $bgColor none repeat 0 0;
+			border: 1px solid $border;
+			color: $textColor;
+			font-family: $font;
+
+			> span { position: relative; z-index: 1; }
+
+			&:after {
+				background-color: $bgColor--active;
+
+				width: 0%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				z-index: 0;
+			}
+
+			&:hover {
+
+				color:$textColor--active;
+
+				&:after {
+					width: 100%;
+				}
+			}
 		}
-
-		&:active {
-
-		}
-
-		&.btn--link {
-			color:$primaryColor;
-		}
-	}
-
-
-	&--secondary{
-
-		background:$secondaryColor none repeat 0 0;
-
-
-		&:hover {
-
-		}
-
-		&:active {
-
-		}
-
-		&.btn--link {
-			color:$secondaryColor;
-		}
-
-	}
-
-
-	&--tertiary{
-		background:$tertiaryColor none repeat 0 0;
-		color:$secondaryColor;
-
-		&:hover {
-
-		}
-
-		&:active {
-
-		}
-
-		&.btn--link {
-			color:$tertiaryColor;
-		}
-	}
-
-
-
-	&--link {
-		padding: 0;
-		background: transparent none repeat 0 0;
-		@include font-size($zeta-size);
-		font-family: $primaryFont;
 	}
 
 }
-
-
-
-
-
 
 
 /**

@@ -1,0 +1,22 @@
+// ------------------------------------------------------------------------------------- //
+// ------------------------------- CROSS BROWSER OPACITY ------------------------------- //
+// ------------------------------------------------------------------------------------- //
+
+@mixin opacity($opacity, $ie-support:true) {
+
+	@if $ie-support == true {
+
+		filter: alpha(opacity=($opacity * 100));
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + ($opacity * 100) + ")";
+		opacity: $opacity;
+
+	} @else {
+
+		opacity: $opacity;
+
+	}
+}
+
+// usage:
+// @include opacity( 1 );
+// @include opacity( 1, false );

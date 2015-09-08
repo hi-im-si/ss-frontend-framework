@@ -1,0 +1,51 @@
+	// --------------------------------------------------------------------------- //
+	// ----------------------- MEDIA QUERIES ------------------------------------- //
+	// --------------------------------------------------------------------------- //
+
+	// Constraints
+	$min: min-width;
+	$max: max-width;
+
+	@mixin mq($constraint, $viewport1, $viewport2: null) {
+
+	  @if $constraint == $min {
+
+		@media screen and ($min: $viewport1) {
+		  @content;
+		}
+
+	  } @else if $constraint == $max {
+
+		@media screen and ($max: $viewport1) {
+		  @content;
+		}
+
+	  } @else {
+
+		@media screen and ($min: $viewport1) and ($max: $viewport2) {
+		  @content;
+		}
+
+	  }
+
+	}
+
+	// USAGE:
+	//
+	// ---- for max-width media query ----
+	//
+	//  @include mq($max, 1080px) {
+	//      display:none;
+	//  }
+	//
+	// ---- for min-width media query ----
+	//
+	//  @include mq($min, 1080px) {
+	//      display:none;
+	//  }
+	//
+	// ---- OR for min-max ----
+	//
+	// @include mq(null, 700px, 780px) {
+	//     display:block;
+	// }

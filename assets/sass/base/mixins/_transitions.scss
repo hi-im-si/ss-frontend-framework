@@ -1,0 +1,34 @@
+// Transition
+@mixin transition ($transition, $prefix:false) {
+
+	@if $prefix == true{
+
+		-webkit-transition: -webkit-#{$transition};
+		-moz-transition:    -moz-#{$transition};
+		-ms-transition:     -ms-#{$transition};
+		-o-transition:      -o-#{$transition};
+		transition:         #{$transition};
+
+	} @else {
+
+		-webkit-transition: $transition;
+		-moz-transition: $transition;
+		-ms-transition: $transition;
+		-o-transition: $transition;
+		transition: $transition;
+
+  	}
+
+}
+// usage:
+// e.g. @include transition(.6s $easeInOut all, false);
+
+
+// Transition
+@mixin transition-delay ($transitionEasing: ease, $transitionDelay: 0s) {
+	-webkit-transition-delay: $transitionEasing, $transitionDelay;
+	-moz-transition-delay: $transitionEasing, $transitionDelay;
+	-ms-transition-delay: $transitionEasing, $transitionDelay;
+	-o-transition-delay: $transitionEasing, $transitionDelay;
+	transition-delay: $transitionEasing, $transitionDelay;
+}

@@ -1,0 +1,85 @@
+// --------------------------------------------------------------------------- //
+// ------------------------------- FONTS ------------------------------------- //
+// --------------------------------------------------------------------------- //
+
+
+@mixin fonticon {
+	font-family: $fonticon;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1 !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+// px to rem for font-sizes and line-height
+@mixin font-size($sizeValue: 1.6, $line: $sizeValue * 1.25){
+	font-size: ($sizeValue * 1) + px;
+	line-height: ($line * 1) + px;
+	font-size: ($sizeValue / 10) + rem;
+	line-height: ($line / 10) + rem;
+}
+// usage: @include font-size(13);
+
+
+
+
+// word break
+@mixin word-break {
+	-ms-word-break: break-all;
+	word-break: break-all;
+
+	// Non standard for webkit
+	word-break: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+// @include word-break;
+
+
+@mixin ligature {
+	-moz-font-feature-settings: "liga=1, dlig=1";
+	-ms-font-feature-settings: "liga", "dlig";
+	-webkit-font-feature-settings: "liga", "dlig";
+	-o-font-feature-settings: "liga", "dlig";
+	font-feature-settings: "liga", "dlig";
+}
+
+
+@mixin hide-text {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	display: block;
+}
+
+@mixin remove-focus {
+	&:focus {
+		@include box-shadow(none);
+		outline:none;
+	}
+}
+
+
+// --------------------------------------------------------------------------- //
+// ------------------------- LONG SHADOWS ------------------------------------ //
+// --------------------------------------------------------------------------- //
+
+
+
+@function makelongshadow($primaryColor) {
+	$val: 0px 0px $primaryColor;
+	@for $i from 1 through 200 {
+		$val: #{$val}, #{$i}px #{$i}px #{$primaryColor};
+	}
+	@return $val;
+}
+
+@mixin longshadow($primaryColor) {
+ 	text-shadow: makelongshadow($primaryColor);
+}

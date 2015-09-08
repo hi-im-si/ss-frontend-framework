@@ -1,0 +1,95 @@
+// ------------------------------------------------------------------------------------ //
+// ------------------------------- COLOUR RELATED MIXINS ------------------------------ //
+// ------------------------------------------------------------------------------------ //
+
+/// Quick DRY mixin for creating coloured overlays
+@mixin overlay($pseudo: false, $position: fixed, $color: #fff, $alpha: 0.5, $index:2) {
+	@if $pseudo == true{
+	   	content:"";
+	}
+	display: block;
+	@include _position($position,0,0,0,0,$index);
+	width: 100%;
+	height: 100%;
+
+	@if $pseudo == true{
+
+	 	background: $color none repeat 0 0;
+	 	@include opacity($alpha);
+
+	} @else {
+
+	 	background: rgba($color, $alpha);
+	}
+}
+// USAGE: @include overlay(true, fixed, #fff, 0.5);
+// returns (if pseudo == true):
+// 				content:"";
+//				position:fixed;
+//				top:0;
+// 				right:0px;
+// 				bottom:0;
+// 				left:0;
+// 				z-index:2;
+// 				display: block;
+// 				width: 100%;
+// 				height: 100%;
+// 				background: #fff none repeat 0 0;
+// 				opacity(0.5);
+
+
+// Grayscaling
+@mixin grayscaleActive {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); // Firefox 10+, Firefox on Android
+	filter: gray; // IE6-9
+	-webkit-filter: grayscale(100%); // Chrome 19+, Safari 6+, Safari 6+ iOS
+}
+
+@mixin grayscaleDisabled {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+	-webkit-filter: grayscale(0%);
+}
+
+
+// Background Linear Gradient
+@mixin linear-gradient ($place, $bcolor1, $bcolor2){
+	background-image: -moz-linear-gradient($place, $bcolor1, $bcolor2);
+	background-image: -webkit-linear-gradient($place, $bcolor1, $bcolor2);
+	background-image: -o-linear-gradient($place, $bcolor1, $bcolor2);
+	background-image: -ms-linear-gradient($place, $bcolor1, $bcolor2);
+
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}'); // IE6,IE7
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}')"; // IE8+
+
+	background-image: linear-gradient($place, $bcolor1, $bcolor2);
+}
+// usage:
+// @include linear-gradient(top, #ffffff, #333333);
+
+
+
+
+// Background Diagonal Linear Gradient
+@mixin diagonal-linear-gradient ($deg, $bcolor1, $bcolor2, $place, $bcolor3, $place2, $bgcolor4, $place3){
+	background-image: -webkit-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+	background-image: -moz-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+	background-image: -o-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+	background-image: -ms-repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+	background-image: repeating-linear-gradient($deg, $bcolor1, #{$bcolor2} #{$place}, #{$bcolor3} #{$place2}, #{$bgcolor4} #{$place3});
+}
+// usage:
+// @include diagonal-linear-gradient(45deg, #ea4824, #ea4824, 5px, #e36042, 4px, #e36042, 14px);
+
+
+
+// RGBA Mixin with fallback
+@mixin rgba($attribute, $color, $background) {
+	$percent: alpha($color) * 100%;
+	$opaque: opacify($color, 1);
+	$solid-color: mix($opaque, $background, $percent);
+	#{$attribute}: $solid-color;
+	#{$attribute}: $color;
+}
+// usage:
+// @include rgba('background-color', rgba(black, 0.5), white);
+

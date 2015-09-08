@@ -1,0 +1,40 @@
+// -------------------------------------------------------------------------------------- //
+// ------------------------------- FORM RELATED MIXINS ---------------------------------- //
+// -------------------------------------------------------------------------------------- //
+
+// Placeholder Input Styles
+@mixin placeholder {
+	$placeholders: "::-webkit-input" "::-moz" ":-moz" ":-ms-input" ".placeholder";
+	@each $placeholder in $placeholders {
+		&#{$placeholder}-placeholder {
+			@content;
+		}
+	}
+}
+
+// usage:
+// input {
+//    @include placeholder {
+//      /some placeholder styles here/
+//    }
+// }
+
+
+
+// remove pesky default styles in iOS.
+@mixin remove-safari-defaults {
+	-webkit-appearance: none;
+	border-radius: 0px;
+}
+
+// usage: @include remove-safari-defaults;
+
+
+@mixin placeholder {
+	$placeholders: "::-webkit-input" "::-moz" ":-moz" ":-ms-input" ".placeholder";
+	@each $placeholder in $placeholders {
+		&#{$placeholder}-placeholder {
+			@content;
+		}
+	}
+}

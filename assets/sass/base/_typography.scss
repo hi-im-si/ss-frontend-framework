@@ -21,7 +21,6 @@ body {
 p {
 	margin: 0 0 10px;
 	font-family: $secondaryFont;
-	@include font-size($p-size);
 }
 
 a {

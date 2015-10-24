@@ -14,30 +14,7 @@ MAIN = (function ($) {
 
 		imager('.js-load-img');
 
-	},
-
-	Scroll = function() {
-		$(window).on('scroll', function (e) {
-
-		});
-	},
-
-	Resize = function() {
-		$(window).on('resize', function (e) {
-
-		});
-	},
-
-	imager = function(el) {
-		new Imager(el, {
-			//availableWidths: [360, 480, 600, 800, 1024],
-			lazyload: true
-		});
-	},
-
-	Accordion = function() {
-
-		new Accordion({
+		accordion = new Accordion({
 	        'wrapper' : $('#js-accordion'),
 	        'trigger' : '.js-accordion-trigger',
 	        'target'  : '.js-accordion',
@@ -46,6 +23,26 @@ MAIN = (function ($) {
 	    });
 
 	};
+
+	Scroll = function() {
+		$(window).on('scroll', function (e) {
+
+		});
+	};
+
+	Resize = function() {
+		$(window).on('resize', function (e) {
+
+		});
+	};
+
+	imager = function(el) {
+		new Imager(el, {
+			//availableWidths: [360, 480, 600, 800, 1024],
+			lazyload: true
+		});
+	};
+
 
 	return {
 		start : init

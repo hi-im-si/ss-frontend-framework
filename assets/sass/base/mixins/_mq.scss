@@ -8,25 +8,25 @@
 
 	@mixin mq($constraint, $viewport1, $viewport2: null) {
 
-	  @if $constraint == $min {
+		@if $constraint == $min {
 
-		@media screen and ($min: $viewport1) {
-		  @content;
+			@media screen and ($min: $viewport1) {
+				@content;
+			}
+
+		} @else if $constraint == $max {
+
+			@media screen and ($max: $viewport1) {
+				@content;
+			}
+
+		} @else {
+
+			@media screen and ($min: $viewport1) and ($max: $viewport2) {
+				@content;
+			}
+
 		}
-
-	  } @else if $constraint == $max {
-
-		@media screen and ($max: $viewport1) {
-		  @content;
-		}
-
-	  } @else {
-
-		@media screen and ($min: $viewport1) and ($max: $viewport2) {
-		  @content;
-		}
-
-	  }
 
 	}
 

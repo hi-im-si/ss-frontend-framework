@@ -1,16 +1,18 @@
-/*
-BEM GRID
-
-A Simple Grid mixin that is easily extendable and customisable to your needs
-*/
+///////////////////////////////////////////////////////////////////////////////////
+// BEM GRID ///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// A Simple Grid mixin that is easily extendable and customisable to your needs. //
+///////////////////////////////////////////////////////////////////////////////////
 
 
 // BASE VARIABLES //
-// You only need to change these based //
+// You only need to change these base values //
 $grid-base-width: 1260;
 $grid-column-length: 12;
 $grid-column-gutter: 20;
 
+$grid-mobile-width: 100%;
+$container-gutter: false;
 
 
 
@@ -22,8 +24,7 @@ $grid-column-gutter: 20;
 
 	$column-width: percentage($column-width-calc/$grid-base-width);
 
-	$mobile-width: $column-width * ($grid-column-length - 1) + $gutter-margin * 2;
-
+	// $mobile-width: $column-width * ($grid-column-length - 1) + $gutter-margin * 2;
 
 	.container{
 		position: relative;
@@ -33,12 +34,18 @@ $grid-column-gutter: 20;
 		/*---------------------------*/
 		@include mq($max, $mq-mob) {
 		    max-width: $mq-mob;
+
+			@if $container-gutter == true {
+		    	padding-left: #{$grid-column-gutter / 2}px;
+		    	padding-right: #{$grid-column-gutter / 2}px;
+			}
+
 		}
 		/*---------------------------*/
 
 		.lt-ie9 &{
-			width: $grid-base-width;
-			min-width:$grid-base-width;
+			width: #{$grid-base-width}px;
+			min-width:#{$grid-base-width}px;
 		}
 
 	}
@@ -53,13 +60,43 @@ $grid-column-gutter: 20;
 		margin: 0 auto 20px;
 		display: block;
 		@include clearfix;
+
+		// Reset bottom margin for flush vertical rhythm
+		&--reset {
+			margin-bottom: 0;
+		}
+
+		// Row Modifier to handle tabular style columns
+		&--table {
+			display: table;
+			margin-bottom: 0;
+
+		}
+			&__cell {
+				display: table-cell;
+				height: 100%;
+				float: none;
+				padding: 0 20px;
+			}
+
+		// JUSTIFIED COLUMNS MODIFIER CLASS
+			// to be used with inline-block columns [.col--inline]
+		&--justify {
+			text-align: justify;
+
+			&:after {
+				content: '';
+				@include inline-block;
+				width: 100%;
+			}
+		}
 	}
 
 
 
 
 	// THE CORE COLUMN CLASS W/ MODIFIERS
-	.col{
+	.col {
 		position: relative;
 		float: left;
 		display: inline;
@@ -83,6 +120,8 @@ $grid-column-gutter: 20;
 			}
 		}
 
+
+
 		// FLUSH MODIFIER CLASSES e.g. col--flush-1   col--flush-2   col--flush-3
 			// The FLUSH classes remove margins from the columns and so will sit side by side flush without gutters
 		@for $i from 1 to $grid-column-length {
@@ -100,6 +139,15 @@ $grid-column-gutter: 20;
 			margin: 0;
 		}
 
+		// INLINE COLUMNS MODIFIER CLASS
+			// columns are now stacked inline without floats
+		&--inline {
+			@include inline-block;
+			float: none;
+		}
+
+
+
 		//-----------------------------------------------------------//
 		//--------------------- OVERRIDES/RESETS --------------------//
 		//-----------------------------------------------------------//
@@ -114,23 +162,6 @@ $grid-column-gutter: 20;
 		&--right {float: right;}
 		&--center { @include align-center; }
 
-
-		// Ensure columns span full at mobile res (chained selectors - specificity hack)
-		/*---------------------------*/
-		@include mq($max, $mq-mob) {
-
-			.container & {
-				&.col.col {
-		    		width: $mobile-width;
-		    		@include align-center;
-
-		    		&[class*="flush"] {
-		    			width: $column-width * $grid-column-length;
-		    		}
-				}
-			}
-		}
-		/*---------------------------*/
 	}
 
 
@@ -140,10 +171,10 @@ $grid-column-gutter: 20;
 
 
 
-
-
 // RESETTING COLUMN WIDTHS
-	// This is not used inside your HTML - Allows you to reset columns via CSS specifically for smaller viewports
+// These mixins are not used inside your HTML - Allows you to reset columns via CSS specifically for smaller viewports
+
+//// Resetting standard columns
 @mixin reset-cols-to($cols, $grid-base-width:$grid-base-width, $grid-column-length:$grid-column-length, $gutter:$grid-column-gutter){
 	$gutter-margin: percentage(($gutter/2)/$grid-base-width);
 	$column-width-calc: ($grid-base-width/$grid-column-length);
@@ -153,7 +184,8 @@ $grid-column-gutter: 20;
 }
 // Usage: @include reset-cols-to(10);
 
-	// Resetting flush columns
+
+//// Resetting flush columns
 @mixin reset-flush-cols-to($cols, $grid-base-width:$grid-base-width, $grid-column-length:$grid-column-length){
 	$column-width-calc: ($grid-base-width/$grid-column-length);
 	$column-width: percentage($column-width-calc/$grid-base-width);
@@ -171,22 +203,23 @@ $grid-column-gutter: 20;
 ==========================================================================================*/
 
 // Grid Breakpoints
-$maxBreakpoints: (
+$max-breakpoints: (
 	desk-lrg: $mq-desk--lrg,
 	tab-lrg: $mq-tab--lrg,
 	tab: $mq-tab,
 	tab-sml: $mq-tab--sml,
 	mob-lrg: $mq-mob--lrg,
-	mob: $mq-mob
+	mob: $mq-mob,
+	mob-sml: $mq-mob--sml
 );
-$minMaxBreakpoints: (
+$min-max-breakpoints: (
 	tab--quart: (null, $mq-mob + 1),
 	tab--half: (null, $mq-mob + 1)
 );
 
 
 // Grid Breakpoint Sizes
-$breakpointColumns: (
+$breakpoint-columns: (
 	quart: 4,
 	half: 2,
 	full: 1
@@ -197,32 +230,32 @@ $breakpointColumns: (
 .container {
 	.col {
 
-		@each $class, $breakpoint in $maxBreakpoints {
-			@each $size, $amount in $breakpointColumns {
+		@each $class, $breakpoint in $max-breakpoints {
+			@each $size, $amount in $breakpoint-columns {
 
 				// Default Variables
-				$breakParam1: $breakpoint;
-				$breakParam2: null;
-				$breakwidth: $max;
+				$break-param-1: $breakpoint;
+				$break-param-2: null;
+				$break-width: $max;
 
 				// Set Class Name
 				$element: #{$class}--#{$size};
 
 				// Custom Variables
-				@each $customClass, $customBreakpoint in $minMaxBreakpoints {
-					@if($element == $customClass) {
+				@each $custom-class, $custom-breakpoint in $min-max-breakpoints {
+					@if($element == $custom-class) {
 						// Set Breakpoint
-						$breakParam2: $breakParam1;
-						$breakParam1: nth($customBreakpoint, 2);
+						$break-param-2: $break-param-1;
+						$break-param-1: nth($custom-breakpoint, 2);
 
-						$breakwidth: nth($customBreakpoint, 1);
+						$break-width: nth($custom-breakpoint, 1);
 
 					}
 				}
 
 				// Create Class
 				&.mq-#{$element} {
-					@include mq($breakwidth, $breakParam1, $breakParam2) {
+					@include mq($break-width, $break-param-1, $break-param-2) {
 						@include reset-cols-to($grid-column-length / $amount);
 
 					    &--flush {
@@ -234,5 +267,104 @@ $breakpointColumns: (
 			}
 		}
 
+
 	}
+	// Ensure columns span full at mobile res while container creates a
+	/*---------------------------*/
+	@include mq($max, $mq-mob) {
+		& {
+			.col[class*="col"] {
+	    		width: $grid-mobile-width;
+	    		@include align-center;
+			}
+
+		}
+	}
+	/*---------------------------*/
 }
+
+/* Hooks to hide elements based on the data-mq-hide attribute */
+$bp: (
+	desk-lrg: 	$mq-desk--lrg,
+	desk: 		$mq-desk,
+	tab-lrg: 	$mq-tab--lrg,
+	tab: 		$mq-tab,
+	tab-sml: 	$mq-tab--sml,
+	mob-lrg: 	$mq-mob--lrg,
+	mob: 		$mq-mob,
+	mob-sml: 	$mq-mob--sml
+);
+
+
+@each $alias, $mq in $bp {
+
+	@include mq($max, $mq) {
+		[data-mq-hide="#{$alias}"] {
+			display: none;
+		}
+	}
+
+}
+
+
+//----------------------------------//
+//        Media Query Legend        //
+//----------------------------------//
+//
+//
+//   .mq-desk-lrg--quart
+//   .mq-desk-lrg--quart--flush
+//   .mq-desk-lrg--half
+//   .mq-desk-lrg--half--flush
+//   .mq-desk-lrg--full
+//   .mq-desk-lrg--full--flush
+//
+//
+//   .mq-desk--quart
+//   .mq-desk--quart--flush
+//   .mq-desk--half
+//   .mq-desk--half--flush
+//   .mq-desk--full
+//   .mq-desk--full--flush
+//
+//
+//   .mq-tab-lrg--quart
+//   .mq-tab-lrg--quart--flush
+//   .mq-tab-lrg--half
+//   .mq-tab-lrg--half--flush
+//   .mq-tab-lrg--full
+//   .mq-tab-lrg--full--flush
+//
+//
+//   .mq-tab--quart
+//   .mq-tab--quart--flush
+//   .mq-tab--half
+//   .mq-tab--half--flush
+//   .mq-tab--full
+//   .mq-tab--full--flush
+//
+//
+//   .mq-tab-sml--quart
+//   .mq-tab-sml--quart--flush
+//   .mq-tab-sml--half
+//   .mq-tab-sml--half--flush
+//   .mq-tab-sml--full
+//   .mq-tab-sml--full--flush
+//
+//
+//   .mq-mob-lrg--quart
+//   .mq-mob-lrg--quart--flush
+//   .mq-mob-lrg--half
+//   .mq-mob-lrg--half--flush
+//   .mq-mob-lrg--full
+//   .mq-mob-lrg--full--flush
+//
+//
+//   .mq-mob--quart
+//   .mq-mob--quart--flush
+//   .mq-mob--half
+//   .mq-mob--half--flush
+//   .mq-mob--full
+//   .mq-mob--full--flush
+//
+//----------------------------------//

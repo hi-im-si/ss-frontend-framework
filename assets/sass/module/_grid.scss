@@ -227,46 +227,43 @@ $breakpoint-columns: (
 
 
 // Grid Breakpoint Classes
-.container {
-	.col {
+.container .col[class*="col"] {
 
-		@each $class, $breakpoint in $max-breakpoints {
-			@each $size, $amount in $breakpoint-columns {
+	@each $class, $breakpoint in $max-breakpoints {
+		@each $size, $amount in $breakpoint-columns {
 
-				// Default Variables
-				$break-param-1: $breakpoint;
-				$break-param-2: null;
-				$break-width: $max;
+			// Default Variables
+			$break-param-1: $breakpoint;
+			$break-param-2: null;
+			$break-width: $max;
 
-				// Set Class Name
-				$element: #{$class}--#{$size};
+			// Set Class Name
+			$element: #{$class}--#{$size};
 
-				// Custom Variables
-				@each $custom-class, $custom-breakpoint in $min-max-breakpoints {
-					@if($element == $custom-class) {
-						// Set Breakpoint
-						$break-param-2: $break-param-1;
-						$break-param-1: nth($custom-breakpoint, 2);
+			// Custom Variables
+			@each $custom-class, $custom-breakpoint in $min-max-breakpoints {
+				@if($element == $custom-class) {
+					// Set Breakpoint
+					$break-param-2: $break-param-1;
+					$break-param-1: nth($custom-breakpoint, 2);
 
-						$break-width: nth($custom-breakpoint, 1);
+					$break-width: nth($custom-breakpoint, 1);
 
-					}
 				}
-
-				// Create Class
-				&.mq-#{$element} {
-					@include mq($break-width, $break-param-1, $break-param-2) {
-						@include reset-cols-to($grid-column-length / $amount);
-
-					    &--flush {
-					    	@include reset-flush-cols-to($grid-column-length / $amount);
-					    }
-					}
-				}
-
 			}
-		}
 
+			// Create Class
+			&.mq-#{$element} {
+				@include mq($break-width, $break-param-1, $break-param-2) {
+					@include reset-cols-to($grid-column-length / $amount);
+
+				    &--flush {
+				    	@include reset-flush-cols-to($grid-column-length / $amount);
+				    }
+				}
+			}
+
+		}
 
 	}
 	// Ensure columns span full at mobile res while container creates a

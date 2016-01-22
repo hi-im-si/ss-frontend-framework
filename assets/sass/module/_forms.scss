@@ -450,12 +450,30 @@ legend span {
 
 .form {
 
+	&__error {
+		@include _position(absolute, 0, 0, auto, auto);
+		padding: 5px 10px;
+		background-color: $error;
+		color: $color--secondary;
+		line-height: 1;
+		@include opacity(0);
+		visibility: visible;
+		@include transition(all 1s $easeInOut);
+	}
+
 	&__field {
 
-		&--error {
-		 	* {
-				color:$error;
-		 	}
+		&.form__field--error {
+
+			label,
+			input {
+				border-color: $error;
+			}
+
+			.form__error {
+				@include opacity(1);
+				visibility: visible;
+			}
 		}
 
 		&--success {
@@ -465,6 +483,8 @@ legend span {
 		}
 
 	}
+
+
 
 	.required { color:$error; }
 

@@ -73,14 +73,11 @@
 
 			<main role="main">
 
-				<h1>Kickstart this Mo'Fo</h1>
-
-				<?= include 'styleguide.php'; ?>
+				<? include 'styleguide.php'; ?>
 
 	        </main>
 
 		</div> <!-- /page -->
-
 
 	</body>
 

@@ -1,0 +1,65 @@
+.styleguide {
+	padding: 35px 0;
+	@include clearfix;
+
+	&__titles {
+		text-align: center;
+		h1,h2,h3,h4,h5,h6 { color: $black; }
+	}
+
+	.bg-alt { background-color: $grey; }
+
+	&__heading {
+		font-weight: $bold;
+		text-transform: uppercase;
+		margin-bottom: 40px;
+		h1,h2,h3,h4,h5,h6 { @include font-size(25); }
+
+		&--sub {
+			h1,h2,h3,h4,h5,h6 { @include font-size(18); }
+		}
+	}
+
+	&--background {
+		background-color: $grey;
+	}
+
+	&__columns {
+		text-align: center;
+		.col {
+			background-color: $color--tertiary;
+
+			&.styleguide__columns--pull {
+				background-color: rgba($error, 0.5);
+			}
+
+			> p {
+				margin: 10px 0;
+				padding: 5px 0;
+			}
+		}
+	}
+
+	&__block {
+		position: relative;
+		width: 25%;
+		padding-bottom: 25%;
+		@include inline-block();
+		border: 1px solid $color--tertiary;
+
+		&--primary { background-color: $color--primary; }
+		&--secondary { background-color: $color--secondary; }
+		&--tertiary { background-color: $color--tertiary; }
+
+		> p {
+			@include _position(absolute, auto, 0, 0, 0);
+			width: 100%;
+			padding: 10px;
+			margin: 0;
+			background: darken(rgba($white, 0.75), 10%);
+			color: $black;
+			font-size: 12px;
+			text-align: center;
+		}
+	}
+}

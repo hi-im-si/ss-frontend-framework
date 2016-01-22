@@ -6,8 +6,8 @@
 		<meta charset="utf-8">
 
 		<?/* Prefetch DNS for external assets (Twitter widgets, Maps etc). */?>
-		<link rel="dns-prefetch" href="//ajax.googleapis.com">
-		<link rel="dns-prefetch" href="//www.google-analytics.com">
+		<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    	<link rel="dns-prefetch" href="//www.google-analytics.com">
 
 		<?/* Prerender pages for browser preloading */?>
 		<?/*<link rel="prerender" href="/link/to/another/page" />*/?>

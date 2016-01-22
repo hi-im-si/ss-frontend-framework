@@ -82,55 +82,57 @@
 
  .btn {
 
-	&--small{
-		padding-right:3.5em;
-		padding-left: 3.5em;
-		@include font-size($milli-size,$beta-size);
+ 	padding-left: 2em;
+ 	padding-right: 2em;
+
+	&--small {
+		@include font-size($btn-size--small, $btn-size--large * 2);
 	}
 
-	&--large{
-		padding-right:4.5em;
-		padding-left: 4.5em;
-		@include font-size($nav-size,$beta-size);
+	&--medium {
+		@include font-size($btn-size--medium, $btn-size--large * 2);
 	}
 
-	&--huge{
-		padding-right:5em;
-		padding-left: 5em;
-		@include font-size($delta-size,$hecto-size);
+	&--large {
+		@include font-size($btn-size--large, $btn-size--large * 2);
+	}
+
+	&--huge {
+		@include font-size($btn-size--huge, $btn-size--huge * 2);
 	}
 
 	&--flush {
 		padding-left: 1em;
-		padding-right:4.5em;
-		@include font-size($nav-size,$beta-size);
+		padding-right: 4.5em;
+		@include font-size($btn-size--large, $btn-size--large * 2);
+	}
+
+	/**
+	*  These buttons will fill the entirety of their container.
+	*
+	*  1. Remove padding so that widths and paddings dont conflict.
+	*/
+	&--full {
+		width: 100%;
+		padding-right: 0;            /* [1] */
+		padding-left: 0;             /* [1] */
+		text-align: center;
+	}
+
+	/**
+	*  These buttons will fill half of their container.
+	*
+	*  1. Remove padding so that widths and paddings dont conflict.
+	*/
+	&--half {
+		width: 50%;
+		padding-right: 0;            /* [1] */
+		padding-left: 0;             /* [1] */
+		text-align: center;
 	}
 
  }
 
-/**
- * These buttons will fill the entirety of their container.
- *
- * 1. Remove padding so that widths and paddings dont conflict.
- */
-.btn--full{
-	width:100%;
-	padding-right:0;            /* [1] */
-	padding-left: 0;             /* [1] */
-	text-align:center;
-}
-
-/**
- * These buttons will fill half of their container.
- *
- * 1. Remove padding so that widths and paddings dont conflict.
- */
-.btn--half{
-	width:50%;
-	padding-right:0;            /* [1] */
-	padding-left: 0;            /* [1] */
-	text-align:center;
-}
 
 
  /*------------------------------------*\
@@ -284,17 +286,8 @@
 	$STYLES
 \*------------------------------------*/
 /**
- * Button style modifiers.
- *
- * 1. Use an overly-large number to ensure completely rounded, pill-like ends.
- */
-.btn--soft{
-	border-radius: 200px;        /* [1] */
-}
-
-.btn--hard{
-	border-radius: 0px;
-}
+* Button style modifiers.
+*/
 
 .btn--square {
 	height: 25px;
@@ -329,75 +322,6 @@
 			left: 0;
 		}
 	}
-}
-
-
-
-/* Add to Cart Button -> add is-error and is-success classes for 3d states */
-
-.btn--action {
-	width:100%;
-	padding-left: 1em;
-	padding-right: 1em;
-	text-align: right;
-	@include preserve3d;
-	@include transition(0.3s $easeInOut all);
-
-	&:before,
-	&:after {
-		position: absolute;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		padding-left: 1em;
-		padding-right: 1em;
-	}
-
-	&:before {
-		top: 100%;
-		background: $error;
-		content: "Error!";
-		@include transform-origin(0% 0%);
-		@include transform(rotateX(-90deg));
-	}
-
-	&:after {
-		top: -100%;
-		background: $success;
-		content: "Succesful!";
-		@include transform-origin(0% 100%);
-		@include transform(rotateX(90deg));
-		z-index:1;
-	}
-
-
-
-	&.is-success,
-	&.is-error {
-		background: $grey none repeat 0 0;
-
-		span {
-		  @include fonticon;
-		}
-	}
-
-	&.is-success {
-		@include transform-origin(50% 100%);
-		@include transform(rotateX(-90deg) translateY(100%));
-
-		span {
-		  content: "\e600";
-		}
-	}
-
-	&.is-error {
-		@include transform-origin(50% 0%);
-		@include transform(rotateX(90deg) translateY(-100%));
-	}
 
 }
 
-
-.btn--clear {
-	padding: 5px;
-}

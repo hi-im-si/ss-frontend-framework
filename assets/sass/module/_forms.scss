@@ -1,52 +1,37 @@
 
-/*===========================================
-============== Base Form Elements ===========*/
+/* ==================================================================================================== */
+/* ======================================== Base Form Elements ======================================== */
+/* ==================================================================================================== */
 
-.form {
 
-	&__row {
-		margin-bottom: 10px;
-	}
+// handle all inputs consistently but with ability to extend
+@mixin input-styles(
+	$input-padd: 5px 10px,
+	$border-color: $color--primary,
+	$bg-color: $color--secondary,
+	$text-color: $color--primary,
+	$font: $primaryFont) {
 
-	&__field {
-		position: relative;
-		width:100%;
-		text-align: left;
-		@include inline-block;
-		margin:0 0 5px 0;
-
-		// field width modifiers
-		&--half {
-			@include reset-cols-to(6);
-		}
-		&--thirds {
-			@include reset-cols-to(4);
-		}
-		&--quarts {
-			@include reset-cols-to(3);
-		}
-		&--sixths {
-			@include reset-cols-to(2);
-		}
-
-		// field margin modifiers
-		&--alpha {
-			margin-left: 0;
-		}
-		&--omega {
-			margin-right: 0;
-		}
-
-	}
+	position: relative;
+	z-index: 1;
+	display: block;
+	width: 100%;
+	padding: $input-padd;
+	border: 1px solid $border-color;
+	outline: none;
+	background: $bg-color none repeat 0 0;
+	color: $text-color;
+	font-family: $font;
+	@include font-size($input-size,$input-size + 5);
+	text-transform: none;
+	@include remove-safari-defaults;
 
 }
 
 
-
-
-
-
-/*--- Inputs ---*/
+/* ------------------------------------ */
+/* ------------- INPUTS --------------- */
+/* ------------------------------------ */
 
 
 // Base Form Elements Styling
@@ -60,78 +45,48 @@ input[type="datetime"],
 input[type="search"],
 textarea,
 select {
-	position: relative;
-	padding: 0 5px;
-	display: block;
-	width:100%;
-	border: 1px solid $tertiaryColor;
-	background: $secondaryColor none repeat 0 0;
-	color: $primaryColor;
-	font-family: $secondaryFont;
-	@include font-size($milli-size, $beta-size - 2);
-	outline: none;
-	text-transform: none;
-	@include remove-safari-defaults;
-	z-index: 1;
-	height: 30px;
+
+	@include input-styles;
+
+	// Base Focus States
+	&:focus {
+		@include box-shadow(0 0 5px rgba($color--primary, 0.2));
+	}
+
 }
 
 
-
-
-
-
-// Base Focus States
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-textarea:focus {
-	@include box-shadow(0 0 5px rgba($primaryColor, 0.2));
-}
 
 // Placeholder Text Styling
 input,
-textarea,
-input.placeholder,
-textarea.placeholder {
+textarea {
+
 	@include placeholder {
-		color:$primaryColor;
-		@include font-size($milli-size, $beta-size);
+		color: rgba($color--primary, 0.5);
+		@include font-size($input-size);
 	}
+
 }
 
-// Default Checkbox
-input[type="checkbox"] {
-	float: left;
-	display: inline;
-	width:15px;
-}
-
-// Default styles attached to Radio JS
-.radioWrap {cursor:pointer;}
-.radioWrap input {
-	@include opacity ( 0 );
-	cursor:pointer;
-}
 
 // give height / remove cols and rows from html as they dont validate in HTML5
 textarea {
- 	min-height: 60px;
+ 	min-height: 100px;
 }
 
 
 
 
 
-
-/*--- Labels ---*/
+/* ------------------------------------ */
+/* ------------- LABELS --------------- */
+/* ------------------------------------ */
 
 label,
 legend {
-	@include inline-block();
+	@include inline-block(middle);
 	@include font-size($zeta-size);
-	text-transform: uppercase;
+	text-align: left;
 }
 
 label span,

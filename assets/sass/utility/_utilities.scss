@@ -48,6 +48,7 @@
 
 
 %ib-fix { font-size: 0; }
+.ib-fix { @extend %ib-fix; }
 .ib { @include inline-block; }
 
 

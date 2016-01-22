@@ -29,13 +29,3 @@
 }
 
 // usage: @include remove-safari-defaults;
-
-
-@mixin placeholder {
-	$placeholders: "::-webkit-input" "::-moz" ":-moz" ":-ms-input" ".placeholder";
-	@each $placeholder in $placeholders {
-		&#{$placeholder}-placeholder {
-			@content;
-		}
-	}
-}

@@ -80,13 +80,22 @@ $kilo-size:			90	!default; // .h_kilo
 $hecto-size:		70	!default; // .h_hecto
 
 
-$centi-size:		13 	!default;
+$centi-size:		14 	!default;
 $milli-size: 		12 	!default;
 $micro-size: 		10 	!default;
 
 $nav-size:         	15 	!default;
 
 $p-size:            $base-font-size !default;
+
+$btn-size--small:	$milli-size !default;
+$btn-size--medium:	$zeta-size !default;
+$btn-size--large:	$delta-size !default;
+$btn-size--huge:	$beta-size !default;
+
+
+$label-size:		$centi-size !default;
+$input-size:        $centi-size !default;
 
 
 //------------------------------------//

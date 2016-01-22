@@ -38,7 +38,7 @@ $alert-height: 60;
 		@include _position(absolute, auto, 0, 10px, 2%);
 		width: 0;
 		height: 4px;
-		@include rgba('background-color', rgba($tertiaryColor, 0.3), $tertiaryColor);
+		@include rgba('background-color', rgba($color--tertiary, 0.3), $color--tertiary);
 		border-radius: 3px;
 		@include box-shadow( inset 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(255,255,255,0.6) );
 
@@ -86,7 +86,7 @@ $alert-height: 60;
 			display: block;
 			@include _position(absolute, -10px, 0, auto, auto);
 			width: #{$alert-close-size}px;
-			color: $tertiaryColor;
+			color: $color--tertiary;
 			text-align: center;
 			text-decoration: none;
 			vertical-align: middle;
@@ -147,14 +147,14 @@ $alert-height: 60;
 .notice {
 	padding: 5px;
 	margin: 20px 0;
-	background: $secondaryColor none repeat 0 0;
+	background: $color--secondary none repeat 0 0;
 	@include font-size($base-font-size);
 	text-align: center;
 
 
 	&--error {
 		background: $error none repeat 0 0;
-		color:$secondaryColor;
+		color:$color--secondary;
 		text-transform: uppercase;
 	}
 
@@ -171,6 +171,6 @@ $alert-height: 60;
 }
 
 @include keyframe(runProgress) {
-	0%{ width: 0%; @include rgba('background-color', rgba($tertiaryColor, 0.3), $tertiaryColor); }
-	100%{ width: 96%; @include rgba('background-color', rgba($tertiaryColor, 1), $tertiaryColor); }
+	0%{ width: 0%; @include rgba('background-color', rgba($color--tertiary, 0.3), $color--tertiary); }
+	100%{ width: 96%; @include rgba('background-color', rgba($color--tertiary, 1), $color--tertiary); }
 }

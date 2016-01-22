@@ -150,30 +150,30 @@
  $types: (
 
  	primary: (
- 		$primaryColor,
+ 		$color--primary,
  		$white,
- 		lighten(rgba($primaryColor, 0.8), 25%),
+ 		lighten(rgba($color--primary, 0.8), 25%),
  		$white,
  		$primaryFont,
- 		$primaryColor
+ 		$color--primary
  	),
 
  	secondary: (
- 		$secondaryColor,
- 		$primaryColor,
- 		darken(rgba($secondaryColor, 0.8), 5%),
- 		$primaryColor,
+ 		$color--secondary,
+ 		$color--primary,
+ 		darken(rgba($color--secondary, 0.8), 5%),
+ 		$color--primary,
  		$secondaryFont,
- 		$primaryColor
+ 		$color--primary
  	),
 
  	tertiary: (
- 		$tertiaryColor,
- 		$primaryColor,
- 		$primaryColor,
- 		$tertiaryColor,
+ 		$color--tertiary,
+ 		$color--primary,
+ 		$color--primary,
+ 		$color--tertiary,
  		$primaryFont,
- 		$tertiaryColor
+ 		$color--tertiary
  	),
 
 	// Actions based on

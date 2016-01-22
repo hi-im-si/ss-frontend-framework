@@ -21,7 +21,7 @@
 
 			> li {
 				margin: 0 10px;
-				border-bottom: 1px solid $tertiaryColor;
+				border-bottom: 1px solid $color--tertiary;
 			}
 		}
 
@@ -45,7 +45,7 @@
 		&:before {
 			position: relative;
 			top: 3px;
-			color: $tertiaryColor;
+			color: $color--tertiary;
 			@include fonticon;
 			content: "\e610";
 			@include font-size($epsilon-size);

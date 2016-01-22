@@ -11,7 +11,7 @@
 		@include perspective(1300px);
 
 		&:after {
-			background: $secondaryColor none repeat 0 0;
+			background: $color--secondary none repeat 0 0;
 			@include box-shadow(none);
 		}
 
@@ -29,7 +29,7 @@
 
 			@include transition( all 0.3s $easeInOut );
 
-			@include box-shadow(0px 0px 0px 10px rgba($secondaryColor, 0.3));
+			@include box-shadow(0px 0px 0px 10px rgba($color--secondary, 0.3));
 
 		}
 
@@ -45,8 +45,8 @@
 				top: 0;
 				right: 0;
 				padding: 0;
-				background: $secondaryColor none no-repeat 0 0;
-				color:$primaryColor;
+				background: $color--secondary none no-repeat 0 0;
+				color:$color--primary;
 				line-height: 1;
 				text-align: center;
 				@include remove-focus;
@@ -86,7 +86,7 @@
 		margin: 0px auto;
 		padding: 30px;
 		background: $error;
-		color:$secondaryColor;
+		color:$color--secondary;
 
 		a {
 			color:inherit;

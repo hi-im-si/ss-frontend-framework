@@ -70,14 +70,14 @@
 
 
 
-@function makelongshadow($primaryColor) {
-	$val: 0px 0px $primaryColor;
+@function makelongshadow($color--primary) {
+	$val: 0px 0px $color--primary;
 	@for $i from 1 through 200 {
-		$val: #{$val}, #{$i}px #{$i}px #{$primaryColor};
+		$val: #{$val}, #{$i}px #{$i}px #{$color--primary};
 	}
 	@return $val;
 }
 
-@mixin longshadow($primaryColor) {
- 	text-shadow: makelongshadow($primaryColor);
+@mixin longshadow($color--primary) {
+ 	text-shadow: makelongshadow($color--primary);
 }

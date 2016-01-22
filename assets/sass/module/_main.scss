@@ -8,9 +8,9 @@
 
 		tr:nth-child(even) td,
 		tr:nth-child(odd) th {
-			background: $tertiaryColor none repeat 0 0;
+			background: $color--tertiary none repeat 0 0;
 
-			* { color:$secondaryColor; }
+			* { color:$color--secondary; }
 
 		}
 
@@ -21,26 +21,26 @@
 		}
 			th {
 				@include font-size($delta-size);
-				color:$secondaryColor;
+				color:$color--secondary;
 				vertical-align: middle;
 			}
 			td {
 				@include font-size($p-size);
 				vertical-align: top;
-				border-top: solid 1px $tertiaryColor;
+				border-top: solid 1px $color--tertiary;
 			}
 
 
 
 		&.table--bordered {
 			border-collapse: separate;
-			border: solid 1px $tertiaryColor;
+			border: solid 1px $color--tertiary;
 		}
 
 		&.table--bordered th + th,
 		&.table--bordered th + td,
 		&.table--bordered td + td {
-			border-left: solid 1px $tertiaryColor;
+			border-left: solid 1px $color--tertiary;
 		}
 	}
 

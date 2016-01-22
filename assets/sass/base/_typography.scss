@@ -11,7 +11,7 @@ html {
 body {
 	font-family: $primaryFont;
 	@include font-size($base-font-size);
-	color: $primaryColor;
+	color: $color--primary;
 	font-weight: normal;
 }
 
@@ -46,7 +46,7 @@ small {
 
 %headings {
 	margin: 0 0 10px 0;
-	color: $primaryColor;
+	color: $color--primary;
 	font-family: $primaryFont;
 	font-weight: normal;
 }

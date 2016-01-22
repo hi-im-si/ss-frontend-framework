@@ -17,13 +17,12 @@
   7 $MODULES
   8 $FORMS
   9 $UTILITIES
-
 */
 
 
 //============================
 //*	Base
-//		all base files to reset and get the site started
+//	all base files to reset and get the site started
 //
 
 	@import "base/variables";
@@ -46,8 +45,9 @@
 //============================
 //	Modules
 //	this will be the core styles for the site. this should be as modular as possible
-//	but no state styles. These are for the next section.
+//  DRY ( [D]ont [R]epeat [Y]ourself )
 //
+
 	@import "module/main";
 	@import "module/grid";
 	@import "module/nav";
@@ -72,8 +72,8 @@
 
 
 //============================
-// Utility Helpers
-//		Utilities classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform simple tasks
+//  Utility Helpers
+//	utilities classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform simple tasks
 //
 
 	@import "utility/utilities";

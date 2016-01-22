@@ -95,137 +95,291 @@ legend span {
 	color: #444;
 }
 
-.form__label {
-
-	&--hidden {
-		display: none;
-	}
-
-}
-
-.form__smallcopy {
-	font-family: $secondaryFont;
-	@include font-size($micro-size);
-	@include inline-block(top);
-	margin-right: 20px;
-}
 
 
 
 
-/*--- Horizontal Presentation of Forms ---
+/*-------------------------------------------------------------------------------------------------
+------------------------------- CORE FORM ELEMENTS ------------------------------------------------
+---------------------------------------------------------------------------------------------------*/
 
-	- form-inline will display a form along one line with the labels beside the inputs as well.
-		e.g.
-			Label  |  Input      Label  |  Input      Label  |  Input
----*/
+.form {
 
-.form--inline{
 
-  .form__field { margin-bottom: 10px; }
+	/* ------------------------------------ */
+	/* ---------- Form Components --------- */
+	/* ------------------------------------ */
 
-	label,
-	input,
-	button,
-	select{
-		@include inline-block;
+	&__row {
 		margin-bottom: 10px;
+		font-size: 0;
+
+		&--half {
+
+			.form__field {
+				@include reset-flush-cols-to(6);
+
+				/* ------------------------ */
+				@include mq($max, $mq-mob) {
+					width: 100%;
+					text-align: center;
+				}
+				/* ------------------------ */
+
+				+ .form__field {
+					padding-left: 10px;
+
+					/* ------------------------ */
+					@include mq($max, $mq-mob) {
+						padding-left: 0;
+					}
+					/* ------------------------ */
+				}
+			}
+
+		}
 	}
+
+
+		&__field {
+			position: relative;
+			width: 100%;
+			text-align: left;
+			@include inline-block(top);
+			margin: 0 0 10px 0;
+
+			// field width modifiers
+			&--half {
+				@include reset-flush-cols-to(6);
+			}
+			&--thirds {
+				@include reset-flush-cols-to(4);
+			}
+			&--quarts {
+				@include reset-flush-cols-to(3);
+			}
+			&--sixths {
+				@include reset-flush-cols-to(2);
+			}
+
+			// field margin modifiers
+			&--alpha {
+				margin-left: 0;
+			}
+			&--omega {
+				margin-right: 0;
+			}
+
+		}
+
+	&__label {
+
+		margin-bottom: 5px;
+
+		&--reset {
+			margin-bottom: 0;
+		}
+		&--hidden {
+			display: none;
+		}
+
+	}
+
+	&__smallcopy {
+		font-family: $secondaryFont;
+		@include font-size($micro-size);
+		@include inline-block(top);
+		margin-right: 20px;
+	}
+
+
+
+	/* ------------------------------------ */
+	/* ---------- Form Modifiers ---------- */
+	/* ------------------------------------ */
+
+
+	// --- Horizontal Presentation of Forms ---
+	//
+	//	- form--inline will display a form along one line with the labels beside the inputs as well.
+	//		e.g.
+	//			Label  |  Input      Label  |  Input      Label  |  Input
+
+	&--inline {
+
+	  .form__field { margin-bottom: 10px; }
+
+		label,
+		input,
+		button,
+		select{
+			@include inline-block;
+			margin-bottom: 10px;
+		}
+	}
+
 }
 
+
+
+
+
+
+
+/*-------------------------------------------------------------------------------------------------
+------------------------------- File Styling ------------------------------------------------------
+---------------------------------------------------------------------------------------------------*/
+
+
+.file {
+	opacity: 0;
+	@include _position(absolute, 0, 0, 0, 0, 10);
+	width: 100%;
+	cursor: pointer;
+
+	&[class*="error"] {
+
+	}
+
+	&-wrap {
+		position: relative;
+		@include inline-block;
+		@include font-size($label-size);
+	}
+	&-button {
+		background-color: $color--primary;
+		@include inline-block;
+		text-indent: -999em;
+		overflow: hidden;
+		@include font-size($btn-size--medium,$alpha-size+2);
+		padding-right:4.5em;
+		padding-left: 4.5em;
+
+		&:after {
+			content: "Upload Your CV";
+			@include _position(absolute, 0, 0, 0, 0);
+		    padding: 0 10px;
+			display: block;
+			color: $color--primary;
+			text-indent: 0;
+			text-transform: uppercase;
+		    text-align: center;
+		}
+
+	}
+	&-label {
+	}
+
+}
 
 
 /*-------------------------------------------------------------------------------------------------
 ----------------------------- Select Styling ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-.select-wrap {
-	position:relative;
+.selectdd {
+	position: relative;
 	display: inline-block;
 	clear: none;
 	cursor: pointer;
 	width:100%;
-	height: 30px;
-}
+	color: $black;
 
-select {
-	background: none repeat scroll 0 0 $white;
-	display:inline-block;
-	width:100%;
-	height:100%;
-	margin: 0;
-	font-family: $primaryFont;
-	@include font-size($milli-size, $beta-size);
-
-	&.select {
-		position:relative;
-		z-index:10;
-		height:100%;
+	&__options {
+		position: absolute;
+		z-index: 10;
+		display:inline-block;
 		width:100%;
-		cursor:pointer;
+		height:100%;
+		margin: 0;
+		background: none repeat scroll 0 0 $white;
+		cursor: pointer;
+	}
+
+		&__option {
+			@include input-styles(5px 25px 5px 10px, $color--primary, $color--secondary, $color--primary, $primaryFont);
+			vertical-align: top;
+			@include word-break;
+			text-align: left;
+			cursor: pointer;
+
+			&:after {
+				content: "";
+				@include _position(absolute, 50%, 5px, auto, auto);
+			    height: 10px;
+			    width: 10px;
+			    border-right: 3px solid $color--primary;
+			    border-bottom: 3px solid $color--primary;
+			    @include transform(translateY(-50%) rotate(45deg));
+			    @include transform-origin(top center);
+			}
+
+			&--error {
+				background: $error no-repeat 0 0;
+				color:$color--secondary;
+				border:1px solid $error;
+			}
+
+		}
+
+
+	&--secondary {
+
+		.select {
+
+			&__option {
+
+				background-color: $color--primary;
+				border-color: $color--secondary;
+				color: $color--secondary;
+
+				&:after {
+					color:$color--secondary;
+				}
+			}
+		}
 	}
 
 }
 
-span.select{
-	@include _position(absolute, 0, 0, 0, 0);
-	width:100%;
-	height:100%;
-	padding:0 30px 0 15px;
-	border: 1px solid $tertiaryColor;
-	background: $secondaryColor none repeat 0 0;
-	color:$primaryColor;
-	font-family: $primaryFont;
-	@include font-size($zeta-size, $beta-size);
-	@include word-break;
-	text-align: left;
-	text-transform: uppercase;
-	cursor:pointer;
-	overflow:hidden;
-
-	&:after {
-		@include fonticon;
-		content:"\e60e"; // .icon-arrow-down2
-		@include _position(absolute, 50%, 5px, auto, auto);
-		margin-top: -10px;
-		color:$tertiaryColor;
-		@include font-size($delta-size);
-	}
-}
-
-	span.error-select {
-	  background: $primaryColor url('#{$imgsrc}/forms/select-error.png') no-repeat right center;
-	  color:$error;
-	  border:1px solid $error;
-	}
 
 
 
 
 
 // DRY mixin for radio and checkbox styles
-@mixin radio-check-styling($height: 15px, $width: 15px, $color: $primaryColor) {
-	position:relative;
+@mixin radio-check-styling($height: 20px, $width: 20px, $bg: $color--primary, $radius: null, $color: $color--primary) {
+	position: relative;
 	@include inline-block(middle);
 	height: $height;
 	width: $width;
-	color:$color;
-	overflow:hidden;
+	overflow: hidden;
 	margin-right: 5px;
-	cursor:pointer;
+	border-color: $color;
+	border-radius: $radius;
+	cursor: pointer;
+	@include transition(0.5s $easeInOut all);
 
-	&:before{
-		position: absolute;
-		top:2px;
-		left: 0;
-		@include fonticon;
-		@include font-size($milli-size,$epsilon-size - 2);
+
+	&:before {
+		content: "";
+		@include _position(absolute, 0, 0, 0, 0);
+		@include transition(0.5s $easeInOut all);
 	}
 
 	input {
-		@include opacity ( 0 );
-		cursor:pointer;
+		height: 100%;
+		width: 100%;
 		vertical-align: top;
+		@include opacity ( 0 );
+		visibility: hidden;
+		cursor:pointer;
+	}
+
+	&--selected {
+		&:before {
+			background-color: $bg;
+		}
 	}
 
 }
@@ -236,9 +390,13 @@ span.select{
 
 .radio {
 	@include radio-check-styling;
+	border: 1px solid;
+	border-radius: 50%;
 
 	&:before {
-		content: "\e618";
+		margin: 3px;
+		border-radius: 50%;
+		@include transform(scale(0));
 	}
 
 	+ label {
@@ -249,7 +407,7 @@ span.select{
 
 	&--selected {
 		&:before {
-			content: "\e619";
+			@include transform(scale(1));
 		}
 	}
 
@@ -262,21 +420,21 @@ span.select{
 ---------------------------------------------------------------------------------------------------*/
 
 .checkbox {
-	@include radio-check-styling;
+	@include radio-check-styling(20px, 20px, transparent, null)
+	border: 1px solid;
 
 	&:before {
-		content: "";
+		content: none;
 	}
 
-	input {
-		width:15px; height:15px;
-		margin:0; padding:0;
-	}
+	~ label { margin-bottom: 0; }
 
 	&--selected {
-		&:before {
-			content: "\e617";
-		}
+		@include transform(rotate(-45deg) scaleY(0.5) translateX(25%));
+		border-bottom-width: 7px;
+		border-left-width: 3px;
+		border-right-color: rgba(0,0,0,0);
+		border-top-color: rgba(0,0,0,0);
 	}
 
 }

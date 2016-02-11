@@ -58,7 +58,6 @@
 	background-image: -o-linear-gradient($place, $bcolor1, $bcolor2);
 	background-image: -ms-linear-gradient($place, $bcolor1, $bcolor2);
 
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}'); // IE6,IE7
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bcolor1}', endColorstr='#{$bcolor2}')"; // IE8+
 
 	background-image: linear-gradient($place, $bcolor1, $bcolor2);

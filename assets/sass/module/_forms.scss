@@ -6,7 +6,7 @@
 
 // handle all inputs consistently but with ability to extend
 @mixin input-styles(
-	$input-padd: 5px 10px,
+	$input-padd: 10px,
 	$border-color: $color--primary,
 	$bg-color: $color--secondary,
 	$text-color: $color--primary,
@@ -105,7 +105,6 @@ legend span {
 
 .form {
 
-
 	/* ------------------------------------ */
 	/* ---------- Form Components --------- */
 	/* ------------------------------------ */
@@ -141,36 +140,37 @@ legend span {
 	}
 
 
-		&__field {
-			position: relative;
-			width: 100%;
-			text-align: left;
-			@include inline-block(top);
-			margin: 0 0 10px 0;
+	&__field {
+		position: relative;
+		width: 100%;
+		text-align: left;
+		@include inline-block(top);
+		margin: 0 0 10px 0;
 
-			// field width modifiers
-			&--half {
-				@include reset-flush-cols-to(6);
-			}
-			&--thirds {
-				@include reset-flush-cols-to(4);
-			}
-			&--quarts {
-				@include reset-flush-cols-to(3);
-			}
-			&--sixths {
-				@include reset-flush-cols-to(2);
-			}
-
-			// field margin modifiers
-			&--alpha {
-				margin-left: 0;
-			}
-			&--omega {
-				margin-right: 0;
-			}
-
+		// field width modifiers
+		&--half {
+			@include reset-flush-cols-to(6);
 		}
+		&--thirds {
+			@include reset-flush-cols-to(4);
+		}
+		&--quarts {
+			@include reset-flush-cols-to(3);
+		}
+		&--sixths {
+			@include reset-flush-cols-to(2);
+		}
+
+		// field margin modifiers
+		&--alpha {
+			margin-left: 0;
+		}
+		&--omega {
+			margin-right: 0;
+		}
+
+	}
+
 
 	&__label {
 
@@ -179,11 +179,27 @@ legend span {
 		&--reset {
 			margin-bottom: 0;
 		}
+
 		&--hidden {
 			display: none;
 		}
 
 	}
+
+
+	&__input {
+
+		&.form__input--lrg {
+			padding: 15px 10px;
+			@include font-size($input-size--lrg);
+
+		}
+		&.form__input--pill {
+			border-radius: 50px;
+		}
+
+	}
+
 
 	&__smallcopy {
 		font-family: $secondaryFont;
@@ -243,7 +259,7 @@ legend span {
 
 	&--inline {
 
-	  .form__field { margin-bottom: 10px; }
+	  .form__field { margin-bottom: 10px; width: auto; }
 
 		label,
 		input,
@@ -251,6 +267,7 @@ legend span {
 		select{
 			@include inline-block;
 			margin-bottom: 10px;
+			width: auto;
 		}
 	}
 
@@ -483,46 +500,39 @@ legend span {
 -----------------------Error/Success Styling ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
+$form: "form";
 
-.form {
+.#{$form} {
 
-	&__error {
-		@include _position(absolute, 0, 0, auto, auto);
-		padding: 5px 10px;
-		background-color: $error;
-		color: $color--secondary;
-		line-height: 1;
-		@include opacity(0);
-		visibility: visible;
-		@include transition(all 1s $easeInOut);
-	}
+	&__ttip {
 
-	&__field {
-
-		&.form__field--error {
-
-			label,
-			input {
-				border-color: $error;
-			}
-
-			.form__error {
-				@include opacity(1);
-				visibility: visible;
-			}
+		&--error {
+			@include _position(absolute, 0, 0, auto, auto);
+			padding: 5px 10px;
+			background-color: $color--error;
+			color: $color--secondary;
+			line-height: 1;
+			@include opacity(0);
+			visibility: visible;
+			@include transition(all 1s $easeInOut);
 		}
 
+	}
+
+
+	.#{$form}__label,
+	.#{$form}__input {
+
+		&--error {
+			color: $color--error;
+			border-color: $color--error;
+		}
 		&--success {
-		 	* {
-				color:$success;
-		 	}
+			color: $color--success;
+			border-color: $color--success;
 		}
-
 	}
 
-
-
-	.required { color:$error; }
 
 }
 

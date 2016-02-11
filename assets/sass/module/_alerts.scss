@@ -69,7 +69,7 @@ $alert-height: 60;
 			text-align: center;
 			text-transform: uppercase;
 			vertical-align: middle;
-			color: $white;
+			color: $color--white;
 
 			@include font-size($centi-size);
 
@@ -107,19 +107,19 @@ $alert-height: 60;
 
 	$alerts: (
 		success: (
-			color: $success,
+			color: $color--success,
 			icon: "\e61b"
 		),
 		info: (
-			color: $info,
+			color: $color--info,
 			icon: "\e61d"
 		),
 		notice: (
-			color: $notice,
+			color: $color--notice,
 			icon: "\e61c"
 		),
 		error: (
-			color: $error,
+			color: $color--error,
 			icon: "\e61e"
 		)
 	);

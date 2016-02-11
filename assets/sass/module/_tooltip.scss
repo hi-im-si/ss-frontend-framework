@@ -466,18 +466,18 @@ $coloring:                true!default;
 /**************************** Diverse Colors *************************/
 @if $coloring == true {
 	.ttip--success {
-		@include applyColor($success);
+		@include applyColor($color--success);
 	}
 
 	.ttip--info {
-		@include applyColor($info);
+		@include applyColor($color--info);
 	}
 
 	.ttip--danger {
-		@include applyColor($error);
+		@include applyColor($color--error);
 	}
 
 	.ttip--warning {
-		@include applyColor($notice);
+		@include applyColor($color--notice);
 	}
 }

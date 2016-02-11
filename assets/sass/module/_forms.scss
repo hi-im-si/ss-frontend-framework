@@ -283,7 +283,7 @@ legend span {
 	clear: none;
 	cursor: pointer;
 	width:100%;
-	color: $black;
+	color: $color--black;
 
 	&__options {
 		position: absolute;
@@ -292,12 +292,12 @@ legend span {
 		width:100%;
 		height:100%;
 		margin: 0;
-		background: none repeat scroll 0 0 $white;
+		background: none repeat scroll 0 0 $color--white;
 		cursor: pointer;
 	}
 
 		&__option {
-			@include input-styles(5px 25px 5px 10px, $color--primary, $color--secondary, $color--primary, $primaryFont);
+			@include input-styles(10px 25px 10px 10px, $color--primary, $color--secondary, $color--primary, $primaryFont);
 			vertical-align: top;
 			@include word-break;
 			text-align: left;
@@ -305,19 +305,19 @@ legend span {
 
 			&:after {
 				content: "";
-				@include _position(absolute, 50%, 5px, auto, auto);
+				@include _position(absolute, 50%, 10px, auto, auto);
 			    height: 10px;
 			    width: 10px;
-			    border-right: 3px solid $color--primary;
-			    border-bottom: 3px solid $color--primary;
+			    border-right: 2px solid $color--primary;
+			    border-bottom: 2px solid $color--primary;
 			    @include transform(translateY(-50%) rotate(45deg));
 			    @include transform-origin(top center);
 			}
 
 			&--error {
-				background: $error no-repeat 0 0;
+				background: $color--error no-repeat 0 0;
 				color:$color--secondary;
-				border:1px solid $error;
+				border:1px solid $color--error;
 			}
 
 		}

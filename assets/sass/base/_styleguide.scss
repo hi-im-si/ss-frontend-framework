@@ -4,10 +4,10 @@
 
 	&__titles {
 		text-align: center;
-		h1,h2,h3,h4,h5,h6 { color: $black; }
+		h1,h2,h3,h4,h5,h6 { color: $color--black; }
 	}
 
-	.bg-alt { background-color: $grey; }
+	.bg-alt { background-color: $color--grey; }
 
 	&__heading {
 		font-weight: $bold;
@@ -21,7 +21,7 @@
 	}
 
 	&--background {
-		background-color: $grey;
+		background-color: $color--grey;
 	}
 
 	&__columns {
@@ -30,7 +30,7 @@
 			background-color: $color--tertiary;
 
 			&.styleguide__columns--pull {
-				background-color: rgba($error, 0.5);
+				background-color: rgba($color--error, 0.5);
 			}
 
 			> p {
@@ -56,8 +56,8 @@
 			width: 100%;
 			padding: 10px;
 			margin: 0;
-			background: darken(rgba($white, 0.75), 10%);
-			color: $black;
+			background: darken(rgba($color--white, 0.75), 10%);
+			color: $color--black;
 			font-size: 12px;
 			text-align: center;
 		}

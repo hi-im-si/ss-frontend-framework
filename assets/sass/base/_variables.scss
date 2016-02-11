@@ -124,29 +124,32 @@ $bolder: 700;
 // =============================================================
 
 // generic colours
-$black:		#000;
-$white:		#fff;
-$grey:		#ccc;
+$color--black:		#000;
+$color--white:		#fff;
+$color--grey:		#ccc;
+
+$blue:				#1a5a9e;
 
 
 // CORE HIERARCHICAL COLOURSET
-$color--primary: 		$black; // black
-$color--secondary: 		$white; // white
-$color--tertiary: 		$grey;  // grey
+$color--primary: 		$color--black; // black
+$color--secondary: 		$color--white; // white
+$color--tertiary: 		$color--grey;  // grey
+$color--quarternary: 	$blue;  // blue
 
 
 //mood
-$error: 	#B42C2C; 	// error red colour
-$success: 	#090; 		// success green colour
-$info: 		#3399ff; 	// info blue colour
-$notice: 	#EC921F; 	// alert orange colour
-$urgency: 	#8f262b; 	//
+$color--error: 		#B42C2C; 	// error red colour
+$color--success: 	#090; 		// success green colour
+$color--info: 		#3399ff; 	// info blue colour
+$color--notice: 	#EC921F; 	// alert orange colour
+$color--urgency: 	#8f262b; 	//
 
 //social
-$twitter: #55acee;
-$facebook: #3b5998;
-$instagram: #3f729b;
-$dribbble: #ea4c89;
+$color--twitter: 	#55acee;
+$color--facebook: 	#3b5998;
+$color--instagram: 	#3f729b;
+$color--dribbble: 	#ea4c89;
 
 
 

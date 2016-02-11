@@ -143,25 +143,6 @@ $alert-height: 60;
 
 
 
-// Notice
-.notice {
-	padding: 5px;
-	margin: 20px 0;
-	background: $color--secondary none repeat 0 0;
-	@include font-size($base-font-size);
-	text-align: center;
-
-
-	&--error {
-		background: $error none repeat 0 0;
-		color:$color--secondary;
-		text-transform: uppercase;
-	}
-
-}
-
-
-
 @include keyframe(fadeOut) {
 	0%   { opacity: 0; }
 	10%  { opacity: 1; }

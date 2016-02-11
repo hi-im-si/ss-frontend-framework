@@ -13,7 +13,7 @@
  * 4. Make buttons inherit font styles.
  * 5. Force all elements using beautons to appear clickable.
  * 6. Normalise box model styles.
- * 7. If the buttonâ€™s text is 1em, and the button is (3 * font-size) tall, then
+ * 7. If the button's text is 1em, and the button is (3 * font-size) tall, then
  *    there is 1em of space above and below that text. We therefore apply 1em
  *    of space to the left and right, as padding, to keep consistent spacing.
  * 8. Basic cosmetics for default buttons. Change or override at will.
@@ -80,32 +80,58 @@
  * remains uniform.
  */
 
- .btn {
+
+
+$styles: (
+
+ 	small: (
+ 		font-size: $btn-size--small,
+ 		line-height: $btn-size--small * 2.25
+ 	),
+
+ 	medium: (
+ 		font-size: $btn-size--medium,
+ 		line-height: $btn-size--medium * 2.25
+ 	),
+
+ 	large: (
+ 		font-size: $btn-size--large,
+ 		line-height: $btn-size--large * 2.25
+ 	),
+
+ 	huge: (
+ 		font-size: $btn-size--huge,
+ 		line-height: $btn-size--huge * 2.25
+ 	)
+
+);
+
+.btn {
 
  	padding-left: 2em;
  	padding-right: 2em;
 
-	&--small {
-		@include font-size($btn-size--small, $btn-size--large * 2);
+	@each $class, $style in $styles {
+
+		/**
+		* Modifier: #{$class} size
+		*/
+
+		&--#{$class} {
+			@include font-size(map-get($style, font-size), map-get($style, line-height));
+		}
+
 	}
 
-	&--medium {
-		@include font-size($btn-size--medium, $btn-size--large * 2);
+
+	/* Button with aligned icon */
+
+	&__icon {
+		position: relative;
+		top: 0.2rem;
 	}
 
-	&--large {
-		@include font-size($btn-size--large, $btn-size--large * 2);
-	}
 
-	&--huge {
-		@include font-size($btn-size--huge, $btn-size--huge * 2);
-	}
-
-	&--flush {
-		padding-left: 1em;
-		padding-right: 4.5em;
-		@include font-size($btn-size--large, $btn-size--large * 2);
-	}
 
 	/**
 	*  These buttons will fill the entirety of their container.
@@ -131,7 +157,7 @@
 		text-align: center;
 	}
 
- }
+}
 
 
 
@@ -142,119 +168,113 @@
  * Button function modifiers for Colour Skinning.
  */
 
-// background-color
-// color
-// background-color [active]
-// color [active]
-// font-family
-// border
-
- $types: (
+$properties: (
 
  	primary: (
- 		$color--primary,
- 		$white,
- 		lighten(rgba($color--primary, 0.8), 25%),
- 		$white,
- 		$primaryFont,
- 		$color--primary
+ 		background-color: 			$color--primary,
+ 		color: 						$color--white,
+ 		background-color-active: 	lighten(rgba($color--primary, 0.8), 25%),
+ 		color-active: 				$color--white,
+ 		font-family: 				$primaryFont,
+ 		border: 					$color--primary
  	),
 
  	secondary: (
- 		$color--secondary,
- 		$color--primary,
- 		darken(rgba($color--secondary, 0.8), 5%),
- 		$color--primary,
- 		$secondaryFont,
- 		$color--primary
+ 		background-color: 			$color--secondary,
+ 		color: 						$color--primary,
+ 		background-color-active: 	darken(rgba($color--secondary, 0.8), 5%),
+ 		color-active: 				$color--primary,
+ 		font-family: 				$secondaryFont,
+ 		border: 					$color--primary
  	),
 
  	tertiary: (
- 		$color--tertiary,
- 		$color--primary,
- 		$color--primary,
- 		$color--tertiary,
- 		$primaryFont,
- 		$color--tertiary
+ 		background-color: 			$color--tertiary,
+ 		color: 						$color--primary,
+ 		background-color-active: 	$color--primary,
+ 		color-active: 				$color--tertiary,
+ 		font-family: 				$primaryFont,
+ 		border: 					$color--tertiary
  	),
 
 	// Actions based on
  	error: (
- 		$error,
- 		$white,
- 		darken($error, 10%),
- 		$white,
- 		$primaryFont,
- 		$error
+ 		background-color: 			$color--error,
+ 		color: 						$color--white,
+ 		background-color-active: 	darken($color--error, 10%),
+ 		color-active: 				$color--white,
+ 		font-family: 				$primaryFont,
+ 		border: 					$color--error
  	),
 
  	success: (
- 		$success,
- 		$white,
- 		darken($success, 10%),
- 		$white,
- 		$primaryFont,
- 		$success
+ 		background-color: 			$color--success,
+ 		color: 						$color--white,
+ 		background-color-active: 	darken($color--success, 10%),
+ 		color-active: 				$color--white,
+ 		font-family: 				$primaryFont,
+ 		border: 					$color--success
  	),
 
  	info: (
- 		$info,
- 		$white,
- 		darken($info, 10%),
- 		$white,
- 		$primaryFont,
- 		$info
+ 		background-color: 			$color--info,
+ 		color: 						$color--white,
+ 		background-color-active: 	darken($color--info, 10%),
+ 		color-active: 				$color--white,
+ 		font-family: 				$primaryFont,
+ 		border: 					$color--info
  	),
 
  	notice: (
- 		$notice,
- 		$white,
- 		darken($notice, 10%),
- 		$white,
- 		$primaryFont,
- 		$notice
+ 		background-color: 			$color--notice,
+ 		color: 						$color--white,
+ 		background-color-active: 	darken($color--notice, 10%),
+ 		color-active: 				$color--white,
+ 		font-family: 				$primaryFont,
+ 		border: 					$color--notice
  	)
 
- );
+);
 
 
 .btn {
 
-	@each $type, $property, $fonts, $border in $types {
+	> span { position: relative; z-index: 1; }
 
-		$bgColor: nth($property, 1);				// background-color
-		$textColor: nth($property, 2);				// color
-		$bgColor--active: nth($property, 3);		// background-color [active]
-		$textColor--active: nth($property, 4);		// color [active]
-		$font: nth($property, 5);					// font-family
-		$border: nth($property, 6);					// border
+	&:after {
+		width: 0%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 0;
+	}
+
+	&:hover {
+		&:after { width: 100%; }
+	}
+
+	@each $class, $property in $properties {
+
+		$bgColor: map-get($property, background-color);						// background-color
+		$textColor: map-get($property, color);								// color
+		$bgColor--active: map-get($property, background-color-active);		// background-color [active]
+		$textColor--active: map-get($property, color-active);				// color [active]
+		$font: map-get($property, font-family);								// font-family
+		$border: map-get($property, border);								// border
 
 
-		&--#{$type} {
+		&--#{$class} {
 			background: $bgColor none repeat 0 0;
 			border: 1px solid $border;
 			color: $textColor;
 			font-family: $font;
 
-			> span { position: relative; z-index: 1; }
-
 			&:after {
 				background-color: $bgColor--active;
-
-				width: 0%;
-				height: 100%;
-				top: 0;
-				left: 0;
-				z-index: 0;
 			}
 
 			&:hover {
-
 				color:$textColor--active;
-
-				&:after {
-					width: 100%;
-				}
 			}
 		}
 	}
@@ -289,6 +309,13 @@
 * Button style modifiers.
 */
 
+
+.btn--pill {
+	border-radius: 50px;
+
+	&:after { content: none; }
+}
+
 .btn--square {
 	height: 25px;
 	width: 25px;
@@ -296,32 +323,5 @@
 	text-align: center;
 
 	> i { @include font-size($milli-size,$milli-size); }
-}
-
-/* Button with aligned icon */
-
-.btn--icon {
-
-	> i {
-		@include _position(absolute, 0, 0, 0, auto);
-		padding: 0 5px;
-	}
-
-	.icon__nested {
-		@include _position(absolute, 0, 0, 0, auto);
-	}
-
-	.icon__nested--left {
-		@include _position(absolute, 0, auto, 0, 0);
-	}
-
-	&.btn--icon--left {
-
-		> i {
-			right: auto;
-			left: 0;
-		}
-	}
-
 }
 

@@ -194,9 +194,45 @@ legend span {
 
 
 
+	// --- Floating Form Label ---
+	//
+	//	Label will sit on top of input and upon focus will transition above the input field
+	//  to keep the label floating above the form field upon the input having content we use the following js- classes:
+	//
+	//  .js-input
+	//	.js-label-float
+	//
+
+	&__float {
+
+		&__label {
+
+			@include _position(absolute, 50%, 0, null, 0);
+			@include transform(translateY(-50%));
+			@include transition(all 0.6s $easeInOut);
+
+		}
+
+		&__input {
+
+			&.is-filled,
+			&:focus {
+				~ .form__float__label {
+					top: 0;
+					@include transform(translateY(-100%));
+				}
+			}
+
+		}
+
+	}
+
+
+
 	/* ------------------------------------ */
 	/* ---------- Form Modifiers ---------- */
 	/* ------------------------------------ */
+
 
 
 	// --- Horizontal Presentation of Forms ---

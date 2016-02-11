@@ -12,6 +12,7 @@ FORMS = (function ($) {
 		$('form').radioWrapper();
 		createSelects('.js-select');
 		createCheckbox('checkbox', 'checkbox--selected');
+		floatLabels('.js-label-float', '.js-input');
 	};
 
 	createSelects = function(elem) {
@@ -68,6 +69,26 @@ FORMS = (function ($) {
 			$this.children('input:checkbox:not(#shipping_chk)').change();
 		});
 	}
+
+
+	floatLabels = function(label, input) {
+
+		if ($(label).size() > 0) {
+
+			$(input).each(function() {
+
+				$(this).keyup(function(){
+					$(this).addClass('is-filled');
+					if( $(this).val().length == 0 ) {
+						$(this).removeClass('is-filled');
+					}
+				});
+
+			})
+
+		};
+
+	};
 
 
 	return {

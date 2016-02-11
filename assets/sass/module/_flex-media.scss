@@ -1,111 +1,108 @@
 /*! suit-flex-embed v1.4.0 | MIT License | github.com/suitcss */
 
 /* ==========================================================================
-   Flexible Media
-   ========================================================================== */
+Flexible Media
+========================================================================== */
 
 /**
- * Flexible media embeds
- *
- * For use with media embeds – such as videos, slideshows, or even images –
- * that need to retain a specific aspect ratio but adapt to the width of their
- * containing element.
- *
- * Example HTML:
- *
- * <div class="flex-media flex-media--4by3">
- *     <iframe class="flex-media-item" src="…"></iframe>
- * </div>
- *
- * <div class="flex-media flex-media--4by3">
- *     <img class="flex-media__item" src="…" alt="">
- * </div>
- *
- * <div class="flex-media flex-media--16by9">
- *     [iframe|object|embed]
- * </div>
- *
- * Based on: http://alistapart.com/article/creating-intrinsic-ratios-for-video
- */
+* Flexible media embeds
+*
+* For use with media embeds – such as videos, slideshows, or even images –
+* that need to retain a specific aspect ratio but adapt to the width of their
+* containing element.
+*
+* Example HTML:
+*
+* <div class="flex-media flex-media--4by3">
+*     <iframe class="flex-media-item" src="…"></iframe>
+* </div>
+*
+* <div class="flex-media flex-media--4by3">
+*     <img class="flex-media__item" src="…" alt="">
+* </div>
+*
+* <div class="flex-media flex-media--16by9">
+*     [iframe|object|embed]
+* </div>
+*
+* Based on: http://alistapart.com/article/creating-intrinsic-ratios-for-video
+* e.g. To create a 16:9 ratio, we do the following:
+*      (9 / 16) * 100 = 56.25
+*/
+
+$ratios: (
+	3by1: (3 1),
+	2by1: (2 1),
+	16by9: (16 9),
+	21by9: (21 9),
+	4by3: (4 3),
+	1by1: (1 1)
+);
 
 .flex-media {
-    display: block;
-    overflow: hidden;
-    position: relative;
+
+	display: block;
+	overflow: hidden;
+	position: relative;
+
+	&[data-flex-media="inline"] {
+		display: inline-block;
+	}
+
+    /**
+    * A pseudo-element shunt is used to provide support for `max-height`. The
+    * `max-height` property has no affect when using a percentage-padding to set
+    * the aspect ratio.
+    */
+
+    &:before {
+    	content: "";
+    	display: block;
+    	width: 100%;
+    }
+
+    @each $class, $ratio in $ratios {
+
+        /**
+        * Modifier: #{$class} aspect ratio
+        */
+
+        &--#{$class} {
+        	@include ratio($ratio);
+        }
+
+    }
+
+    /**
+    * Variation using Background Image
+    */
+
+    &--coverimage {
+    	background-position: 50%;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	margin: 0 auto 1em;
+    }
+
+    /**
+    * Descendant: media element
+    *
+    * Utility of the component is improved by providing an explicit descendant
+    * class. However, it will work automatically for iframes, embeds, and objects
+    * to account for times when you cannot modify the attributes for 3rd party
+    * widget code.
+    */
+
+    &__item,
+    iframe &,
+    embed &,
+    object & {
+    	position: absolute;
+    	top: 0;
+    	bottom: 0;
+    	left: 0;
+    	height: 100%;
+    	width: 100%;
+    }
 }
 
-/**
- * A pseudo-element shunt is used to provide support for `max-height`. The
- * `max-height` property has no affect when using a percentage-padding to set
- * the aspect ratio.
- */
-
-.flex-media:before {
-    content: "";
-    display: block;
-    width: 100%;
-}
-
-  /**
-   * Modifier: 3:1 aspect ratio
-   */
-
-  .flex-media--3by1:before {
-      padding-bottom: 33.33333%;
-  }
-
-  /**
-   * Modifier: 2:1 aspect ratio
-   */
-
-  .flex-media--2by1:before {
-      padding-bottom: 50%;
-  }
-
-  /**
-   * Modifier: 16:9 aspect ratio
-   */
-
-  .flex-media--16by9:before {
-      padding-bottom: 56.25%;
-  }
-
-  /**
-   * Modifier: 4:3 aspect ratio
-   */
-
-  .flex-media--4by3:before {
-      padding-bottom: 75%;
-  }
-
-/**
- * Descendant: media element
- *
- * Utility of the component is improved by provide an explicit descendant
- * class. However, it will work automatically for iframes, embeds, and objects
- * to account for times when you cannot modify the attributes for 3rd party
- * widget code.
- */
-
-.flex-media__item,
-.flex-media iframe,
-.flex-media embed,
-.flex-media object {
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-
-/* Variation using Background Image */
-.flex-media--coverimage {
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto 1em;
-  max-height: 600px;
-  max-width: 600px;
-}

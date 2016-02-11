@@ -122,3 +122,30 @@
 
 // Usage:
 // @include calc(width, 90% ,'100% - 190px');
+
+
+
+// Maintain ratio mixin. Great for responsive grids, or videos.
+// https://gist.github.com/brianmcallister/2932463
+//
+// $ratio - Ratio the element needs to maintain.
+//
+// Examples
+//
+//   // A 16:9 ratio would look like this:
+//   .element {
+//     @include ratio(16 9);
+//   }
+
+@mixin ratio($ratio: 1 1) {
+
+    @if length($ratio) < 2 or length($ratio) > 2 {
+        @warn "$ratio must be a list with two values.";
+    }
+
+    $height: (nth($ratio, 2) / nth($ratio, 1)) * 100%;
+
+    &:before {
+        padding-bottom: $height;
+    }
+}

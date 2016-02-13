@@ -1,46 +1,59 @@
 // Notice
-.notification {
+$notification: "notification";
+$dimensions: 40;
+
+.#{$notification} {
+	position: relative;
 	padding: 5px;
 	margin: 20px 0;
 	color: $color--white;
 	@include font-size($base-font-size);
-	text-align: center;
 
 	&__body {
 		display: block;
 		margin: 0;
-		padding: 5px 0;
-		font-weight: bold;
-		text-transform: uppercase;
+		padding: 5px 20px 5px 50px;
+	}
+
+	&__icon {
+		@include _position(absolute, 0, null, 0, 0);
+		height: 100%;
+		width: #{$dimensions}px;
+		@include font-size($dimensions/2, $dimensions);
+		text-align: center;
 	}
 
 	&__close {
-		@include _position(absolute, 5px, 5px, null, null);
-		width: 20px;
-		height: 20px;
+		@include _position(absolute, 2px, 2px, null, null);
+		width: #{$dimensions/2}px;
+		height: #{$dimensions/2}px;
 		overflow: hidden;
 		cursor: pointer;
 		@include backface-visibility(hidden);
+		text-align: center;
 
+		&:before {
+			content: "\2715";
+		}
 	}
 
 
 	$notifications: (
 		success: (
-			color: $color--success,
-			icon: ""
+			bg: $color--success,
+			icon: "\2713"
 		),
 		info: (
-			color: $color--info,
-			icon: ""
+			bg: $color--info,
+			icon: "\2139"
 		),
 		notice: (
-			color: $color--notice,
-			icon: ""
+			bg: $color--notice,
+			icon: "\26A0"
 		),
 		error: (
-			color: $color--error,
-			icon: ""
+			bg: $color--error,
+			icon: "\2715"
 		)
 	);
 
@@ -48,19 +61,25 @@
 	@each $class, $theme in $notifications {
 
 		&--#{$class} {
-			background-color: map-get($theme, color);
+			background-color: map-get($theme, bg);
 
-			&:before {
-				content: map-get($theme, icon);
+			.#{$notification}__icon {
+				background-color: darken(map-get($theme, bg), 15%);
+
+				&:before {
+					content: map-get($theme, icon);
+				}
+
 			}
+
 		}
 
 	}
 
-	//	<div class="notify  notify--growl  notify--success  is-hid">
-	//		<p>Hello there! I am a Notification.</p>
-	//		<span class="notify__close"></span>
-	//	</div>
+	// 	<div class="notification  notification--success|error|info|notice  notification--growl  is-hid  js-notify" data-notify-anim="bounce|scale|slide">
+	// 		<p class="notification__body">Hello there! I am a Notification.</p>
+	// 		<span class="notification__close  js-notify-close"><i class="icon-close"></i></span>
+	// 	</div>
 
 	&--growl {
 		@include _position(fixed, 0, null, null, 20px, 1000);
@@ -69,7 +88,7 @@
 		pointer-events: none;
 		@include transition(0.5s $easeInOut all);
 
-		.notification__body {
+		.#{$notification}__body {
 			padding: 15px 5px;
 			text-transform: none;
 			font-weight: normal;

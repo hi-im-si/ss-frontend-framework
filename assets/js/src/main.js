@@ -102,6 +102,45 @@ window.pxlFuncs = {
 	        'open_which' : 'selected'*/
 	    });
 
+	},
+
+	alerts__ready : function() {
+		$('.js-trigger').on('click', function(e) {
+			e.preventDefault();
+			$('.js-notify').removeClass('is-hid').addClass('is-vis');
+		});
+
+		$('.js-notify-close').on('click', function(e) {
+			e.preventDefault();
+			$('.js-notify').removeClass('is-vis').addClass('is-hid');
+		});
+	},
+
+	dialog__ready : function() {
+
+		$('.js-dialog-trigger').on('click', function(e){
+
+		    e.preventDefault();
+
+		    $.confirm({
+		        'title'     : 'The Dialog Title',
+		        'message'   : 'Are you sure?',
+		        'buttons'   : {
+		            'Yes'   : {
+		                'action': function(){
+		                    alert('yay!')
+		                }
+		            },
+		            'No'    : {
+		                'action': function(){
+
+		                }  // Nothing to do in this case. You can as well omit the action property.
+		            }
+		        }
+		    });
+
+		});
+
 	}
 
 }

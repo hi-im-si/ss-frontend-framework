@@ -1,0 +1,53 @@
+/*========================================================================================
+============================ Tables ======================================================
+==========================================================================================*/
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+
+
+	th,
+	td {
+		padding: 10px;
+		vertical-align: middle;
+		@include font-size($p-size);
+	}
+		th {
+			@include font-size($delta-size);
+		}
+
+}
+
+.table {
+
+	&--bordered {
+
+		border: 1px solid $color--tertiary;
+
+		td {
+			border-top: 1px solid $color--tertiary;
+		}
+
+		th + th,
+		th + td,
+		td + td {
+			border-left: 1px solid $color--tertiary;
+		}
+
+	}
+
+
+	&--striped {
+
+		tbody {
+
+			tr:nth-of-type(odd) {
+				background-color: $color--tertiary;
+			}
+
+		}
+
+	}
+}

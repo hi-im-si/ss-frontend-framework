@@ -7,12 +7,11 @@
 
 // BASE VARIABLES //
 // You only need to change these base values //
-$grid-base-width: 1260;
+$grid-base-width: 1280;
 $grid-column-length: 12;
 $grid-column-gutter: 20;
 
 $grid-mobile-width: 100%;
-$container-gutter: false;
 
 
 
@@ -30,16 +29,12 @@ $container-gutter: false;
 		position: relative;
 		max-width: #{$grid-base-width}px;
 		margin: 0 auto;
+		padding-left: 10px;
+		padding-right: 10px;
 
 		/*---------------------------*/
 		@include mq($max, $mq-mob) {
 		    max-width: $mq-mob;
-
-			@if $container-gutter == true {
-		    	padding-left: #{$grid-column-gutter / 2}px;
-		    	padding-right: #{$grid-column-gutter / 2}px;
-			}
-
 		}
 		/*---------------------------*/
 
@@ -227,7 +222,7 @@ $breakpoint-columns: (
 
 
 // Grid Breakpoint Classes
-.container .col[class*="col"] {
+.col[class*="col"] {
 
 	@each $class, $breakpoint in $max-breakpoints {
 		@each $size, $amount in $breakpoint-columns {
@@ -269,13 +264,10 @@ $breakpoint-columns: (
 	// Ensure columns span full at mobile res while container creates a
 	/*---------------------------*/
 	@include mq($max, $mq-mob) {
-		& {
-			.col[class*="col"] {
-	    		width: $grid-mobile-width;
-	    		@include align-center;
-			}
-
-		}
+		// &.col[class*="col"] {
+	    	width: $grid-mobile-width;
+	    	@include align-center;
+		// }
 	}
 	/*---------------------------*/
 }

@@ -1,6 +1,6 @@
-
-<div class="alert  alert--success  is-alerted">
-	<p class="alert__copy">This is an alert</p>
+<div class="notification  notification--flash  notification--success  is-alerted">
+	<span class="notification__icon"></span>
+	<p class="notification__body">Hello</p>
 </div>
 
 <div class="notification  notification--success  notification--growl  is-hid  js-notify" data-notify-anim="bounce">

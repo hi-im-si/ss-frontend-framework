@@ -6,7 +6,7 @@ $notification: "notification"; // class namespace
 $dimensions: 40;
 
 
-// 	<div class="notification  notification--success|error|info|notice  notification--growl  is-hid  js-notify" data-notify-anim="bounce|scale|slide">
+// 	<div class="notification  notification--success|error|info|notice  notification--growl|flash  is-hid  js-notify" data-notify-anim="bounce|scale|slide">
 // 		<p class="notification__body">Hello there! I am a Notification.</p>
 // 		<span class="notification__close  js-notify-close"><i class="icon-close"></i></span>
 // 	</div>
@@ -41,6 +41,7 @@ $dimensions: 40;
 		cursor: pointer;
 		@include backface-visibility(hidden);
 		text-align: center;
+		pointer-events: auto;
 
 		&:before {
 			content: "\2715";
@@ -103,26 +104,30 @@ $dimensions: 40;
 		margin: 0;
 
 		@include opacity(0);
+		visibility: hidden;
+		@include transform(translateY(-100%));
+		@include transition(0.7s $easeInOut);
 		cursor: default;
-		display: none;
 		pointer-events: none;
-		@include animation(fadeOut, center center, 3.9s, $easeInOut, 0.4s, 1, reverse);
-
 
 		&:after {
 			content: "";
 			@include _position(absolute, null, 0, -10px, 0);
 			width: 0;
 			height: 10px;
-
-			@include animation(runProgress, center center, 3s, $easeInOut, 1s, 1, normal);
+			@include transition(3s 0.5s $easeInOut);
 		}
 
 
 		&.is-alerted {
 
-			display:block;
-			// @include animation(fadeOut, center center, 3.9s, $easeInOut, 0.4s, 1, normal);
+			@include transform(translateY(0%));
+			@include opacity(1);
+			visibility: visible;
+
+			&:after {
+				width: 100%;
+			}
 
 			.lt-ie10 & {
 				@include opacity(1);
@@ -193,17 +198,20 @@ $dimensions: 40;
 
 }
 
-@include keyframe(fadeIn) {
-	0%   { opacity: 0; }
-	100%  { opacity: 1; #{$browser}transform: translateY(0px); }
-}
-@include keyframe(fadeOut) {
-	0%   { opacity: 0; }
-	10%  { opacity: 1; }
-	90%  { opacity: 1; #{$browser}transform: translateY(0px); }
-	99%  { opacity: 0; #{$browser}transform: translateY(-30px); }
-	100% { opacity: 0; }
-}
+// @include keyframe(fadeIn) {
+// 	0%   { opacity: 0; }
+// 	10%  { opacity: 1; }
+// 	90%  { opacity: 1; #{$browser}transform: translateY(0px); }
+// 	99%  { opacity: 0; #{$browser}transform: translateY(-30px); }
+// 	100% { opacity: 0; }
+// }
+// @include keyframe(fadeOut) {
+// 	0%   { opacity: 0; }
+// 	10%  { opacity: 1; }
+// 	90%  { opacity: 1; #{$browser}transform: translateY(0px); }
+// 	99%  { opacity: 0; #{$browser}transform: translateY(-30px); }
+// 	100% { opacity: 0; }
+// }
 
 @include keyframe(runProgress) {
 	0%{ width: 0%; opacity: 0.3; }

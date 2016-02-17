@@ -9,7 +9,7 @@ html {
 
 
 body {
-	font-family: $primaryFont;
+	font-family: $font--primary;
 	@include font-size($base-font-size);
 	color: $color--primary;
 	font-weight: normal;
@@ -20,7 +20,7 @@ body {
 
 p {
 	margin: 0 0 10px;
-	font-family: $secondaryFont;
+	font-family: $font--secondary;
 }
 
 a {
@@ -47,7 +47,7 @@ small {
 %headings {
 	margin: 0 0 10px 0;
 	color: $color--primary;
-	font-family: $primaryFont;
+	font-family: $font--primary;
 	font-weight: normal;
 }
 

@@ -105,13 +105,13 @@ $input-size--lrg:   $gamma-size !default;
 //    $FONT DECLARATIONS
 //------------------------------------//
 
-$primaryFont: "Trebuchet MS", Helvetica, Arial, sans-serif;
-$secondaryFont: Georgia, 'Times New Roman', serif;
+$font--primary: "Trebuchet MS", Helvetica, Arial, sans-serif;
+$font--secondary: Georgia, 'Times New Roman', serif;
 
 $fonticon: 'customicon';
 
 
-$baseFont: normal #{$base-font-size}px / #{$base-line-height}px $primaryFont;
+$baseFont: normal #{$base-font-size}px / #{$base-line-height}px $font--primary;
 
 
 // Weights

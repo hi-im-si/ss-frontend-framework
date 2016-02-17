@@ -175,7 +175,7 @@ $properties: (
  		color: 						$color--white,
  		background-color-active: 	lighten(rgba($color--primary, 0.8), 25%),
  		color-active: 				$color--white,
- 		font-family: 				$primaryFont,
+ 		font-family: 				$font--primary,
  		border: 					$color--primary
  	),
 
@@ -184,7 +184,7 @@ $properties: (
  		color: 						$color--primary,
  		background-color-active: 	darken(rgba($color--secondary, 0.8), 5%),
  		color-active: 				$color--primary,
- 		font-family: 				$secondaryFont,
+ 		font-family: 				$font--secondary,
  		border: 					$color--primary
  	),
 
@@ -193,7 +193,7 @@ $properties: (
  		color: 						$color--primary,
  		background-color-active: 	$color--primary,
  		color-active: 				$color--tertiary,
- 		font-family: 				$primaryFont,
+ 		font-family: 				$font--primary,
  		border: 					$color--tertiary
  	),
 
@@ -203,7 +203,7 @@ $properties: (
  		color: 						$color--white,
  		background-color-active: 	darken($color--error, 10%),
  		color-active: 				$color--white,
- 		font-family: 				$primaryFont,
+ 		font-family: 				$font--primary,
  		border: 					$color--error
  	),
 
@@ -212,7 +212,7 @@ $properties: (
  		color: 						$color--white,
  		background-color-active: 	darken($color--success, 10%),
  		color-active: 				$color--white,
- 		font-family: 				$primaryFont,
+ 		font-family: 				$font--primary,
  		border: 					$color--success
  	),
 
@@ -221,7 +221,7 @@ $properties: (
  		color: 						$color--white,
  		background-color-active: 	darken($color--info, 10%),
  		color-active: 				$color--white,
- 		font-family: 				$primaryFont,
+ 		font-family: 				$font--primary,
  		border: 					$color--info
  	),
 
@@ -230,7 +230,7 @@ $properties: (
  		color: 						$color--white,
  		background-color-active: 	darken($color--notice, 10%),
  		color-active: 				$color--white,
- 		font-family: 				$primaryFont,
+ 		font-family: 				$font--primary,
  		border: 					$color--notice
  	)
 

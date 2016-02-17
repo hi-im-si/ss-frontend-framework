@@ -10,7 +10,7 @@
 	$border-color: $color--primary,
 	$bg-color: $color--secondary,
 	$text-color: $color--primary,
-	$font: $primaryFont) {
+	$font: $font--primary) {
 
 	position: relative;
 	z-index: 1;
@@ -202,7 +202,7 @@ legend span {
 
 
 	&__smallcopy {
-		font-family: $secondaryFont;
+		font-family: $font--secondary;
 		@include font-size($micro-size);
 		@include inline-block(top);
 		margin-right: 20px;
@@ -350,7 +350,7 @@ legend span {
 	}
 
 		&__option {
-			@include input-styles(10px 25px 10px 10px, $color--primary, $color--secondary, $color--primary, $primaryFont);
+			@include input-styles(10px 25px 10px 10px, $color--primary, $color--secondary, $color--primary, $font--primary);
 			vertical-align: top;
 			@include word-break;
 			text-align: left;

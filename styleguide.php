@@ -1,6 +1,7 @@
-<div class="notification  notification--flash  notification--success  is-alerted">
+<div class="notification  notification--flash  notification--success  js-notify-flash">
 	<span class="notification__icon"></span>
 	<p class="notification__body">Hello</p>
+	<span class="notification__close  js-notify-flash-close"></span>
 </div>
 
 <div class="notification  notification--success  notification--growl  is-hid  js-notify" data-notify-anim="bounce">

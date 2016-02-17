@@ -322,6 +322,6 @@ $properties: (
 	padding: 5px;
 	text-align: center;
 
-	> i { @include font-size($milli-size,$milli-size); }
+	> i { @include font-size($size--milli,$size--milli); }
 }
 

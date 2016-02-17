@@ -46,14 +46,14 @@
 				margin: 3px 0;
 				padding-left: 20px;
 				font-family: $font--primary;
-				@include font-size($milli-size);
+				@include font-size($size--milli);
 
 				&:before {
 					content: "\2022";
 					position: absolute;
 					left: 0;
 					top: 4px;
-					@include font-size($micro-size,$micro-size);
+					@include font-size($size--micro,$size--micro);
 					color:$color--primary;
 				}
 			}

@@ -119,7 +119,7 @@ $coloring:                true!default;
 		&:after {
 			height: $tooltipHeight;
 			padding: $tooltipHeight/2 $tooltipHeight/2 0 $tooltipHeight/2;
-			@include font-size($zeta-size);
+			@include font-size($size--zeta);
 			line-height: $tooltipHeight/2;
 			content: attr(data-tooltip);
 			white-space: nowrap;

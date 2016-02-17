@@ -36,7 +36,7 @@ a {
 
 
 small {
-	@include font-size($micro-size);
+	@include font-size($size--micro);
 	display: inline-block;
 }
 
@@ -55,64 +55,64 @@ small {
 h1,
 .h_alpha {
 	@extend %headings;
-	@include font-size($alpha-size);
+	@include font-size($size--alpha);
 }
 
 h2,
 .h_beta {
 	@extend %headings;
-	@include font-size($beta-size);
+	@include font-size($size--beta);
 }
 h3,
 .h_gamma {
 	@extend %headings;
-	@include font-size($gamma-size);
+	@include font-size($size--gamma);
 }
 
 h4,
 .h_delta {
 	@extend %headings;
-	@include font-size($delta-size);
+	@include font-size($size--delta);
 }
 
 h5,
 .h_epsilon {
 	@extend %headings;
-	@include font-size($epsilon-size);
+	@include font-size($size--epsilon);
 }
 
 h6,
 .h_zeta {
 	@extend %headings;
-	@include font-size($zeta-size);
+	@include font-size($size--zeta);
 }
 
 
 // Mega Headlines
 .h_giga {
-	@include font-size($giga-size);
+	@include font-size($size--giga);
 }
 .h_mega {
-	@include font-size($mega-size);
+	@include font-size($size--mega);
 }
 .h_kilo {
-	@include font-size($kilo-size);
+	@include font-size($size--kilo);
 }
 .h_hecto {
-	@include font-size($hecto-size);
+	@include font-size($size--hecto);
 }
 
 
 // Micro Headlines
 
 .h_centi {
-	@include font-size($centi-size);
+	@include font-size($size--centi);
 }
 .h_milli {
-	@include font-size($milli-size);
+	@include font-size($size--milli);
 }
 .h_micro {
-	@include font-size($micro-size);
+	@include font-size($size--micro);
 }
 
 

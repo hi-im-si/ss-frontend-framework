@@ -66,39 +66,39 @@ $base-ui-color:     	#333 !default;
 //------------------------------------//
 
 // Headings
-$alpha-size:		50	!default; // .h_alpha
-$beta-size:			30	!default; // .h_beta
-$gamma-size:		25	!default; // .h_gamma
-$delta-size:		20	!default; // .h_delta
-$epsilon-size:		18	!default; // .h_epsilon
-$zeta-size:			16	!default; // .h_zeta
+$size--alpha:		50	!default; // .h_alpha
+$size--beta:		30	!default; // .h_beta
+$size--gamma:		25	!default; // .h_gamma
+$size--delta:		20	!default; // .h_delta
+$size--epsilon:		18	!default; // .h_epsilon
+$size--zeta:		16	!default; // .h_zeta
 
 
-$giga-size:			150	!default; // .h_giga
-$mega-size:			120	!default; // .h_mega
-$kilo-size:			90	!default; // .h_kilo
-$hecto-size:		70	!default; // .h_hecto
+$size--giga:		150	!default; // .h_giga
+$size--mega:		120	!default; // .h_mega
+$size--kilo:		90	!default; // .h_kilo
+$size--hecto:		70	!default; // .h_hecto
 
 
-$centi-size:		14 	!default;
-$milli-size: 		12 	!default;
-$micro-size: 		10 	!default;
+$size--centi:		14 	!default;
+$size--milli: 		12 	!default;
+$size--micro: 		10 	!default;
 
 $nav-size:         	15 	!default;
 
 $p-size:            $base-font-size !default;
 
-$btn-size--small:	$milli-size !default;
-$btn-size--medium:	$zeta-size !default;
-$btn-size--large:	$delta-size !default;
-$btn-size--huge:	$beta-size !default;
+$btn-size--small:	$size--milli !default;
+$btn-size--medium:	$size--zeta !default;
+$btn-size--large:	$size--delta !default;
+$btn-size--huge:	$size--beta !default;
 
 
-$label-size:		$centi-size !default;
-$label-size--lrg:	$zeta-size !default;
+$label-size:		$size--centi !default;
+$label-size--lrg:	$size--zeta !default;
 
-$input-size:        $centi-size !default;
-$input-size--lrg:   $gamma-size !default;
+$input-size:        $size--centi !default;
+$input-size--lrg:   $size--gamma !default;
 
 
 //------------------------------------//

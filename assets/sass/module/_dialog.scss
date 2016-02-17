@@ -16,7 +16,7 @@
 	}
 
 		&__ttl {
-			@include font-size($delta-size + 5);
+			@include font-size($size--delta + 5);
 			font-weight: bold;
 		}
 

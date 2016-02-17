@@ -85,7 +85,7 @@ textarea {
 label,
 legend {
 	@include inline-block(middle);
-	@include font-size($zeta-size);
+	@include font-size($size--zeta);
 	text-align: left;
 }
 
@@ -203,7 +203,7 @@ legend span {
 
 	&__smallcopy {
 		font-family: $font--secondary;
-		@include font-size($micro-size);
+		@include font-size($size--micro);
 		@include inline-block(top);
 		margin-right: 20px;
 	}
@@ -304,7 +304,7 @@ legend span {
 		@include inline-block;
 		text-indent: -999em;
 		overflow: hidden;
-		@include font-size($btn-size--medium,$alpha-size+2);
+		@include font-size($btn-size--medium,$size--alpha+2);
 		padding-right:4.5em;
 		padding-left: 4.5em;
 

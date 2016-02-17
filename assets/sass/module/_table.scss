@@ -15,7 +15,7 @@ table {
 		@include font-size($p-size);
 	}
 		th {
-			@include font-size($delta-size);
+			@include font-size($size--delta);
 		}
 
 }

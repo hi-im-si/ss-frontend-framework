@@ -105,6 +105,27 @@ window.pxlFuncs = {
 	},
 
 	alerts__ready : function() {
+
+		var el = '.js-notify-flash',
+			trigger = 'is-alerted',
+			close = '.js-notify-flash-close';
+
+		if ( $(el).length !== 0 ) {
+			var $msg = $(el);
+			$msg.addClass(trigger);
+
+			setTimeout(function() {
+				$msg.removeClass(trigger);
+			}, 3500);
+		}
+
+		$(document).on('click', close, function() {
+			$(el).removeClass(trigger);
+		});
+
+	},
+
+	notifications__ready : function() {
 		$('.js-trigger').on('click', function(e) {
 			e.preventDefault();
 			$('.js-notify').removeClass('is-hid').addClass('is-vis');

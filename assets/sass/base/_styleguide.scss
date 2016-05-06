@@ -1,65 +1,149 @@
-.styleguide {
-	padding: 35px 0;
-	@include clearfix;
+@if $styleguide == true {
+    .styleguide {
+        padding: 35px 0;
+        @include clearfix;
 
-	&__titles {
-		text-align: center;
-		h1,h2,h3,h4,h5,h6 { color: $color--black; }
-	}
+        &__titles {
+            text-align: center;
+            h1,h2,h3,h4,h5,h6 { color: $color--black; }
+        }
 
-	.bg-alt { background-color: $color--grey; }
+        .bg-alt { background-color: darken($color--grey, 10%); }
 
-	&__heading {
-		font-weight: $bold;
-		text-transform: uppercase;
-		margin-bottom: 40px;
-		h1,h2,h3,h4,h5,h6 { @include font-size(25); }
+        &__heading {
+            font-weight: $bold;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            h1,h2,h3,h4,h5,h6 { @include font-size(25); }
 
-		&--sub {
-			h1,h2,h3,h4,h5,h6 { @include font-size(18); }
-		}
-	}
+            &--sub {
+                h1,h2,h3,h4,h5,h6 { @include font-size(18); }
+            }
+        }
 
-	&--background {
-		background-color: $color--grey;
-	}
+        &--background {
+            background-color: darken($color--grey, 10%);
+        }
 
-	&__columns {
-		text-align: center;
-		.col {
-			background-color: $color--tertiary;
+        &__columns {
+            text-align: center;
+            .col {
+                background-color: $color--secondary;
+                color: $color--quarternary;
 
-			&.styleguide__columns--pull {
-				background-color: rgba($color--error, 0.5);
-			}
+                &.styleguide__columns--pull {
+                    background-color: rgba($color--error, 0.5);
+                }
 
-			> p {
-				margin: 10px 0;
-				padding: 5px 0;
-			}
-		}
-	}
+                > p {
+                    margin: 10px 0;
+                    padding: 5px 0;
+                }
+            }
+        }
 
-	&__block {
-		position: relative;
-		width: 25%;
-		padding-bottom: 25%;
-		@include inline-block();
-		border: 1px solid $color--tertiary;
+        &__block {
+            position: relative;
+            width: 25%;
+            padding-bottom: 25%;
+            @include inline-block();
+            border-top: 1px solid $color--primary;
+            border-bottom: 1px solid $color--primary;
+            border-left: 1px solid $color--primary;
 
-		&--primary { background-color: $color--primary; }
-		&--secondary { background-color: $color--secondary; }
-		&--tertiary { background-color: $color--tertiary; }
+            &:last-child { border-right: 1px solid $color--primary; }
 
-		> p {
-			@include _position(absolute, auto, 0, 0, 0);
-			width: 100%;
-			padding: 10px;
-			margin: 0;
-			background: darken(rgba($color--white, 0.75), 10%);
-			color: $color--black;
-			font-size: 12px;
-			text-align: center;
-		}
-	}
+            &--primary { background-color: $color--primary; }
+            &--secondary { background-color: $color--secondary; }
+            &--tertiary { background-color: $color--tertiary; }
+            &--quarternary { background-color: $color--quarternary; }
+
+            > p {
+                @include _position(absolute, auto, 0, 0, 0);
+                width: 100%;
+                padding: 10px;
+                margin: 0;
+                background: darken(rgba($color--white, 0.75), 10%);
+                color: $color--black;
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+
+        &__code {
+            position: relative;
+            margin: 0 5px 20px;
+            border-radius: 10px;
+            @include clearfix;
+
+            overflow: hidden;
+            max-height: 35px;
+            @include transition(0.5s $linear);
+
+            code[class*=language-],
+            pre[class*=language-] {
+                background-color: transparent;
+                // white-space: pre-line;
+            }
+
+            &.is-revealed {
+                background-color: $color--white;
+                max-height: 600px;
+            }
+
+
+            &__trigger {
+                @include _position(absolute, 5px, 0, null, null);
+                display: block;
+                height: 20px;
+                margin: 10px;
+                padding: 0 5px;
+                color: darken($color--white, 25%);
+                @include font-size($size--centi, $size--delta);
+                cursor: pointer;
+                text-shadow: 0px 0px 1px rgba($color--white, 1);
+
+                &:before,
+                &:after {
+                    @include inline-block(middle);
+                    margin: 0 2px;
+                }
+
+                &:before {
+                    @include fonticon;
+                    content:"d";
+                }
+                &:after {
+                    content:"view code";
+
+                    .is-revealed & {
+                        content:"hide code";
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    .code {
+        display: block;
+        padding: 10px;
+        @include font-size($base-font-size);
+        text-align: center;
+
+        .row & { margin-bottom: 0; }
+
+        &__block {
+            margin: 10px 0;
+        }
+
+        &__tags {
+            display: block;
+        }
+
+        > pre {
+            white-space: nowrap;
+        }
+    }
 }

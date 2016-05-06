@@ -115,10 +115,10 @@ $baseFont: normal #{$base-font-size}px / #{$base-line-height}px $font--primary;
 
 
 // Weights
-$light: 200;
-$reg: 400;
-$bold: 600;
-$bolder: 700;
+$light:     200;
+$reg:       400;
+$bold:      600;
+$bolder:    700;
 
 
 
@@ -129,16 +129,17 @@ $bolder: 700;
 // generic colours
 $color--black:		#000;
 $color--white:		#fff;
-$color--grey:		#ccc;
+$color--grey:       #E8E8E8;
+$color--grey--dark: #3A3F4E;
 
 $color--blue:       #009EE3;
 
 
 // CORE HIERARCHICAL COLOURSET
-$color--primary: 		$color--black; // black
-$color--secondary: 		$color--white; // white
-$color--tertiary: 		$color--grey;  // grey
-$color--quarternary: 	$color--blue;  // blue
+$color--primary:        $color--grey--dark;  // dark grey
+$color--secondary:      $color--blue;        // blue
+$color--tertiary:       $color--grey;        // grey
+$color--quarternary:    $color--white;       // white
 
 
 //mood

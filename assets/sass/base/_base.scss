@@ -526,8 +526,14 @@ img.scale-with-grid {
 }
 
 [class^="icon-"],
-[class*=" icon-"] {
+[class*="icon-"] {
+    position: relative;
     display: inline-block;
-    vertical-align: middle;
     fill: currentColor;
+
+    &:before {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: inherit;
+    }
 }

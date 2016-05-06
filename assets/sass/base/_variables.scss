@@ -131,14 +131,14 @@ $color--black:		#000;
 $color--white:		#fff;
 $color--grey:		#ccc;
 
-$blue:				#1a5a9e;
+$color--blue:       #009EE3;
 
 
 // CORE HIERARCHICAL COLOURSET
 $color--primary: 		$color--black; // black
 $color--secondary: 		$color--white; // white
 $color--tertiary: 		$color--grey;  // grey
-$color--quarternary: 	$blue;  // blue
+$color--quarternary: 	$color--blue;  // blue
 
 
 //mood

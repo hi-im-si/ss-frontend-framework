@@ -27,17 +27,19 @@
 
 		<script src="https://use.typekit.net/igu4pcb.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<!-- // <script src="https://file.myfontastic.com/xpt7B33jagNPhrWhAKTqgg/icons.js"></script> -->
+
 		<link href="https://file.myfontastic.com/xpt7B33jagNPhrWhAKTqgg/icons.css" rel="stylesheet">
 
 		<link rel="stylesheet" href="assets/css/main.css">
 
-		<? include 'modernizr.php'; ?>
-
 		<script>
-		Modernizr.load([{load:"timeout=500!//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js",complete:function(){Modernizr.load(window.jQuery?[{load:'assets/js/main.min.js',complete:function(){window.init()}}]:[{load:"timeout=120000!assets/js/vendor/jquery-1.11.3.min.js",complete:function(){Modernizr.load([{load:'assets/js/main.min.js',complete:function(){window.init()}}])}}])}}]);
+		<?= file_get_contents("assets/js/vendor/modernizr.min.js"); ?>
 
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-XXXXXXX-X','auto');
+		<?= file_get_contents("assets/js/vendor/lazyload.min.js"); ?>
+
+		LazyLoad.js(['//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js','/kickstarter/assets/js/main.min.js'],function(){window.init()});
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-XXXXXXX-X','auto');
 		</script>
 
 	</head>

@@ -110,7 +110,7 @@
 	@import "base/debugmode";
 
 
-@if $styleguide == true {
+
 //============================
 //	STYLEGUIDE
 //	Styleguide specific styles --- NO relevance to core styles --- just to make styleguide presentable
@@ -118,5 +118,3 @@
 //  $template:  false;
 //
 	@import "base/styleguide";
-
-}

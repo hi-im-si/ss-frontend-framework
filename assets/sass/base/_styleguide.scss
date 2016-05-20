@@ -1,4 +1,9 @@
 @if $styleguide == true {
+
+	body {
+		background-color: $color--tertiary;
+	}
+
     .styleguide {
         padding: 35px 0;
         @include clearfix;
@@ -146,4 +151,44 @@
             white-space: nowrap;
         }
     }
+
+
+    $actions: (
+
+    	success: (
+    		icon: "\2713"
+    	),
+
+    	info: (
+    		icon: "\2139"
+    	),
+
+    	help: (
+    		icon: "\26A0"
+    	),
+
+    	error: (
+    		icon: "\2715"
+    	),
+
+    	more: (
+    		icon: "\fe19"
+    	)
+
+    );
+
+
+    // Alert Variations
+    @each $class, $theme in $actions {
+
+    	.icon-#{$class} {
+
+			&:before {
+				content: map-get($theme, icon);
+			}
+
+    	}
+
+    }
+
 }

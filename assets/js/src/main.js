@@ -125,6 +125,15 @@ window.pxlFuncs = {
 
 	},
 
+	reveal__ready : function() {
+
+	    $('.js-reveal-trigger').on('click', function(e) {
+	        e.preventDefault();
+	        $(this).parents('.js-reveal').toggleClass('is-revealed');
+	    });
+
+	},
+
 	notifications__ready : function() {
 		$('.js-trigger').on('click', function(e) {
 			e.preventDefault();

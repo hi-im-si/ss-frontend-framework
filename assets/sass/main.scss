@@ -48,13 +48,13 @@
 //  DRY ( [D]ont [R]epeat [Y]ourself )
 //
 
-	@import "module/main";
 	@import "module/grid";
 	@import "module/nav";
 	@import "module/forms";
   	@import "module/list";
   	@import "module/table";
 	@import "module/buttons";
+    @import "module/dropdown";
 	@import "module/tooltip";
 	@import "module/notification";
 	@import "module/dialog";

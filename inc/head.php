@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9]>         <html class="no-js lt-ie10" lang="en"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 	<head>
@@ -7,7 +6,7 @@
 
 		<?/* Prefetch DNS for external assets (Twitter widgets, Maps etc). */?>
 		<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    	<link rel="dns-prefetch" href="//www.google-analytics.com">
+    	<link rel="dns-prefetch" href="https://www.google-analytics.com">
 
 		<?/* Prerender pages for browser preloading */?>
 		<?/*<link rel="prerender" href="/link/to/another/page" />*/?>
@@ -24,11 +23,6 @@
 		<link rel="canonical" href="" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-		<script src="https://use.typekit.net/igu4pcb.js"></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-		<link href="https://file.myfontastic.com/xpt7B33jagNPhrWhAKTqgg/icons.css" rel="stylesheet">
 
 		<link rel="stylesheet" href="assets/css/main.css">
 

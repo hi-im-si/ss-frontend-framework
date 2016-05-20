@@ -44,10 +44,10 @@ $base-font-size:	16 	!default;
 $base-line-height:	$base-font-size * 1.25 !default;
 
 // Base font-family.
-$base-font-family:  	sans-serif!default;
+$base-font-family:  sans-serif!default;
 
 // Default colour for objects’ borders etc.
-$base-ui-color:     	#333 !default;
+$base-ui-color:     #333 !default;
 
 
 //------------------------------------//
@@ -94,20 +94,20 @@ $input-size--lrg:   $size--gamma !default;
 //    $FONT DECLARATIONS
 //------------------------------------//
 
-$font--primary: "Trebuchet MS", Helvetica, Arial, sans-serif;
+$font--primary: 	"Trebuchet MS", Helvetica, Arial, sans-serif;
 $font--secondary: Georgia, 'Times New Roman', serif;
 
-$fonticon: 'customicon';
+$fonticon: 			"customicon";
 
 
 $baseFont: normal #{$base-font-size}px / #{$base-line-height}px $font--primary;
 
 
 // Weights
-$light:     200;
-$reg:       400;
-$bold:      600;
-$bolder:    700;
+$light:     		200;
+$reg:       		400;
+$bold:      		600;
+$bolder:    		700;
 
 
 
@@ -150,18 +150,18 @@ $color--dribbble: 	#ea4c89;
 // =============== Base Media Query Breakpoints ================
 // =============================================================
 
-$mq-mob: 480px!default;
-$mq-mob--sml: 320px!default;
-$mq-mob--lrg: 640px!default;
+$mq-mob: 			480px!default;
+$mq-mob--sml: 		320px!default;
+$mq-mob--lrg: 		640px!default;
 
 
-$mq-tab: 768px!default;
-$mq-tab--sml: 765px!default;
-$mq-tab--lrg: 820px!default;
+$mq-tab: 			768px!default;
+$mq-tab--sml: 		765px!default;
+$mq-tab--lrg: 		820px!default;
 
 
-$mq-desk: 960px!default;
-$mq-desk--lrg: 1140px!default;
+$mq-desk: 			960px!default;
+$mq-desk--lrg: 		1140px!default;
 
 
 // =============================================================

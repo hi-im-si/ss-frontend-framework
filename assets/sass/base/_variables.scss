@@ -10,20 +10,9 @@
 $debug-mode:        false;
 
 
- //* Do you want all elements to adopt `box-sizing:border-box;` as per
- //* paulirish.com/2012/box-sizing-border-box-ftw ?
-
-$global-border-box: true;
-
-
-
-//* Font rendering and optimisation
-
-$global-font-opt: true;
-
 
 //* Show/Hide Styles for Styleguide/Component Library
-$styleguide: true;
+$styleguide: 		true;
 
 // =============================================================
 // ====================== Site Source Path =====================

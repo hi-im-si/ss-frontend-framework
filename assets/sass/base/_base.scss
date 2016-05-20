@@ -490,46 +490,43 @@ img.scale-with-grid {
 /* #Site wide Box-Sizing
 ================================================== */
 
-
-@if $global-border-box == true{
-    /**
-    * Let’s make the box model all nice, shall we...?
-    */
-    *{
-        &,
-        &:before,
-        &:after{
-            @include box-sizing(border-box);
-        }
+/**
+* Let’s make the box model all nice, shall we...?
+*/
+* {
+    &,
+    &:before,
+    &:after{
+        @include box-sizing(border-box);
     }
 }
+
 
 
 /* #Global Font Optimisation
 ================================================== */
 
-
-@if $global-font-opt == true{
-    /**
-    * Let’s make those fonts render nicely in good browsers...?
-    */
-    *{
-        &,
-        &:before,
-        &:after{
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-      }
-  }
+/**
+* Let’s make those fonts render nicely in good browsers...?
+*/
+* {
+	&,
+	&:before,
+	&:after {
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
 }
+
 
 [class^="icon-"],
 [class*="icon-"] {
     position: relative;
     display: inline-block;
     fill: currentColor;
+    font-style: normal;
 
     &:before {
         display: inline-block;

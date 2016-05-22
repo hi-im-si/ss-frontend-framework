@@ -2,52 +2,103 @@
 ============================ Tables ======================================================
 ==========================================================================================*/
 
-table {
-	width: 100%;
-	border-collapse: collapse;
-	text-align: left;
+table,
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
 
 
-	th,
-	td {
-		padding: 10px;
-		vertical-align: middle;
-		@include font-size($p-size);
-	}
-		th {
-			@include font-size($size--delta);
-		}
+    th,
+    td,
+    .table__cell {
+        padding: 10px;
+        vertical-align: middle;
+        @include font-size($p-size);
+    }
+        th,
+        .table__cell--head {
+            @include font-size($size--delta);
+        }
 
 }
 
 .table {
 
-	&--bordered {
+    display: table;
 
-		border: 1px solid $color--tertiary;
-
-		td {
-			border-top: 1px solid $color--tertiary;
-		}
-
-		th + th,
-		th + td,
-		td + td {
-			border-left: 1px solid $color--tertiary;
-		}
-
-	}
+    &__row {
+        display: table-row;
+    }
+    &__cell {
+        display: table-cell;
+    }
 
 
-	&--striped {
 
-		tbody {
+    &__reveal {
 
-			tr:nth-of-type(odd) {
-				background-color: $color--tertiary;
-			}
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        margin: 10px;
+        background: #3A3F4E;
 
-		}
+    }
 
-	}
+    /* Table Modifiers */
+
+    &--fixed {
+        table-layout: fixed;
+    }
+
+    &--bordered {
+
+        border: 1px solid $color--tertiary;
+
+        td,
+        .table__cell {
+            border-top: 1px solid $color--tertiary;
+        }
+
+        &--grid {
+
+            th + th,
+            th + td,
+            td + td,
+            .table__cell--head + .table__cell--head,
+            .table__cell--head + .table__cell,
+            .table__cell + .table__cell {
+                border-left: 1px solid $color--tertiary;
+            }
+
+        }
+
+
+    }
+
+    &--striped {
+
+		th,
+    	.table__head {
+			background-color: $color--primary;
+			color: $color--tertiary;
+    	}
+
+        .table__row:nth-of-type(odd),
+        tr:not(:nth-of-type(odd)) {
+
+                background-color: lighten($color--tertiary, 7%);
+
+        }
+
+        &--reset {
+            .table__row:nth-of-type(odd),
+            tr:nth-of-type(odd) {
+                background-color: transparent;
+            }
+        }
+
+    }
+
 }

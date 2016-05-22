@@ -24,16 +24,18 @@ themetwo (
 
 @mixin set-color($type, $themes: $themes) {
 
+
     @each $theme in $themes {
-        $name: nth($theme, 1);
+        $name: nth($theme, 1); // alpha, beta
 
-        @each $colours in nth($theme, 2) {
 
-            @if nth($colours, 1) == $type {
+        @each $colours in nth($theme, 2) { // primary #000, secondary #fff ...
 
-                .theme-#{$name} & {
+            @if nth($colours, 1) == $type { // primary, secondary ...
 
-                    $theme-color: nth($colours, 2) !global;
+                .theme--#{$name} & {
+
+                    $theme-color: nth($colours, 2) !global; // #000
                     @content;
 
                 }

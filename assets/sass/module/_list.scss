@@ -2,64 +2,64 @@
 ============================ Generic Lists ===============================================
 ==========================================================================================*/
 
-	ul, ol { margin-bottom: 20px; }
-	ul { list-style: none outside; }
-	ol { list-style: decimal; }
+    ul, ol { margin: 0; padding: 0; }
+    ul { list-style: none outside; }
+    ol { list-style: decimal; }
 
-	li { list-style: inherit; }
-
-
-	dl {margin-bottom: 10px; line-height: 1;}
-	dt,dd { @include inline-block(top); }
-	dt {font-weight: $reg;}
-	dd { padding: 0 0 0 40px; margin: 0; }
+    li { list-style: inherit; }
 
 
-	.list {
-
-		margin: 0 0 10px 20px;
-		padding: 0;
-
-		li {
-			position: relative;
-			display: block;
-			margin: 3px 0;
-			display: list-item;
-		}
-
-		&--square {
-			list-style: square outside;
-		}
-		&--circle {
-			list-style: circle outside;
-		}
-		&--disc {
-			list-style: disc outside;
-		}
-		&--counter {
-			list-style: decimal outside;
-		}
-
-		&--bullet {
-
-			margin-left: 0;
-
-			li {
-
-				padding-left: 20px;
-
-				&:before {
-					content: "\2022";
-					position: absolute;
-					left: 0;
-					@include font-size($size--delta,$size--delta);
-					color:$color--primary;
-				}
-			}
-		}
-		&--reset {
-			list-style: none outside none;
-		}
+    dl { margin-bottom: 10px; line-height: 1; }
+    dt,dd { @include inline-block(top); }
+    dt { font-weight: $reg; }
+    dd { padding: 0 0 0 40px; margin: 0; }
 
 
-	}
+    .list {
+
+        margin: 0 0 10px 20px;
+        padding: 0;
+
+        li {
+            position: relative;
+            display: block;
+            margin: 3px 0;
+            display: list-item;
+        }
+
+        &--square {
+            list-style: square outside;
+        }
+        &--circle {
+            list-style: circle outside;
+        }
+        &--disc {
+            list-style: disc outside;
+        }
+        &--counter {
+            list-style: decimal outside;
+        }
+
+        &--bullet {
+
+            margin-left: 0;
+
+            li {
+
+                padding-left: 20px;
+
+                &:before {
+                    content: "\2022";
+                    position: absolute;
+                    left: 0;
+                    @include font-size($size--delta,$size--delta);
+                    color: $color--primary;
+                }
+            }
+        }
+        &--reset {
+            list-style: none outside none;
+        }
+
+
+    }

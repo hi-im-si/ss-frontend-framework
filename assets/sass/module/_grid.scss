@@ -107,13 +107,19 @@ $grid-mobile-width: 100%;
 			}
 		}
 
-		// OFFSET MODIFIER CLASSES e.g. col--offset-1   col--offset-2   col--offset-3 //
-			// The OFFSET classes allow you to push content via margin in place of a column //
-		@for $i from 1 to $grid-column-length {
-			&--offset-#{$i}{
-				margin-left: $column-width * $i + $gutter-margin;
-			}
-		}
+
+        // OFFSET MODIFIER CLASSES e.g. col--offset-1   col--offset-2   col--offset-3 //
+            // The OFFSET classes allow you to push content via margin in place of a column //
+        @for $i from 1 to $grid-column-length {
+            &--offset-#{$i}{
+                margin-left: $column-width * $i + $gutter-margin;
+
+                &--reverse {
+                    margin-left: auto;
+                    margin-right: $column-width * $i + $gutter-margin;
+                }
+            }
+        }
 
 
 

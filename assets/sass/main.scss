@@ -25,10 +25,10 @@
 //	all base files to reset and get the site started
 //
 
-	@import "base/variables";
-	@import "base/mixins";
-	@import "base/base";
-	@import "base/typography";
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/base';
+@import 'base/typography';
 
 
 
@@ -39,31 +39,38 @@
 //	more modular way.
 //
 
-	@import "layout/layout";
+@import 'layouts/layout';
+@import 'layouts/grid';
+
 
 
 //============================
-//	Modules
+//	Objects
+//
+
+@import 'objects/flex-media';
+@import 'objects/vertical-align';
+
+
+//============================
+//	Components
 //	this will be the core styles for the site. this should be as modular as possible
 //  DRY ( [D]ont [R]epeat [Y]ourself )
 //
 
-	@import "module/grid";
-	@import "module/nav";
-	@import "module/forms";
-  	@import "module/list";
-  	@import "module/table";
-	@import "module/buttons";
-    @import "module/dropdown";
-	@import "module/tooltip";
-	@import "module/notification";
-	@import "module/dialog";
-	@import "module/accordion";
-	@import "module/flex-media";
-	@import "module/vertical-align";
-	@import "module/modal";
-    @import "module/panels";
-    @import "module/lazyload";
+
+@import 'components/nav';
+@import 'components/form';
+@import 'components/list';
+@import 'components/table';
+@import 'components/button';
+@import 'components/dropdown';
+@import 'components/tooltip';
+@import 'components/notification';
+@import 'components/dialog';
+@import 'components/accordion';
+@import 'components/modal';
+@import 'components/lazyload';
 
 
 //============================
@@ -71,7 +78,7 @@
 //	this will be some core colour themes to allow for modular theming.
 //
 
-	// @import "theme/theme";
+// @import 'themes/theme';
 
 
 
@@ -80,7 +87,7 @@
 //	utilities classes in accordance with DRY mentality. Eliminates the need to create specific classes to perform simple tasks
 //
 
-	@import "utility/utilities";
+@import 'utilities/utility';
 
 
 
@@ -89,7 +96,7 @@
 //	Print Style sheet
 //
 
-	//@import "module/_print";
+//@import 'modules/_print';
 
 
 //============================
@@ -97,7 +104,7 @@
 //	CSS files for any external libraries like fancybox etc.
 //
 
-	@import "lib/magnificpopup";
+@import 'libs/magnificpopup';
 
 
 
@@ -107,7 +114,7 @@
 //	This can be enabled/disabled in _variables.scss
 //
 
-	@import "base/debugmode";
+@import 'base/debugmode';
 
 
 
@@ -117,4 +124,4 @@
 //  You can switch this off in the base/variables.scss by doing:
 //  $template:  false;
 //
-	@import "base/styleguide";
+@import 'base/styleguide';

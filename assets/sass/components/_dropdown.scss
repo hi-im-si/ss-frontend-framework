@@ -1,11 +1,9 @@
 
-.dropdown {
+.c-dropdown {
 
 	position: relative;
 
-	&--right {
-		text-align: right;
-	}
+	&--right { text-align: right; }
 
 
 	&__trigger {
@@ -34,9 +32,7 @@
 		}
 
 		// any dropdown triggers that are also buttons.
-		&.btn {
-			padding-left: 15px;
-		}
+		&.c-btn { padding-left: 15px; }
 
 	}
 
@@ -57,7 +53,7 @@
 
 		@include transition(all 0.5s $easeInOut);
 
-		.dropdown--right & {
+		.c-dropdown--right & {
 			left: auto;
 			right: 0;
 		}
@@ -65,7 +61,7 @@
 
 		/* Theming */
 
-		.dropdown--secondary & {
+		.c-dropdown--secondary & {
 			background-color: $color--secondary;
 		}
 
@@ -89,7 +85,7 @@
 		&:hover {
 			background-color: darken($color--primary, 10%);
 
-			.dropdown--secondary & {
+			.c-dropdown--secondary & {
 				background-color: darken($color--secondary, 10%);
 			}
 

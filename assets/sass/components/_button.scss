@@ -1,0 +1,412 @@
+// Modular Reuseable Button Styles
+
+
+/*------------------------------------*\
+	$BUTTONS - BASE SETTINGS
+\*------------------------------------*/
+/**
+ * Base button styles.
+ *
+ * 1. Allow us to better style box model properties.
+ * 2. Normalise box model styles.
+ * 3. If the button's text is 1em, and the button is (3 * font-size) tall, then
+ *    there is 1em of space above and below that text. We therefore apply 1em
+ *    of space to the left and right, as padding, to keep consistent spacing.
+
+
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Stop buttons wrapping and looking broken.
+ * 4. Make buttons inherit font styles.
+
+
+ * 5. Force all elements using beautons to appear clickable.
+ * 8. Basic cosmetics for default buttons. Change or override at will.
+ * 9. Dont allow buttons to have underlines; it kinda ruins the illusion.
+ */
+.c-btn {
+	display: inline-block;      /* [1] */
+	margin: 0;                  /* [2] */
+	padding-top: 0;             /* [2] */
+	padding-bottom: 0;          /* [2] */
+	padding-right: .5em;	    /* [3] */
+	padding-left: .5em;	        /* [3] */
+	vertical-align: middle;     /* [2] */
+	white-space: nowrap;        /* [3] */
+	border: none;               /* [6] */
+	font-family: inherit;       /* [4] */
+	font-size: 100%;            /* [4] */
+	line-height: 1;             /* [3] */
+	cursor: pointer;            /* [5] */
+	border-radius: 0;           /* [8] */
+	text-decoration: none; 		/* [9] */
+}
+
+.c-btn {
+
+	position: relative;
+	text-transform: uppercase;
+
+	& + & { margin-left: 10px; }
+
+	&,
+	&:hover {
+		text-decoration: none;   /* [9] */
+		@include transition(all 0.5s $easeInOut);
+	}
+
+	&:active,
+	&:focus {
+		outline: none;
+	}
+
+
+	&:before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		@include transition(0.3s $easeInOut all);
+	}
+
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SIZES
+\*------------------------------------*/
+/**
+ * Button size modifiers.
+ *
+ * These all follow the same sizing rules as above; text is 1em, space around it
+ * remains uniform.
+ */
+
+
+
+$styles: (
+
+	small: (
+		font-size: $btn-size--small,
+		line-height: $btn-size--small * 2.25
+	),
+
+	medium: (
+		font-size: $btn-size--medium,
+		line-height: $btn-size--medium * 2.25
+	),
+
+	large: (
+		font-size: $btn-size--large,
+		line-height: $btn-size--large * 2.25
+	),
+
+	huge: (
+		font-size: $btn-size--huge,
+		line-height: $btn-size--huge * 2.25
+	)
+
+);
+
+.c-btn {
+
+	padding-left: 2em;
+	padding-right: 2em;
+
+	@each $class, $style in $styles {
+
+		/**
+		* Modifier: #{$class} size
+		*/
+
+		&--#{$class} {
+			@include font-size(map-get($style, font-size), map-get($style, line-height));
+		}
+
+		/**
+		* Modifier: Objects(square|circle) #{$class} size
+		*/
+
+		&--object--#{$class} {
+			height: #{map-get($style, line-height) + 2}px;
+			width: #{map-get($style, line-height) + 2}px;
+		}
+
+	}
+
+
+	/* Button with aligned icon */
+
+	&__icon {
+		position: relative;
+		top: 0.2rem;
+	}
+
+
+
+	/**
+	*  These buttons will fill the entirety of their container.
+	*
+	*  1. Remove padding so that widths and paddings dont conflict.
+	*/
+	&--full {
+		width: 100%;
+		padding-right: 0;            /* [1] */
+		padding-left: 0;             /* [1] */
+		text-align: center;
+	}
+
+	/**
+	*  These buttons will fill half of their container.
+	*
+	*  1. Remove padding so that widths and paddings dont conflict.
+	*/
+	&--half {
+		width: 50%;
+		padding-right: 0;            /* [1] */
+		padding-left: 0;             /* [1] */
+		text-align: center;
+	}
+
+}
+
+
+
+ /*------------------------------------*\
+	$FUNCTIONS
+\*------------------------------------*/
+/**
+ * Button function modifiers for Colour Skinning.
+ ------- colours have been extended in theme.scss for hierarchical button classes
+ */
+
+$properties: (
+
+	primary: (
+		background-color:           $color--primary,
+		color:                      $color--white,
+		background-color-active:    lighten(rgba($color--primary, 0.8), 25%),
+		color-active:               $color--white,
+		font-family:                $font--primary,
+		border-width: 				1px,
+		border-color:               $color--primary
+	),
+
+	secondary: (
+		background-color:           $color--secondary,
+		color:                      $color--tertiary,
+		background-color-active:    darken(rgba($color--secondary, 0.8), 5%),
+		color-active:               $color--primary,
+		font-family:                $font--secondary,
+		border-width: 				1px,
+		border-color:               $color--secondary
+	),
+
+	tertiary: (
+		background-color:           $color--tertiary,
+		color:                      $color--primary,
+		background-color-active:    $color--primary,
+		color-active:               $color--tertiary,
+		font-family:                $font--primary,
+		border-width: 				1px,
+		border-color:               $color--tertiary
+	),
+
+
+
+	// Actions based on
+	error: (
+		background-color:           $color--error,
+		color:                      $color--white,
+		background-color-active:    darken($color--error, 10%),
+		color-active:               $color--white,
+		font-family:                $font--primary,
+		border-width:               1px,
+		border-color:               $color--error
+	),
+
+	success: (
+		background-color:           $color--success,
+		color:                      $color--white,
+		background-color-active:    darken($color--success, 10%),
+		color-active:               $color--white,
+		font-family:                $font--primary,
+		border-width:               1px,
+		border-color:               $color--success
+	),
+
+	info: (
+		background-color:           $color--info,
+		color:                      $color--white,
+		background-color-active:    darken($color--info, 10%),
+		color-active:               $color--white,
+		font-family:                $font--primary,
+		border-width:               1px,
+		border-color:               $color--info
+	),
+
+	notice: (
+		background-color:           $color--notice,
+		color:                      $color--white,
+		background-color-active:    darken($color--notice, 10%),
+		color-active:               $color--white,
+		font-family:                $font--primary,
+		border-width:               1px,
+		border-color:               $color--notice
+	)
+
+);
+
+
+.c-btn {
+
+	> span {
+		position: relative;
+		z-index: 1;
+	}
+
+	&:before {
+		width: 0%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 0;
+	}
+
+	&:hover {
+		&:before { width: 100%; }
+	}
+
+	@each $class, $property in $properties {
+
+		$bg-color:              map-get($property, background-color);           // background-color
+		$text-color:            map-get($property, color);                      // color
+		$bg-color--active:      map-get($property, background-color-active);    // background-color [active]
+		$text-color--active:    map-get($property, color-active);               // color [active]
+		$font:                  map-get($property, font-family);                // font-family
+		$border-width:          map-get($property, border-width);               // border-width
+		$border-color:          map-get($property, border-color);               // border-color
+
+
+		&--#{$class} {
+			background: {
+				color: $bg-color;
+				image: none;
+				repeat: repeat;
+				position: 0 0;
+			}
+			@if $border-width > 1 {
+				border: {
+					width: $border-width;
+					style: solid;
+					color: $border-color;
+				}
+			} @else {
+				@warn "#{$class} button does not have a border, sure about that?";
+			}
+			color: $text-color;
+			font-family: $font;
+
+			&:before { background-color: $bg-color--active; }
+
+			&:hover { color:$text-color--active; }
+		}
+	}
+
+}
+
+
+
+
+/**
+ * Inactive, disabled buttons.
+ *
+ * 1. Make the button look like normal text when hovered.
+ */
+
+.c-btn {
+	&--inactive {
+		&,
+		&:hover,
+		&:active,
+		&:focus {
+			background-color:#ddd;
+			color:#777;
+			cursor:text;            /* [1] */
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	$STYLES
+\*------------------------------------*/
+/**
+* Button style modifiers.
+*/
+
+.c-btn {
+
+	&--pill {
+		border-radius: 50px;
+
+		&:before { content: none; }
+	}
+
+	&--object {
+		padding: 5px 0;
+		text-align: center;
+		line-height: 1.1;
+
+		&:before {
+			width: 100%;
+			opacity: 0;
+
+		}
+		&:hover {
+			&:before { opacity: 1; }
+		}
+
+
+		&--square {
+			border-radius: 0;
+		}
+
+		&--circle {
+			border-radius: 50%;
+
+			&:before { border-radius: 50%; }
+		}
+
+	}
+
+}
+
+
+/*------------------------------------*\
+	$GROUPING
+\*------------------------------------*/
+/**
+* Button Groups.
+*/
+
+.c-btn-group {
+
+	@extend %ib-fix;
+
+	.c-btn {
+
+		margin-left: 0;
+		margin-right: 0;
+
+		&:first-child { border-radius: .25rem 0 0 .25rem; }
+
+		&:last-child { border-radius: 0 .25rem .25rem 0; }
+
+	}
+
+}

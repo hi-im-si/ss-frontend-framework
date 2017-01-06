@@ -2,12 +2,19 @@
 
 	$.confirm = function(params){
 
-		if($('#js-dialog').length){
+		var buttonHTML = '',
+			$dialog = $('#js-dialog'),
+			$btns = $('.js-dialog-btn'),
+			i = 0;
+
+
+		if($dialog.length){
 			// A confirm is already shown on the page:
 			return false;
 		}
 
-		var buttonHTML = '';
+
+
 		$.each(params.buttons,function(name,obj){
 
 			// Generating the markup for the buttons:
@@ -21,21 +28,21 @@
 
 		var markup = [
 			'<div class="dialog" id="js-dialog">',
-			'<div class="dialog__box">',
-			'<h1 class="dialog__ttl">',params.title,'</h1>',
-			'<p class="dialog__msg">',params.message,'</p>',
-			'<div class="dialog__btns">',
-			buttonHTML,
-			'</div></div></div>'
+				'<div class="dialog__box">',
+					'<h1 class="dialog__ttl">',params.title,'</h1>',
+					'<p class="dialog__msg">',params.message,'</p>',
+					'<div class="dialog__btns">',
+						buttonHTML,
+					'</div>',
+				'</div>',
+			'</div>'
 		].join('');
 
 		$(markup).hide().appendTo('body').fadeIn();
 
-		var buttons = $('.js-dialog-btn'),
-			i = 0;
-
 		$.each(params.buttons,function(name,obj){
-			buttons.eq(i++).click(function(){
+
+			$btns.eq(i++).click(function(){
 
 				// Calling the action attribute when a
 				// click occurs, and hiding the confirm.
@@ -48,7 +55,7 @@
 	}
 
 	$.confirm.hide = function(){
-		$('#js-dialog').fadeOut(function(){
+		$dialog.fadeOut(function(){
 			$(this).remove();
 		});
 	}

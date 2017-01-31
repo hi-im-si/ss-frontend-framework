@@ -1,25 +1,27 @@
 /* For image replacement */
-.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
-.ir br { display: none; }
+.u-ir {
+	display: block;
+	text-indent: -999em;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	text-align: left;
+	direction: ltr;
+
+	br { display: none; }
+}
 
 /* Hide for both screenreaders and browsers:
    css-discuss.incutio.com/wiki/Screenreader_Visibility */
-.hidden { display: none; visibility: hidden!important; }
-
-/* Hide only visually, but have it available for screenreaders: by Jon Neal.
-  www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
-.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
-
-/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+.u-hidden {
+	display: none;
+	visibility: hidden;
+}
 
 /* Hide visually and from screenreaders, but maintain layout */
-.invisible { visibility: hidden; }
-.js .is-hidden { display:none; }
-.is-visible { display:block; }
+.u-invisible { visibility: hidden; }
 
-// [doc] Add to anything important that we are hiding with javascript. [/doc]
+
+// Add to anything important that we are hiding with javascript.
 .no-js-visible {
 	display: none;
 
@@ -29,17 +31,41 @@
 
 }
 
+/* Hide only visually, but have it available for screenreaders: by Jon Neal.
+  www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
+.u-visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
 
-/* Floats/Clears */
-.fl { float: left; display:inline; }
-.fr { float: right; display:inline; }
-
+	// Extends the .u-visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638
+	&--focusable {
+		&:active,
+		&:focus {
+			clip: auto;
+			height: auto;
+			margin: 0;
+			overflow: visible;
+			position: static;
+			width: auto;
+		}
+	}
+}
 
 // useful for blocking inline elements e.g. <span>
-.weight { display: block; }
+.u-weight { display: block; }
 
 
-.clear {
+/* Floats/Clears */
+.u-fl { float: left; }
+.u-fr { float: right; }
+
+.u-clear {
 	&--l { clear: left; }
 	&--r { clear: right; }
 	&--b { clear: both; }
@@ -48,17 +74,25 @@
 
 
 %ib-fix { font-size: 0; }
-.ib-fix { @extend %ib-fix; }
-.ib { @include inline-block; }
+.u-ib-fix { @extend %ib-fix; }
+.u-ib { @include inline-block; }
 
 
 
 
 /* Positioning */
-.pos {
+.u-pos {
 	&--r { position: relative; }
 	&--a { position: absolute; }
 	&--f { position: fixed; }
+}
+
+//overflows
+.u-overflow {
+	&--hid { overflow: hidden; }
+	&--vis { overflow: visible; }
+	&--auto { overflow: auto; }
+	&--scroll { overflow: scroll; }
 }
 
 
@@ -66,7 +100,7 @@
 /* Alignments */
 
 // Layout
-.l-align {
+.u-align {
 	&--left { float: left; }
 	&--right { float: right; }
 	&--center { @include align-center() }
@@ -80,28 +114,33 @@
 }
 
 
-
-
 // Reset Shit
-.reset {
+.u-reset {
 	&--margin { margin: 0 !important; }
 	&--padding { padding: 0 !important; }
 	&--height { height: auto; }
-	&--all { line-height:0; margin:0; padding:0; height:0; font-size:0; }
+	&--all {
+		line-height: 0;
+		margin: 0;
+		padding: 0;
+		height: 0;
+		font-size: 0;
+	}
 }
 
 
-
-
 // text based hooks
-.text {
+.u-text {
 	&--strong { font-weight: bold; }
 	&--normal { font-weight: normal; }
 	&--italic { font-style: italic; }
 
 	&--upper { text-transform: uppercase; }
 	&--lower { text-transform: lowercase; }
-	&--reset { text-transform: none; text-decoration: none; }
+	&--reset {
+		text-transform: none;
+		text-decoration: none;
+	}
 
 	&--left { text-align:left; }
 	&--right { text-align: right; }
@@ -112,25 +151,18 @@
 
 
 
-//overflows
-.overflow {
-	&--hid { overflow: hidden; }
-	&--vis { overflow: visible; }
-	&--auto { overflow: auto; }
-	&--scroll { overflow: scroll; }
-}
-
-
-
 
 // Borders
-.border {
-	border: 1px solid $color--primary;
+.u-border {
 
-	&--top { border-top: 1px solid $color--primary; }
-	&--right { border-right: 1px solid $color--primary; }
-	&--bottom { border-bottom: 1px solid $color--primary; }
-	&--left { border-left: 1px solid $color--primary; }
+	$border-color: $color--primary;
+
+	border: 1px solid $border-color;
+
+	&--top { border-top: 1px solid $border-color; }
+	&--right { border-right: 1px solid $border-color; }
+	&--bottom { border-bottom: 1px solid $border-color; }
+	&--left { border-left: 1px solid $border-color; }
 
 	&--none { border: 0px solid transparent; }
 }
@@ -161,7 +193,7 @@ html {
 	@each $size in $sizes-list {
 		@each $keyword, $property in $box-model-property-map {
 
-			.#{$keyword}#{$size} {
+			.u-#{$keyword}#{$size} {
 				@each $style in $property {
 
 					@if $keyword == width {

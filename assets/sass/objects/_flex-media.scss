@@ -13,15 +13,15 @@ Flexible Media
 *
 * Example HTML:
 *
-* <div class="flex-media flex-media--4by3">
-*     <iframe class="flex-media-item" src="…"></iframe>
+* <div class="o-flex-media  o-flex-media--4by3">
+*     <iframe class="o-flex-media-item" src="…"></iframe>
 * </div>
 *
-* <div class="flex-media flex-media--4by3">
-*     <img class="flex-media__item" src="…" alt="">
+* <div class="o-flex-media  o-flex-media--4by3">
+*     <img class="o-flex-media__item" src="…" alt="">
 * </div>
 *
-* <div class="flex-media flex-media--16by9">
+* <div class="o-flex-media  o-flex-media--16by9">
 *     [iframe|object|embed]
 * </div>
 *
@@ -39,7 +39,7 @@ $ratios: (
 	1by1: (1 1)
 );
 
-.flex-media {
+.o-flex-media {
 
 	display: block;
 	overflow: hidden;

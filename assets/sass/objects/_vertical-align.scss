@@ -1,9 +1,9 @@
 
-//		<div class="v-align">
+//		<div class="o-valign">
 //
-//			<div class="v-align__table">
+//			<div class="o-valign__table">
 //
-//				<div class="v-align__cell  v-align__cell--top||middle||bottom">
+//				<div class="o-valign__cell  o-valign__cell--top||middle||bottom">
 //
 //					<h1>stuff you want aligned</h1>
 //
@@ -13,7 +13,7 @@
 //		</div>
 
 /* align elements via display:table */
-.v-align {
+.o-valign {
 
 	@include _position(absolute,0,0,0,0);
 	height: 100%; width: 100%;

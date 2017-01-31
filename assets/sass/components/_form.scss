@@ -295,7 +295,7 @@ legend span {
 ---------------------------------------------------------------------------------------------------*/
 
 
-.file {
+.c-file {
 	opacity: 0;
 	@include _position(absolute, 0, 0, 0, 0, 10);
 	width: 100%;
@@ -341,7 +341,7 @@ legend span {
 ----------------------------- Select Styling ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-.selectdd {
+.c-selectdd {
 	position: relative;
 	display: inline-block;
 	clear: none;
@@ -389,17 +389,14 @@ legend span {
 
 	&--secondary {
 
-		.select {
+		.c-selectdd__option {
 
-			&__option {
+			background-color: $color--primary;
+			border-color: $color--tertiary;
+			color: $color--tertiary;
 
-				background-color: $color--primary;
-				border-color: $color--tertiary;
-				color: $color--tertiary;
-
-				&:after {
-					color:$color--tertiary;
-				}
+			&:after {
+				color:$color--tertiary;
 			}
 		}
 	}
@@ -453,7 +450,7 @@ legend span {
 ---------------------------------------------------------------------------------------------------*/
 
 
-.radio {
+.c-radio {
 	@include radio-check-styling;
 	border: 1px solid;
 	border-radius: 50%;
@@ -485,7 +482,7 @@ legend span {
 -----------------------Checkbox Input Styling ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-.checkbox {
+.c-checkbox {
 	@include radio-check-styling(20px, 20px, transparent, null)
 	border-width: 2px;
 	border-style: solid;

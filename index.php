@@ -4,7 +4,7 @@
 
 		<main class="l-wrap  l-main" role="main">
 
-			<? include 'styleguide.php'; ?>
+			<h1>Welcome to SS Front-end Framework</h1>
 
 		</main> <!-- /l-main -->
 

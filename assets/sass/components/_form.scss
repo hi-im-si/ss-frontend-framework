@@ -50,7 +50,7 @@ select {
 
 	// Base Focus States
 	&:focus {
-		@include box-shadow(0 0 5px rgba($color--primary, 0.2));
+		box-shadow: 0 0 5px rgba($color--primary, 0.2);
 	}
 
 }
@@ -235,8 +235,8 @@ legend span {
 		&__label {
 
 			@include _position(absolute, 50%, 0, null, 0);
-			@include transform(translateY(-50%));
-			@include transition(all 0.6s $easeInOut);
+			transform: translateY(-50%);
+			transition: all 0.6s $easeInOut;
 
 		}
 
@@ -246,7 +246,7 @@ legend span {
 			&:focus {
 				~ .c-form__float__label {
 					top: 0;
-					@include transform(translateY(-100%));
+					transform: translateY(-100%);
 				}
 			}
 
@@ -374,8 +374,8 @@ legend span {
 				width: 10px;
 				border-right: 2px solid $color--primary;
 				border-bottom: 2px solid $color--primary;
-				@include transform(translateY(-50%) rotate(45deg));
-				@include transform-origin(top center);
+				transform: translateY(-50%), rotate(45deg);
+				transform-origin: top center;
 			}
 
 			&--error {
@@ -419,21 +419,21 @@ legend span {
 	border-color: $color;
 	border-radius: $radius;
 	cursor: pointer;
-	@include transition(0.5s $easeInOut all);
-	@include backface-visibility(hidden);
+	transition: 0.5s $easeInOut all;
+	backface-visibility: hidden;
 
 
 	&:before {
 		content: "";
 		@include _position(absolute, 0, 0, 0, 0);
-		@include transition(0.5s $easeInOut all);
+		transition: 0.5s $easeInOut all;
 	}
 
 	input {
 		height: 100%;
 		width: 100%;
 		vertical-align: top;
-		@include opacity ( 0 );
+		opacity: 0;
 		visibility: hidden;
 		cursor:pointer;
 	}
@@ -458,7 +458,7 @@ legend span {
 	&:before {
 		margin: 3px;
 		border-radius: 50%;
-		@include transform(scale(0));
+		transform: scale(0);
 	}
 
 	+ label {
@@ -470,7 +470,7 @@ legend span {
 
 	&--selected {
 		&:before {
-			@include transform(scale(1));
+			transform: scale(1);
 		}
 	}
 
@@ -494,7 +494,7 @@ legend span {
 	~ label { margin-bottom: 0; }
 
 	&--selected {
-		@include transform(rotate(-50deg) scaleY(0.5) translateX(25%));
+		transform: rotate(-50deg), scaleY(0.5), translateX(25%);
 		border-bottom-width: 4px;
 		border-left-width: 2px;
 		border-right-color: rgba(0,0,0,0);
@@ -523,9 +523,9 @@ $form: "form";
 			background-color: $color--error;
 			color: $color--tertiary;
 			line-height: 1;
-			@include opacity(0);
+			opacity: 0;
 			visibility: visible;
-			@include transition(all 1s $easeInOut);
+			transition: all 1s $easeInOut;
 		}
 
 	}

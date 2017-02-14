@@ -497,7 +497,7 @@ img.scale-with-grid {
     &,
     &:before,
     &:after{
-        @include box-sizing(border-box);
+        box-sizing: border-box;
     }
 }
 

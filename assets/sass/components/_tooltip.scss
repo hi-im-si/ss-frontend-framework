@@ -99,14 +99,12 @@ $coloring:                true!default;
 	&:after {
 		position: absolute;
 		visibility: hidden;
-		@include opacity( 0 );
-		@include box-sizing(content-box);
+		opacity: 0;
+		box-sizing: content-box;
 		z-index: 999999;
-		@include transition( (opacity 0.2s $easeInOut, visibility 0.2s $easeInOut) );
+		transition: opacity 0.2s $easeInOut, visibility 0.2s $easeInOut;
 		// Force Hardware Acceleration in WebKit with translate3d - Refrence: http://davidwalsh.name/translate3d
-		-webkit-transform: translate3d(0, 0, 0);
-		   -moz-transform: translate3d(0, 0, 0);
-				transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
 	}
 
 		// tooltip arrow
@@ -133,7 +131,7 @@ $coloring:                true!default;
 		//background-color: transparent;
 
 		&:before, &:after {
-			@include opacity( 1 );
+			opacity: 1;
 			visibility: visible;
 		}
 	}
@@ -213,7 +211,7 @@ $coloring:                true!default;
 				&:hover{
 					&:before,
 					&:after {
-						@include transform(translateX(10px));
+						transform: translateX(10px);
 					}
 				}
 
@@ -270,7 +268,10 @@ $coloring:                true!default;
 					margin-right: 2px;
 				}
 				&:hover{
-					&:before, &:after {@include transform(translateX(-10px));}
+					&:before,
+					&:after {
+						transform: translateX(-10px);
+					}
 				}
 
 				@if $half-arrows == true {
@@ -349,7 +350,7 @@ $coloring:                true!default;
 				&:hover{
 					&:before,
 					&:after {
-						@include transform(translateY(10px));
+						transform: translateY(10px);
 					}
 				}
 
@@ -406,7 +407,7 @@ $coloring:                true!default;
 				&:hover {
 					&:before,
 					&:after {
-						@include transform(translateY(-10px));
+						transform: translateY(-10px);
 					}
 				}
 
@@ -440,8 +441,9 @@ $coloring:                true!default;
 // animate movement on hover
 @if $movable == true {
 	.ttip--movable {
-		&:before, &:after {
-			@include transition(all 0.1s $easeInOut);
+		&:before,
+		&:after {
+			transition: all 0.1s $easeInOut;
 		}
 	}
 }

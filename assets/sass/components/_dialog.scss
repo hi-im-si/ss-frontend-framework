@@ -7,7 +7,7 @@
 
 	&__box {
 		@include _position(fixed, 50%, 0, null, 0, 9999);
-		@include transform(translateY(-50%));
+		transform: translateY(-50%);
 		max-width: 460px;
 		margin: auto;
 		padding: 40px;

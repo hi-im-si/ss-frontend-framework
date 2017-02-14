@@ -28,7 +28,7 @@
 	width: $width;
 	height: $height;
 	@include _position($position, 50%, 0, auto, 0, 5);
-	@include transform( translateY($translate) );
+	transform: translateY($translate);
 }
 
 // usage: @include vertical-align(absolute);

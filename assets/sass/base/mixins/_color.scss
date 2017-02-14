@@ -15,7 +15,7 @@
 	@if $pseudo == true{
 
 	 	background: $color none repeat 0 0;
-	 	@include opacity($alpha);
+	 	opacity: $alpha;
 
 	} @else {
 

@@ -51,7 +51,7 @@
 	&,
 	&:hover {
 		text-decoration: none;   /* [9] */
-		@include transition(all 0.5s $easeInOut);
+		transition: all 0.5s $easeInOut;
 	}
 
 	&:active,
@@ -64,7 +64,7 @@
 		content: '';
 		position: absolute;
 		z-index: -1;
-		@include transition(0.3s $easeInOut all);
+		transition: 0.3s $easeInOut all;
 	}
 
 }

@@ -83,7 +83,7 @@
 
             overflow: hidden;
             max-height: 35px;
-            @include transition(0.5s $linear);
+            transition: 0.5s $linear;
 
             code[class*=language-],
             pre[class*=language-] {

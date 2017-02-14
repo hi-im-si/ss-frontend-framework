@@ -38,7 +38,7 @@
 		@include font-size($size--zeta);
 		display: block;
 		padding: 5px 0;
-		@include transition(0.3s $easeInOut all);
+		transition: 0.3s $easeInOut all;
 		text-transform: uppercase;
 		text-decoration: none;
 

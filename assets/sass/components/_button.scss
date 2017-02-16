@@ -410,3 +410,20 @@ $properties: (
 	}
 
 }
+
+
+/*------------------------------------*\
+	$EXTENDS
+\*------------------------------------*/
+/**
+* Modifying the button based on being inside another component
+*/
+
+
+// see /components/dropdown
+// modifies the button if its parent is a dropdown trigger
+.c-btn {
+	&.c-dropdown__trigger {
+		padding-left: 15px;
+	}
+}

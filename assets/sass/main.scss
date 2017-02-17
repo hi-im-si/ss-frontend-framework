@@ -64,12 +64,6 @@
 @import 'components/list';
 @import 'components/table';
 @import 'components/button';
-@import 'components/dropdown';
-@import 'components/tooltip';
-@import 'components/notification';
-@import 'components/dialog';
-@import 'components/accordion';
-@import 'components/modal';
 @import 'components/lazyload';
 
 
@@ -122,6 +116,5 @@
 //	STYLEGUIDE
 //	Styleguide specific styles --- NO relevance to core styles --- just to make styleguide presentable
 //  You can switch this off in the base/variables.scss by doing:
-//  $template:  false;
 //
-@import 'base/styleguide';
+// @import 'base/styleguide';
